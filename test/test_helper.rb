@@ -7,4 +7,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def api_token
+    users(:foo).api_token
+  end
+
+  def json_response
+    JSON.parse(@response.body, symbolize_names: true)
+  end
 end

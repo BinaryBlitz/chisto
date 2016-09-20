@@ -1,4 +1,5 @@
-class API::UsersController < ApplicationController
+class API::UsersController < API::APIController
+  skip_before_action :restrict_access!, only: [:create]
   before_action :set_user, only: [:show, :update]
 
   def show
@@ -25,7 +26,7 @@ class API::UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.first
+    @user = current_user
   end
 
   def user_params
