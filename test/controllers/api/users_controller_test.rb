@@ -6,7 +6,7 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get show' do
-    get api_user_path(@user)
+    get api_user_path(@user, api_token: api_token)
     assert_response :success
   end
 
@@ -15,7 +15,7 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
     @user.destroy
 
     assert_difference 'User.count' do
-      post api_user_url(@user), params: { user: @user.attributes }
+      post api_user_url, params: { user: @user.attributes }
     end
 
     assert_response :created
@@ -23,7 +23,7 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update user' do
     new_name = 'Another name'
-    patch api_user_path(@user), params: { user: { first_name: new_name } }
+    patch api_user_path(@user, api_token: api_token), params: { user: { first_name: new_name } }
     assert_response :ok
     assert_equal new_name, @user.reload.first_name
   end
