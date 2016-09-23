@@ -19,4 +19,20 @@ class WashingTest < ActiveSupport::TestCase
     @washing.category = 'a'
     assert @washing.invalid?
   end
+
+  test 'valid without image' do
+    @washing.remove_image!
+    assert @washing.valid?
+  end
+
+  test 'valid without logo' do
+    @washing.remove_logo!
+    assert @washing.valid?
+  end
+
+  test 'invalid without image and logo' do
+    @washing.remove_image!
+    @washing.remove_logo!
+    assert @washing.invalid?
+  end
 end
