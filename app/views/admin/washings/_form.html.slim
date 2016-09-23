@@ -1,0 +1,24 @@
+= form_for [:admin, @washing] do |f|
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+
+  .form-group
+    = f.label :description
+    = f.text_area :description, rows: 3, cols: 100, class: 'form-control'
+
+  .form-group
+    = f.label :category
+    = f.select :category, [['Economy', 'economy'], ['Premium', 'premium']], {}, class: 'form-control'
+
+  .form-group
+    = f.label :image
+    = f.file_field :image
+
+  .form-group
+    = f.label :logo
+    = f.file_field :logo
+
+  .actions
+    = f.submit class: 'btn btn-default'

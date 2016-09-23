@@ -1,0 +1,23 @@
+h1 Химчистка: #{@washing.name}
+
+.form-group
+  strong Название: 
+  = @washing.name
+
+.form-group
+  strong Описание: 
+  = @washing.description
+
+.form-group
+  strong Класс: 
+  = @washing.category
+
+- if @washing.image.present?
+  .form-group
+    strong Фотография:
+    p = image_tag @washing.image.thumb
+
+- if @washing.logo.present?
+  .form-group
+    strong Логотип:
+    p = image_tag @washing.logo.thumb

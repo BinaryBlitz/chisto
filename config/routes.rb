@@ -4,4 +4,8 @@ Rails.application.routes.draw do
     resource :user, only: [:show, :create, :update]
     resources :washings, only: [:index, :show]
   end
+
+  namespace :admin do
+    resources :washings
+  end
 end

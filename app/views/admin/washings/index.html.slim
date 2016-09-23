@@ -1,0 +1,28 @@
+h1 Химчистки
+= link_to 'Добавить химчистку', new_admin_washing_path, class: 'btn btn-primary'
+
+.table-responsive
+  table.table
+    thead
+      tr
+        th Название
+        th Описание
+        th Класс
+        th Фотография
+        th Логотип
+        th
+        th
+    tbody
+      - @washings.each do |washing|
+        tr
+          td = link_to washing.name, [:admin, washing]
+          td = washing.description.truncate(140)
+          td = washing.category
+          td
+            - if washing.image.present?
+              = image_tag(washing.image.thumb)
+          td
+            - if washing.logo.present?
+              = image_tag(washing.logo.thumb)
+          td = link_to 'Изменить', edit_admin_washing_path(washing), class: 'btn btn-warning'
+          td = link_to 'Удалить', admin_washing_path(washing), method: :delete, data: { confirm: 'Вы действительно хотите удалить химчистку?' }, class: 'btn btn-danger'
