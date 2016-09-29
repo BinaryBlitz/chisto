@@ -34,6 +34,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'phonelib'
 gem 'email_validator'
 gem 'httparty'
+gem 'bootstrap'
+gem 'slim-rails'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
