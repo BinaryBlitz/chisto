@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: verification_tokens
+#
+#  id           :integer          not null, primary key
+#  token        :string           not null
+#  phone_number :string           not null
+#  code         :string           not null
+#  verified     :boolean          default(FALSE)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class VerificationToken < ApplicationRecord
   SMS_VERIFICATION_URL = 'http://sms.ru/sms/send'
   ALPHABET = ('0'..'9').to_a

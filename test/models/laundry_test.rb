@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: laundries
+#
+#  id          :integer          not null, primary key
+#  name        :string           not null
+#  description :string           not null
+#  logo        :string
+#  image       :string
+#  category    :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 require 'test_helper'
 
 class LaundryTest < ActiveSupport::TestCase
