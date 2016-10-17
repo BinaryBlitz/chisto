@@ -11,7 +11,18 @@ user = User.create!(
 user.update!(api_token: 'foobar')
 
 category = Category.create!(
-  name: 'Category',
+  name: 'Name',
   description: 'Description',
   icon: 'icon'
 )
+
+item = Item.create!(name: 'Name', category: category, icon: 'icon')
+
+treatment = Treatment.create!(name: 'Name', description: 'Description')
+
+laundry = Laundry.create!(
+  name: 'Name', description: 'Description',
+  logo: 'logo', image: 'image', category: 'premium'
+)
+
+laundry.laundry_treatments.create!(treatment: treatment, price: 100)
