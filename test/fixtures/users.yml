@@ -2,16 +2,20 @@
 #
 # Table name: users
 #
-#  id           :integer          not null, primary key
-#  first_name   :string           not null
-#  last_name    :string           not null
-#  phone_number :string           not null
-#  email        :string
-#  address      :string           not null
-#  birthdate    :date
-#  api_token    :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id               :integer          not null, primary key
+#  first_name       :string           not null
+#  last_name        :string           not null
+#  phone_number     :string           not null
+#  email            :string
+#  birthdate        :date
+#  api_token        :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  city_id          :integer
+#  street_name      :string
+#  house_number     :string
+#  apartment_number :string
+#  notes            :text
 #
 
 foo:
@@ -19,7 +23,11 @@ foo:
   last_name: Bar
   phone_number: "+79998887766"
   email: foo@bar.com
-  address: Address
+  city: city
+  street_name: Street name
+  house_number: "1a"
+  apartment_number: 1
+  notes: Notes
   birthdate: 2000-01-01
   api_token: <%= SecureRandom.hex %>
 
@@ -28,6 +36,10 @@ baz:
   last_name: Qux
   phone_number: "+79991112233"
   email: baz@qux.com
-  address: Address
+  city: city
+  street_name: Street name
+  house_number: "1a"
+  apartment_number: 1
+  notes: Notes
   birthdate: 2000-01-01
   api_token: <%= SecureRandom.hex %>
