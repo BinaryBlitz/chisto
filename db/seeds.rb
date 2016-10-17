@@ -18,11 +18,11 @@ category = Category.create!(
 
 item = Item.create!(name: 'Name', category: category, icon: 'icon')
 
-treatment = Treatment.create!(name: 'Name', description: 'Description')
+treatment = item.treatments.create!(name: 'Name', description: 'Description')
 
 laundry = Laundry.create!(
-  name: 'Name', description: 'Description',
-  logo: 'logo', image: 'image', category: 'premium'
+  name: 'Name', description: 'Description', city: city,
+  logo: 'logo', background_image: 'background image', category: 'premium'
 )
 
 laundry.laundry_treatments.create!(treatment: treatment, price: 100)
