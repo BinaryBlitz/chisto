@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017223541) do
+ActiveRecord::Schema.define(version: 20161017230621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,13 +40,18 @@ ActiveRecord::Schema.define(version: 20161017223541) do
   end
 
   create_table "laundries", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "description", null: false
+    t.string   "name",                    null: false
+    t.string   "description",             null: false
     t.string   "logo"
-    t.string   "image"
-    t.string   "category",    null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "background_image"
+    t.string   "category",                null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "city_id"
+    t.integer  "minimum_order_price"
+    t.integer  "minimum_collection_time"
+    t.integer  "order_processing_time"
+    t.index ["city_id"], name: "index_laundries_on_city_id", using: :btree
   end
 
   create_table "laundry_treatments", force: :cascade do |t|

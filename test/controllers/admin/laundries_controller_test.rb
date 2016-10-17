@@ -21,7 +21,7 @@ class Admin::LaundriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'Laundry.count' do
       post admin_laundries_url(@laundry), params: {
         laundry: @laundry.attributes.merge(
-          image: fixture_file_upload('public/blank.jpg'),
+          background_image: fixture_file_upload('public/blank.jpg'),
           logo: fixture_file_upload('public/blank.jpg')
         )
       }
