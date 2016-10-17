@@ -7,7 +7,7 @@ class API::TreatmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get api_item_treatments_path(@item, api_token: api_token)
+    get api_item_treatments_path(@item)
     assert_response :success
   end
 end

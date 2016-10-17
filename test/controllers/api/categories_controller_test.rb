@@ -6,7 +6,7 @@ class API::CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get api_categories_path(api_token: api_token)
+    get api_categories_path
     assert_response :success
   end
 end

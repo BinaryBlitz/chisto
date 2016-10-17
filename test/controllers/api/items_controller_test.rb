@@ -7,7 +7,7 @@ class API::ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get api_category_items_path(@category, api_token: api_token)
+    get api_category_items_path(@category)
     assert_response :success
   end
 end

@@ -6,7 +6,7 @@ class API::CitiesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get api_cities_path(api_token: api_token)
+    get api_cities_path
     assert_response :success
   end
 end
