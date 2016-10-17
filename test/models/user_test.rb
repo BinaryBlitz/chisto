@@ -16,6 +16,7 @@
 #  house_number     :string
 #  apartment_number :string
 #  notes            :text
+#  contact_number   :string
 #
 
 require 'test_helper'
