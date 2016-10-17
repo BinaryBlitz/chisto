@@ -1,17 +1,18 @@
 # == Schema Information
 #
-# Table name: categories
+# Table name: items
 #
 #  id          :integer          not null, primary key
+#  category_id :integer
 #  name        :string           not null
-#  description :string
 #  icon        :string
+#  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
-class Category < ApplicationRecord
-  has_many :items, dependent: :destroy
+class Item < ApplicationRecord
+  belongs_to :category
 
   validates :name, presence: true
   validates :icon, presence: true
