@@ -19,8 +19,8 @@ h1 Химчистки
           td = laundry.description.truncate(140)
           td = laundry.category
           td
-            - if laundry.image.present?
-              = image_tag(laundry.image.thumb)
+            - if laundry.background_image.present?
+              = image_tag(laundry.background_image.thumb)
           td
             - if laundry.logo.present?
               = image_tag(laundry.logo.thumb)

@@ -12,10 +12,10 @@ h1 Химчистка: #{@laundry.name}
   strong Класс: 
   = @laundry.category
 
-- if @laundry.image.present?
+- if @laundry.background_image.present?
   .form-group
     strong Фотография:
-    p = image_tag @laundry.image.thumb
+    p = image_tag @laundry.background_image.thumb
 
 - if @laundry.logo.present?
   .form-group

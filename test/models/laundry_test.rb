@@ -2,14 +2,18 @@
 #
 # Table name: laundries
 #
-#  id          :integer          not null, primary key
-#  name        :string           not null
-#  description :string           not null
-#  logo        :string
-#  image       :string
-#  category    :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                      :integer          not null, primary key
+#  name                    :string           not null
+#  description             :string           not null
+#  logo                    :string
+#  background_image        :string
+#  category                :string           not null
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  city_id                 :integer
+#  minimum_order_price     :integer
+#  minimum_collection_time :integer
+#  order_processing_time   :integer
 #
 
 require 'test_helper'
@@ -31,6 +35,21 @@ class LaundryTest < ActiveSupport::TestCase
     end
 
     @laundry.category = 'a'
+    assert @laundry.invalid?
+  end
+
+  test 'minimum order price is positive' do
+    @laundry.minimum_order_price = 0
+    assert @laundry.invalid?
+  end
+
+  test 'minimum collection time is positive' do
+    @laundry.minimum_collection_time = 0
+    assert @laundry.invalid?
+  end
+
+  test 'order processing time is positive' do
+    @laundry.order_processing_time = 0
     assert @laundry.invalid?
   end
 
