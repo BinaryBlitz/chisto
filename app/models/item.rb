@@ -14,6 +14,8 @@
 class Item < ApplicationRecord
   belongs_to :category
 
+  has_many :treatments, dependent: :destroy
+
   validates :name, presence: true
   validates :icon, presence: true
 end

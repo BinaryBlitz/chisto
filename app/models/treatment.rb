@@ -13,5 +13,8 @@
 class Treatment < ApplicationRecord
   belongs_to :item
 
+  has_many :laundry_treatments, dependent: :destroy
+  has_many :laundries, through: :laundry_treatments
+
   validates :name, presence: true
 end
