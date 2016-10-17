@@ -13,10 +13,15 @@
 #
 
 class Laundry < ApplicationRecord
+  has_many :laundry_treatments, dependent: :destroy
+  has_many :treatments, through: :laundry_treatments
+
   validates :category, inclusion: { in: %w(economy premium) }
   validates :name, :description, presence: true
-  validates :image, presence: true, unless: :logo?
-  validates :logo, presence: true, unless: :image?
+
+  # TODO: Rename image to background image, fix validations
+  # validates :image, presence: true, unless: :logo?
+  # validates :logo, presence: true, unless: :image?
 
   mount_uploader :image, ImageUploader
   mount_uploader :logo, LogoUploader

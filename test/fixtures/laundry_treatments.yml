@@ -1,0 +1,16 @@
+# == Schema Information
+#
+# Table name: laundry_treatments
+#
+#  id           :integer          not null, primary key
+#  laundry_id   :integer
+#  treatment_id :integer
+#  price        :integer          not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+laundry_treatment:
+  laundry: laundry
+  treatment: treatment
+  price: 1
