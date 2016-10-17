@@ -14,6 +14,7 @@
 class VerificationToken < ApplicationRecord
   SMS_VERIFICATION_URL = 'http://sms.ru/sms/send'
   ALPHABET = ('0'..'9').to_a
+  CODE_LENGTH = 5
 
   attr_accessor :entered_code
 
@@ -55,7 +56,7 @@ class VerificationToken < ApplicationRecord
   private
 
   def generate_code
-    self.code = 4.times.map { ALPHABET.sample }.join
+    self.code = Array.new(CODE_LENGTH) { ALPHABET.sample }.join
   end
 
   def sms_verification_params
