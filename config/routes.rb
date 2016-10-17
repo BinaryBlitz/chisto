@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resources :laundries, only: [:index, :show]
 
     resources :categories, only: [:index] do
-      resources :items, only: [:index]
+      resources :items, only: [:index], shallow: true do
+        resources :treatments, only: [:index]
+      end
     end
   end
 
