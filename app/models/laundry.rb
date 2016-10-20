@@ -31,9 +31,8 @@ class Laundry < ApplicationRecord
             :order_processing_time,
             numericality: { greater_than: 0 }, allow_nil: true
 
-  # TODO: Rename image to background image, fix validations
-  # validates :image, presence: true, unless: :logo?
-  # validates :logo, presence: true, unless: :image?
+  validates :background_image, presence: true
+  validates :logo, presence: true
 
   mount_uploader :background_image, ImageUploader
   mount_uploader :logo, LogoUploader
