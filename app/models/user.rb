@@ -25,6 +25,8 @@ class User < ApplicationRecord
 
   belongs_to :city
 
+  has_many :ratings, dependent: :destroy
+
   validates :first_name, :last_name, presence: true
   validates :email, email: true, uniqueness: { case_sensitive: false }
   validates :phone_number, uniqueness: true

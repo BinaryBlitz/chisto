@@ -21,6 +21,7 @@ class Laundry < ApplicationRecord
 
   has_many :laundry_treatments, dependent: :destroy
   has_many :treatments, through: :laundry_treatments
+  has_many :ratings, dependent: :destroy
 
   validates :category, inclusion: { in: %w(economy premium) }
   validates :name, :description, presence: true
