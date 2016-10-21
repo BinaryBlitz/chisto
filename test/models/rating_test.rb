@@ -27,4 +27,9 @@ class RatingTest < ActiveSupport::TestCase
     @rating.value = 0
     assert @rating.invalid?
   end
+
+  test 'uniqueness' do
+    rating = @rating.dup
+    assert rating.invalid?
+  end
 end
