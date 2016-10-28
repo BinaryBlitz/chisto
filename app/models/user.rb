@@ -25,6 +25,7 @@ class User < ApplicationRecord
 
   belongs_to :city
 
+  has_many :orders, dependent: :destroy
   has_many :ratings, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
