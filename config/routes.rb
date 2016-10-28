@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   namespace :api do
     resources :verification_tokens, only: [:create, :update], param: :token
     resource :user, only: [:show, :create, :update]
-    resources :cities
 
-    resources :laundries, only: [:index, :show] do
+    resources :cities do
+      resources :laundries, only: [:index]
+    end
+
+    resources :laundries, only: [:show] do
       resources :ratings, only: [:create]
       resources :orders, only: [:create]
     end
