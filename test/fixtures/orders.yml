@@ -1,0 +1,10 @@
+order:
+  user: foo
+  laundry: laundry
+  status: 0
+  paid: false
+  street_name: Street name
+  house_number: 1a
+  apartment_number: 1
+  contact_number: '+79991112233'
+  notes: Notes
