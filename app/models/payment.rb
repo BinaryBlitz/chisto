@@ -20,6 +20,15 @@ class Payment < ApplicationRecord
 
   after_create :init
 
+  def paid!
+    return if paid?
+
+    ActiveRecord::Base.transaction do
+      update_column(:paid, true)
+      order.paid!
+    end
+  end
+
   private
 
   def init

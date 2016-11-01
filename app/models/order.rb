@@ -30,6 +30,14 @@ class Order < ApplicationRecord
     super || create_payment(amount: total_price)
   end
 
+  def paid!
+    return if paid?
+
+    ActiveRecord::Base.transaction do
+      update_column(:paid, true)
+    end
+  end
+
   private
 
   def total_price
