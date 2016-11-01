@@ -9,7 +9,7 @@ class API::OrdersController < API::APIController
     @order = @laundry.orders.build(laundry_params.merge(user: current_user))
 
     if @order.save
-      render :show, status: :created
+      render status: :created
     else
       render json: @order.errors, status: 422
     end
