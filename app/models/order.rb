@@ -5,7 +5,7 @@
 #  id               :integer          not null, primary key
 #  user_id          :integer
 #  laundry_id       :integer
-#  status           :integer          default(0)
+#  status           :integer          default("processing")
 #  paid             :boolean          default(FALSE)
 #  street_name      :string
 #  house_number     :string
@@ -20,7 +20,19 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :laundry
 
+  has_one :payment, dependent: :destroy
+
   enum status: %i(processing completed canceled)
 
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true
+
+  def payment
+    super || create_payment(amount: total_price)
+  end
+
+  private
+
+  def total_price
+    1
+  end
 end
