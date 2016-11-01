@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id               :integer          not null, primary key
+#  user_id          :integer
+#  laundry_id       :integer
+#  status           :integer          default("processing")
+#  paid             :boolean          default(FALSE)
+#  street_name      :string
+#  house_number     :string
+#  apartment_number :string
+#  contact_number   :string
+#  notes            :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 require 'test_helper'
 
 class OrderTest < ActiveSupport::TestCase
