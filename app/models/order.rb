@@ -14,6 +14,7 @@
 #  notes            :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  email            :string
 #
 
 class Order < ApplicationRecord
@@ -25,6 +26,7 @@ class Order < ApplicationRecord
   enum status: %i(processing completed canceled)
 
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true
+  validates :email, email: true
 
   def payment
     super || create_payment(amount: total_price)

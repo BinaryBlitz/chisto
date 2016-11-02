@@ -26,3 +26,4 @@ order:
   apartment_number: 1
   contact_number: '+79991112233'
   notes: Notes
+  email: foo@bar.com
