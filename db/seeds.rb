@@ -7,7 +7,8 @@ user = User.create!(
   phone_number: '+79998887766', email: 'foo@bar.com',
   birthdate: 20.years.ago,
   city: city, street_name: 'Street name',
-  house_number: '1a', apartment_number: 1, notes: 'Notes'
+  house_number: '1a', apartment_number: 1,
+  notes: 'Notes', contact_number: '+79998887766'
 )
 
 user.update!(api_token: 'foobar')
@@ -24,13 +25,15 @@ treatment = item.treatments.create!(name: 'Name', description: 'Description')
 
 laundry = Laundry.create!(
   name: 'Name', description: 'Description', city: city,
-  logo: image, background_image: image, category: 'premium'
+  logo: image, background_image: image, category: 'premium',
+  email: 'foo@bar.com', password: 'qwerty123'
 )
 
 laundry.laundry_treatments.create!(treatment: treatment, price: 100)
 
 order = Order.create!(
   user: user, laundry: laundry,
-  street_name: 'Street name', house_number: 'House number',
-  apartment_number: 'Apartment number', contact_number: 'Contact number'
+  street_name: user.street_name, house_number: user.house_number,
+  apartment_number: user.apartment_number, contact_number: user.contact_number,
+  email: user.email
 )
