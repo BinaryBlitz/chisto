@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :partners
+  constraints subdomain: 'partner' do
+    devise_for :laundries, path: ''
+  end
 
   resources :payments, only: [:create]
 

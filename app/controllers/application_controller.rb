@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     return 'application' unless devise_controller?
 
-    if resource_name == :partner
+    if resource_name == :laundry
       'partner'
     else
       'application'

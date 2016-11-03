@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/dankimio/devise-bootstrap-views
+  revision: fb3e6e0d83d7f9ea0fb281ae37597de1c98f2b88
+  branch: bootstrap4
+  specs:
+    devise-bootstrap-views (0.0.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -71,8 +78,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise-bootstrap-views (0.0.9)
-    devise-i18n (1.1.0)
+    devise-i18n (1.1.1)
     email_validator (1.6.0)
       activemodel
     erubis (2.7.0)
@@ -208,7 +214,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.2)
   devise (~> 4.1)
-  devise-bootstrap-views
+  devise-bootstrap-views!
   devise-i18n
   email_validator
   httparty
