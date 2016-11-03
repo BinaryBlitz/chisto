@@ -47,6 +47,6 @@ class Admin::LaundriesController < ApplicationController
   def laundry_params
     params
       .require(:laundry)
-      .permit(:name, :description, :category, :city_id, :logo, :background_image)
+      .permit(:name, :description, :category, :city_id, :logo, :background_image, :email, :password)
   end
 end

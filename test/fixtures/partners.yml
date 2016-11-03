@@ -1,3 +1,0 @@
-partner:
-  email: foo@bar.com
-  encrypted_password: <%= Devise::Encryptor.digest(Partner, 'password') %>

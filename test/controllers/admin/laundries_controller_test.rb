@@ -22,7 +22,8 @@ class Admin::LaundriesControllerTest < ActionDispatch::IntegrationTest
       post admin_laundries_url(@laundry), params: {
         laundry: @laundry.attributes.merge(
           background_image: fixture_file_upload('public/blank.jpg'),
-          logo: fixture_file_upload('public/blank.jpg')
+          logo: fixture_file_upload('public/blank.jpg'),
+          password: 'qwerty123'
         )
       }
     end

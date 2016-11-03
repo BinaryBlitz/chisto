@@ -40,3 +40,4 @@ laundry:
   minimum_order_price: 1
   minimum_collection_time: 1
   order_processing_time: 1
+  email: foo@bar.com
