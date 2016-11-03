@@ -1,5 +1,5 @@
 class Partner::PartnerController < ApplicationController
-  before_action :authenticate_partner!
+  before_action :authenticate_laundry!
   before_action :set_locale
 
   layout 'partner'

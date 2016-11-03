@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   constraints subdomain: 'partner' do
     devise_for :laundries, path: ''
+
+    get '/', to: 'partner/orders#index'
+
+    scope module: :partner, as: :partner do
+      resources :orders
+    end
   end
 
   resources :payments, only: [:create]
