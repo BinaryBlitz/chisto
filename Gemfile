@@ -34,6 +34,10 @@ gem 'httparty'
 # Image processing
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'devise', '~> 4.1'
+gem 'devise-i18n'
+gem 'devise-bootstrap-views',
+    git: 'https://github.com/dankimio/devise-bootstrap-views', branch: 'bootstrap4'
 
 # Payments
 gem 'tinkoff'

@@ -1,0 +1,19 @@
+<nav class="navbar navbar-full navbar-light bg-faded">
+  <div class="container">
+    <%= link_to 'Laundry', '#', class: 'navbar-brand' %>
+    <ul class="nav navbar-nav pull-xs-right">
+      <% if laundry_signed_in? %>
+        <li class="nav-item">
+          <%= link_to 'Профиль', edit_laundry_registration_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Выйти', destroy_laundry_session_path, method: :delete, class:'nav-link' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Войти', new_laundry_session_path, class:'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  constraints subdomain: 'partner' do
+    devise_for :laundries, path: ''
+  end
+
   resources :payments, only: [:create]
 
   namespace :api do

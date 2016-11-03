@@ -1,0 +1,19 @@
+@import 'bootstrap';
+
+// Navbar
+nav.navbar {
+  margin-bottom: 1rem;
+}
+
+// Alerts
+.alert-notice {
+  @extend .alert-info !optional;
+}
+
+.alert-alert {
+  @extend .alert-danger !optional;
+}
+
+.field_with_errors {
+  @extend .has-danger !optional;
+}
