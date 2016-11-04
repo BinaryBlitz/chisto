@@ -40,9 +40,12 @@ class Order < ApplicationRecord
     end
   end
 
-  private
-
+  # TODO: Implement
   def total_price
     1
+  end
+
+  def address
+    "Улица #{street_name}, дом #{house_number}, квартира #{apartment_number}"
   end
 end

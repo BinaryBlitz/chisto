@@ -1,0 +1,39 @@
+h1 = "Заказ №#{@order.id}"
+
+dl.row
+  dt.col-sm-3 №
+  dd.col-sm-9 = @order.id
+  dt.col-sm-3 Дата и время
+  dd.col-sm-9 = @order.created_at.to_formatted_s(:short)
+  dt.col-sm-3 Телефон
+  dd.col-sm-9 = @order.contact_number
+  dt.col-sm-3 Статус
+  dd.col-sm-9 = @order.status
+  dt.col-sm-3 Стоимость заказа
+  dd.col-sm-9 = @order.total_price
+  dt.col-sm-3 Стоимость доставки
+  dd.col-sm-9 = @order.total_price
+  dt.col-sm-3 Итого
+  dd.col-sm-9 = @order.total_price
+  dt.col-sm-3 Адрес
+  dd.col-sm-9 = @order.address
+  dt.col-sm-3 Комментарии
+  dd.col-sm-9 = @order.notes || 'Нет'
+  dt.col-sm-3 Дата забора
+  dd.col-sm-9 = @order.created_at
+
+h2 Услуги
+
+table.table
+  thead
+    tr
+      th Вещь
+      th Наличие декора
+      th Услуги
+      th Итого
+  tbody
+    tr
+      td Свитер
+      td Нет
+      td Чистка — 500 р.
+      td 500 р.
