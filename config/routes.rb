@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
   constraints subdomain: 'partner' do
-    devise_for :laundries, path: ''
-
     get '/', to: 'partner/orders#index'
+    get 'profile', to: 'partner/laundries#edit', as: :edit_laundry_profile
+
+    devise_for :laundries, path: '', skip: [:registrations]
+    devise_scope :laundry do
+      post '/', to: 'devise/registrations#create', as: :laundry_registration
+      get 'sign_up', to: 'devise/registrations#new', as: :new_laundry_registration
+      get 'settings', to: 'devise/registrations#edit', as: :edit_laundry_registration
+      put  '/', to: 'devise/registrations#update'
+    end
 
     scope module: :partner, as: :partner do
+      resource :laundry, only: [:update]
       resources :orders
     end
   end
