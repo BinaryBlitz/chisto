@@ -1,6 +1,5 @@
 # NullStorage provider for CarrierWave for use in tests. Doesn't actually
-# upload or store files but allows test to pass as if files were stored and
-# the use of fixtures.
+# upload or store files but allows test to pass as if the files were stored
 class NullStorage
   attr_reader :uploader
 
@@ -33,5 +32,18 @@ CarrierWave.configure do |config|
   if Rails.env.test?
     config.storage = NullStorage
     config.enable_processing = false
+  end
+
+  # Use AWS storage if in production
+  if Rails.env.production?
+    config.storage = :fog
+
+    config.fog_credentials = {
+      provider: 'AWS',
+      aws_access_key_id: Rails.application.secrets.aws_access_key_id,
+      aws_secret_access_key: Rails.application.secrets.aws_secret_access_key,
+      region: 'eu-west-1'
+    }
+    config.fog_directory = Rails.application.secrets.aws_s3_bucket_name
   end
 end
