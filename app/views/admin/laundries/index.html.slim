@@ -1,5 +1,7 @@
 h1 Химчистки
-= link_to 'Добавить химчистку', new_admin_laundry_path, class: 'btn btn-primary'
+
+.form-group
+  = link_to 'Добавить химчистку', new_admin_laundry_path, class: 'btn btn-primary'
 
 .table-responsive
   table.table
@@ -19,10 +21,10 @@ h1 Химчистки
           td = laundry.description.truncate(140)
           td = laundry.category
           td
-            - if laundry.background_image.present?
+            - if laundry.background_image?
               = image_tag(laundry.background_image.thumb)
           td
-            - if laundry.logo.present?
+            - if laundry.logo?
               = image_tag(laundry.logo.thumb)
           td = link_to 'Изменить', edit_admin_laundry_path(laundry), class: 'btn btn-warning'
           td = link_to 'Удалить', admin_laundry_path(laundry), method: :delete, data: { confirm: 'Вы действительно хотите удалить химчистку?' }, class: 'btn btn-danger'

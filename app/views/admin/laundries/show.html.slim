@@ -1,23 +1,13 @@
 h1 Химчистка: #{@laundry.name}
 
-.form-group
-  strong Название: 
-  = @laundry.name
-
-.form-group
-  strong Описание: 
-  = @laundry.description
-
-.form-group
-  strong Класс: 
-  = @laundry.category
-
-- if @laundry.background_image.present?
-  .form-group
-    strong Фотография:
-    p = image_tag @laundry.background_image.thumb
-
-- if @laundry.logo.present?
-  .form-group
-    strong Логотип:
-    p = image_tag @laundry.logo.thumb
+dl.row
+  dt.col-sm-3 Название
+  dd.col-sm-9 = @laundry.name
+  dt.col-sm-3 Описание
+  dd.col-sm-9 = @laundry.description
+  dt.col-sm-3 Класс
+  dd.col-sm-9 = @laundry.category
+  dt.col-sm-3 Логотип
+  dd.col-sm-9 = image_tag @laundry.logo.thumb
+  dt.col-sm-3 Фото
+  dd.col-sm-9 = image_tag @laundry.background_image.thumb

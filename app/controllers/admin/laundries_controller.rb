@@ -1,4 +1,4 @@
-class Admin::LaundriesController < ApplicationController
+class Admin::LaundriesController < Admin::AdminController
   before_action :set_laundry, only: [:show, :edit, :update, :destroy]
 
   def index
