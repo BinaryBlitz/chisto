@@ -37,3 +37,5 @@ order = Order.create!(
   apartment_number: user.apartment_number, contact_number: user.contact_number,
   email: user.email
 )
+
+admin = Admin.create!(email: 'foo@bar.com', password: 'qwerty123')
