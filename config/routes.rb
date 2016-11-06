@@ -18,6 +18,15 @@ Rails.application.routes.draw do
   end
 
   constraints subdomain: 'admin' do
+    get '/', to: 'admin/laundries#index'
+
+    devise_for :admins, path: '', skip: [:registrations]
+    devise_scope :admin do
+      post '/', to: 'devise/registrations#create', as: :admin_registration
+      get 'settings', to: 'devise/registrations#edit', as: :edit_admin_registration
+      put  '/', to: 'devise/registrations#update'
+    end
+
     scope module: :admin, as: :admin do
       resources :laundries
     end
