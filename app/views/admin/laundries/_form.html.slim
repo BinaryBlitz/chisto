@@ -24,6 +24,14 @@
     = f.label :logo, class: 'custom-file' do
       = f.file_field :logo, class: 'custom-file-input'
       span.custom-file-control
+  
+  .form-group
+    = f.label :email
+    = f.email_field :email, class: 'form-control'
+    
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: 'form-control'
 
-  .actions
+  .form-group
     = f.submit class: 'btn btn-primary'
