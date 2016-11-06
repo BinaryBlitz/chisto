@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     end
   end
 
+  constraints subdomain: 'admin' do
+    scope module: :admin, as: :admin do
+      resources :laundries
+    end
+  end
+
   resources :payments, only: [:create]
 
   namespace :api do
@@ -39,9 +45,5 @@ Rails.application.routes.draw do
     end
 
     resources :orders, only: [:index]
-  end
-
-  namespace :admin do
-    resources :laundries
   end
 end
