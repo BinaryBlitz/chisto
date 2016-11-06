@@ -2,6 +2,8 @@ require 'test_helper'
 
 class Admin::LaundriesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    host! 'admin.domain.com'
+    sign_in_admin
     @laundry = laundries(:laundry)
   end
 
@@ -23,7 +25,7 @@ class Admin::LaundriesControllerTest < ActionDispatch::IntegrationTest
         laundry: @laundry.attributes.merge(
           background_image: fixture_file_upload('public/blank.jpg'),
           logo: fixture_file_upload('public/blank.jpg'),
-          password: 'qwerty123'
+          password: 'password'
         )
       }
     end
