@@ -1,6 +1,6 @@
 image = File.open(Rails.root.join('public', 'blank.jpg'))
 
-city = City.create!(name: 'City')
+city = City.create!(name: 'City', latitude: 0.0, longitude: 0.0)
 
 user = User.create!(
   first_name: 'Foo', last_name: 'Bar',

@@ -2,6 +2,14 @@
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control'
+  
+  .form-group
+    = f.label :latitude
+    = f.number_field :latitude, class: 'form-control', step: :any
+  
+  .form-group
+    = f.label :longitude
+    = f.number_field :longitude, class: 'form-control', step: :any
 
   .form-group
     = f.submit class: 'btn btn-primary'
