@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     end
 
     scope module: :admin, as: :admin do
+      resources :cities
       resources :laundries
     end
   end
