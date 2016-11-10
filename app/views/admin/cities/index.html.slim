@@ -15,6 +15,6 @@ h1 Города
       - @cities.each do |city|
         tr
           td = link_to city.name, admin_city_laundries_path(city)
-          td Локация
+          td = city.to_location
           td = link_to 'Изменить', edit_admin_city_path(city), class: 'btn btn-warning'
           td = link_to 'Удалить', admin_city_path(city), method: :delete, data: { confirm: 'Вы действительно хотите удалить город?' }, class: 'btn btn-danger'
