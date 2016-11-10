@@ -5,10 +5,11 @@ class Admin::LaundriesControllerTest < ActionDispatch::IntegrationTest
     host! 'admin.domain.com'
     sign_in_admin
     @laundry = laundries(:laundry)
+    @city = @laundry.city
   end
 
   test 'should get index' do
-    get admin_laundries_path
+    get admin_city_laundries_path(@city)
     assert_response :success
   end
 
@@ -21,7 +22,7 @@ class Admin::LaundriesControllerTest < ActionDispatch::IntegrationTest
     @laundry.destroy
 
     assert_difference 'Laundry.count' do
-      post admin_laundries_url(@laundry), params: {
+      post admin_city_laundries_url(@city), params: {
         laundry: @laundry.attributes.merge(
           background_image: fixture_file_upload('public/blank.jpg'),
           logo: fixture_file_upload('public/blank.jpg'),
@@ -34,7 +35,7 @@ class Admin::LaundriesControllerTest < ActionDispatch::IntegrationTest
   test 'should update laundry' do
     new_name = 'Another name'
     patch admin_laundry_path(@laundry), params: { laundry: { name: new_name } }
-    assert_redirected_to admin_laundries_path
+    assert_redirected_to admin_city_laundries_path(@city)
     assert_equal new_name, @laundry.reload.name
   end
 
@@ -43,6 +44,6 @@ class Admin::LaundriesControllerTest < ActionDispatch::IntegrationTest
       delete admin_laundry_url(@laundry)
     end
 
-    assert_redirected_to admin_laundries_path
+    assert_redirected_to admin_city_laundries_path(@city)
   end
 end
