@@ -1,0 +1,20 @@
+h1 Города
+
+.form-group
+  = link_to 'Добавить город', new_admin_city_path, class: 'btn btn-primary'
+
+.table-responsive
+  table.table
+    thead
+      tr
+        th Название
+        th Локация
+        th
+        th
+    tbody
+      - @cities.each do |city|
+        tr
+          td = link_to city.name, '#'
+          td Локация
+          td = link_to 'Изменить', edit_admin_city_path(city), class: 'btn btn-warning'
+          td = link_to 'Удалить', admin_city_path(city), method: :delete, data: { confirm: 'Вы действительно хотите удалить город?' }, class: 'btn btn-danger'
