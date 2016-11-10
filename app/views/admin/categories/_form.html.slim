@@ -1,0 +1,18 @@
+= form_for [:admin, @category] do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  
+  .form-group
+    = f.label :description
+    = f.text_field :description, class: 'form-control'
+  
+  .form-group
+    = f.label :icon
+    br
+    = f.label :icon, class: 'custom-file' do
+      = f.file_field :icon, class: 'custom-file-input'
+      span.custom-file-control
+  
+  .form-group
+    = f.submit class: 'btn btn-primary'
