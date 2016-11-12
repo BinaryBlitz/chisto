@@ -19,7 +19,12 @@ category = Category.create!(
   icon: 'icon'
 )
 
-item = Item.create!(name: 'Name', category: category, icon: 'icon')
+item = Item.create!(
+  category: category,
+  name: 'Name',
+  description: 'Description',
+  icon: 'icon'
+)
 
 treatment = item.treatments.create!(name: 'Name', description: 'Description')
 
