@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   constraints subdomain: 'admin' do
-    get '/', to: 'admin/laundries#index'
+    get '/', to: 'admin/cities#index'
 
     devise_for :admins, path: '', skip: [:registrations]
     devise_scope :admin do
@@ -28,7 +28,9 @@ Rails.application.routes.draw do
     end
 
     scope module: :admin, as: :admin do
-      resources :categories
+      resources :categories do
+        resources :items, shallow: true
+      end
 
       resources :cities do
         resources :laundries, shallow: true
