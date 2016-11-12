@@ -29,7 +29,9 @@ Rails.application.routes.draw do
 
     scope module: :admin, as: :admin do
       resources :categories do
-        resources :items, shallow: true
+        resources :items, shallow: true do
+          resources :treatments, shallow: true
+        end
       end
 
       resources :cities do

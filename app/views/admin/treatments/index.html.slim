@@ -1,0 +1,20 @@
+h1 Услуги
+
+.form-group
+  = link_to 'Новая услуга', new_admin_item_treatment_path(@item), class: 'btn btn-primary'
+
+.table-responsive
+  table.table
+    thead
+      tr
+        th Название
+        th Описание
+        th
+        th
+    tbody
+      - @treatments.each do |treatment|
+        tr
+          td = link_to treatment.name, '#'
+          td = link_to treatment.description, '#'
+          td = link_to 'Изменить', edit_admin_treatment_path(treatment), class: 'btn btn-warning'
+          td = link_to 'Удалить', admin_treatment_path(treatment), method: :delete, data: { confirm: 'Вы действительно хотите удалить город?' }, class: 'btn btn-danger'
