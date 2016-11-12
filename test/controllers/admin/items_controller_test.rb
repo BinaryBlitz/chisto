@@ -14,8 +14,6 @@ class Admin::ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create item' do
-    @item.destroy
-
     assert_difference 'Item.count' do
       post admin_category_items_url(@category), params: {
         item: @item.attributes.merge(
