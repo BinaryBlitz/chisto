@@ -14,7 +14,7 @@ class Admin::ItemsController < Admin::AdminController
     @item = @category.items.build(item_params)
 
     if @item.save
-      redirect_to admin_category_items_path(@item.category), notice: 'Категория успешно создана'
+      redirect_to admin_category_items_path(@item.category), notice: 'Вещь успешно создана'
     else
       render :new
     end
@@ -25,7 +25,7 @@ class Admin::ItemsController < Admin::AdminController
 
   def update
     if @item.update(item_params)
-      redirect_to admin_category_items_path(@item.category), notice: 'Категория успешно обновлена'
+      redirect_to admin_category_items_path(@item.category), notice: 'Вещь успешно обновлена'
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class Admin::ItemsController < Admin::AdminController
 
   def destroy
     @item.destroy
-    redirect_to admin_category_items_path(@item.category), notice: 'Категория успешно удалена'
+    redirect_to admin_category_items_path(@item.category), notice: 'Вещь успешно удалена'
   end
 
   private
