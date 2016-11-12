@@ -67,10 +67,8 @@ class LaundryTest < ActiveSupport::TestCase
     assert @laundry.invalid?
   end
 
-  # FIXME
   test 'invalid without image and logo' do
-    skip
-    @laundry.remove_image!
+    @laundry.remove_background_image!
     @laundry.remove_logo!
     assert @laundry.invalid?
   end

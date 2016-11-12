@@ -1,0 +1,20 @@
+h1 Заказы
+
+table.table
+  thead
+    tr
+      th №
+      th Химчистка
+      th Дата и время
+      th Телефон
+      th Статус
+      th Сумма
+  tbody
+    - @orders.each do |order|
+      tr
+        td = link_to order.id, [:admin, order]
+        td = link_to order.laundry.name, [:admin, order.laundry]
+        td = link_to order.created_at.to_formatted_s(:short), [:admin, order]
+        td = order.contact_number
+        td = order.status
+        td = order.total_price
