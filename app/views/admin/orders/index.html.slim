@@ -16,5 +16,5 @@ table.table
         td = link_to order.laundry.name, [:admin, order.laundry]
         td = link_to order.created_at.to_formatted_s(:short), [:admin, order]
         td = order.contact_number
-        td = order.status
+        td = status_for_order(order)
         td = order.total_price
