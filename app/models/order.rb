@@ -22,6 +22,7 @@ class Order < ApplicationRecord
   belongs_to :laundry
 
   has_one :payment, dependent: :destroy
+  has_many :line_items, dependent: :destroy
 
   enum status: %i(processing completed canceled)
 
@@ -40,9 +41,8 @@ class Order < ApplicationRecord
     end
   end
 
-  # TODO: Implement
   def total_price
-    1
+    line_items.inject(0) { |sum, line_item| sum + line_item.total_price }
   end
 
   def address

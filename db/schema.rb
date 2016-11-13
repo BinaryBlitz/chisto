@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110110459) do
+ActiveRecord::Schema.define(version: 20161113011844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,17 @@ ActiveRecord::Schema.define(version: 20161110110459) do
     t.index ["treatment_id"], name: "index_laundry_treatments_on_treatment_id", using: :btree
   end
 
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "laundry_treatment_id"
+    t.integer  "quantity",             default: 1
+    t.integer  "price",                            null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["laundry_treatment_id"], name: "index_line_items_on_laundry_treatment_id", using: :btree
+    t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "laundry_id"
@@ -180,6 +191,7 @@ ActiveRecord::Schema.define(version: 20161110110459) do
   add_foreign_key "items", "categories"
   add_foreign_key "laundry_treatments", "laundries"
   add_foreign_key "laundry_treatments", "treatments"
+  add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "laundries"
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
