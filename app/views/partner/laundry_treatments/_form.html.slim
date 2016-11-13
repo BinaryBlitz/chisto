@@ -1,0 +1,7 @@
+= form_for @laundry_treatment, url: partner_treatment_laundry_treatment_path(@treatment) do |f|
+  .form-group
+    = f.label :price
+    = f.number_field :price, class: 'form-control'
+  
+  .form-group
+    = f.submit class: 'btn btn-primary'

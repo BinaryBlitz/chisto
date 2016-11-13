@@ -14,7 +14,10 @@ Rails.application.routes.draw do
     scope module: :partner, as: :partner do
       resource :laundry, only: [:update]
       resources :orders, only: [:index, :show]
-      resources :treatments, only: [:index]
+
+      resources :treatments, only: [:index] do
+        resource :laundry_treatment, except: [:show], shallow: true
+      end
     end
   end
 
