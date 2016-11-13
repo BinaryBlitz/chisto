@@ -3,7 +3,7 @@ class Admin::TreatmentsController < Admin::AdminController
   before_action :set_treatment, only: [:edit, :update, :destroy]
 
   def index
-    @treatments = Treatment.all
+    @treatments = @item.treatments
   end
 
   def new
