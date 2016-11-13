@@ -4,6 +4,7 @@ class API::OrdersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @order = orders(:order)
     @laundry = @order.laundry
+    @line_item = @order.line_items.first
   end
 
   test 'should get index' do
@@ -14,7 +15,7 @@ class API::OrdersControllerTest < ActionDispatch::IntegrationTest
   test 'should create order' do
     assert_difference 'Order.count' do
       post api_laundry_orders_path(@laundry, api_token: api_token), params: {
-        order: @order.attributes
+        order: @order.attributes.merge(line_items_attributes: [@line_item.attributes])
       }
     end
 

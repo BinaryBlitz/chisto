@@ -22,12 +22,15 @@ class Order < ApplicationRecord
   belongs_to :laundry
 
   has_one :payment, dependent: :destroy
-  has_many :line_items, dependent: :destroy
+  has_many :line_items, dependent: :destroy, inverse_of: :order
 
   enum status: %i(processing completed canceled)
 
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true
+  validates :line_items, presence: true
   validates :email, email: true
+
+  accepts_nested_attributes_for :line_items
 
   def payment
     super || create_payment(amount: total_price)
