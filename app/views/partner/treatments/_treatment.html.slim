@@ -1,0 +1,19 @@
+tr
+  td = treatment.name
+  - if laundry_treatment = current_laundry.laundry_treatments.find_by(treatment: treatment)
+    td = "#{laundry_treatment.price} ₽"
+    td
+      = link_to 'Изменить',
+                edit_partner_treatment_laundry_treatment_path(treatment),
+                class: 'btn btn-sm btn-warning'
+      | &nbsp;
+      = link_to 'Удалить',
+                partner_treatment_laundry_treatment_path(treatment), method: :delete,
+                data: { confirm: 'Вы действительно хотите удалить услугу?' },
+                class: 'btn btn-sm btn-danger'
+  - else
+    td Не указано
+    td
+      = link_to 'Добавить',
+                new_partner_treatment_laundry_treatment_path(treatment),
+                class: 'btn btn-sm btn-success'
