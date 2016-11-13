@@ -24,6 +24,10 @@ class API::OrdersController < API::APIController
   def laundry_params
     params
       .require(:order)
-      .permit(:street_name, :house_number, :apartment_number, :contact_number, :notes, :email)
+      .permit(
+        :street_name, :house_number,
+        :apartment_number,:contact_number, :notes, :email,
+        line_items_attributes: [:laundry_treatment_id, :quantity]
+      )
   end
 end

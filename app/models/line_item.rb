@@ -14,7 +14,7 @@
 class LineItem < ApplicationRecord
   before_validation :set_price, on: :create
 
-  belongs_to :order
+  belongs_to :order, inverse_of: :line_items
   belongs_to :laundry_treatment
 
   validates :quantity, numericality: { greater_than: 0 }
