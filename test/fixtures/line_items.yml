@@ -1,0 +1,17 @@
+# == Schema Information
+#
+# Table name: line_items
+#
+#  id                   :integer          not null, primary key
+#  order_id             :integer
+#  laundry_treatment_id :integer
+#  quantity             :integer          default(1)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#
+
+line_item:
+  order: order
+  laundry_treatment: laundry_treatment
+  quantity: 1
+  price: 1

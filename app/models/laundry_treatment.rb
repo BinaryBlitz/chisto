@@ -14,5 +14,7 @@ class LaundryTreatment < ApplicationRecord
   belongs_to :laundry
   belongs_to :treatment
 
+  has_many :line_items
+
   validates :price, numericality: { greater_than: 0 }
 end
