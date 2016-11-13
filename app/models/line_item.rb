@@ -12,13 +12,13 @@
 #
 
 class LineItem < ApplicationRecord
-  before_validation :set_price, on: :create
-
   belongs_to :order, inverse_of: :line_items
   belongs_to :laundry_treatment
 
   validates :quantity, numericality: { greater_than: 0 }
   validates :price, numericality: { greater_than: 0 }
+
+  before_validation :set_price, on: :create
 
   def total_price
     price * quantity
@@ -27,6 +27,6 @@ class LineItem < ApplicationRecord
   private
 
   def set_price
-    self.price = laundry_treatment.price
+    self.price = laundry_treatment&.price
   end
 end
