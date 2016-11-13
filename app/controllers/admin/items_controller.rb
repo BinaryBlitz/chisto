@@ -3,7 +3,7 @@ class Admin::ItemsController < Admin::AdminController
   before_action :set_item, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all
+    @items = @category.items
   end
 
   def new
