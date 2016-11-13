@@ -2,6 +2,8 @@ class API::APIController < ApplicationController
   before_action :restrict_access!
   protect_from_forgery with: :null_session
 
+  before_action :set_locale
+
   protected
 
   attr_reader :current_user
@@ -14,5 +16,9 @@ class API::APIController < ApplicationController
 
   def restrict_access
     @current_user ||= User.find_by_api_token(params[:api_token])
+  end
+
+  def set_locale
+    I18n.locale = :en
   end
 end
