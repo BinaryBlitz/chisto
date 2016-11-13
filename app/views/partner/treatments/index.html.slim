@@ -1,0 +1,25 @@
+h1 Прайс-лист
+
+- @categories.each do |category|
+  h2 = category.name
+  table.table
+    thead
+      tr
+        th Услуга
+        th Цена
+        th
+    tbody
+      - category.items.each do |item|
+        tr
+          td
+            strong = item.name
+          td
+          td
+        - item.treatments.each do |treatment|
+          tr
+            td = treatment.name
+            td 100 ₽
+            td
+              = link_to 'Изменить', '#', class: 'btn btn-sm btn-warning'
+              | &nbsp;
+              = link_to 'Удалить', '#', method: :delete, data: { confirm: 'Вы действительно хотите удалить услугу?' }, class: 'btn btn-sm btn-danger'
