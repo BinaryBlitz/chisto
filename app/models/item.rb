@@ -19,4 +19,6 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :icon, presence: true
   validates :description, presence: true
+
+  mount_uploader :icon, IconUploader
 end

@@ -25,6 +25,6 @@ h1 Химчистки
               = image_tag(laundry.background_image.thumb)
           td
             - if laundry.logo?
-              = image_tag(laundry.logo.thumb)
+              = image_tag(laundry.logo_url)
           td = link_to 'Изменить', edit_admin_laundry_path(laundry), class: 'btn btn-warning'
           td = link_to 'Удалить', admin_laundry_path(laundry), method: :delete, data: { confirm: 'Вы действительно хотите удалить химчистку?' }, class: 'btn btn-danger'
