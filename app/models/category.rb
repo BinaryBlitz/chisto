@@ -15,4 +15,6 @@ class Category < ApplicationRecord
 
   validates :name, presence: true
   validates :icon, presence: true
+
+  mount_uploader :icon, IconUploader
 end
