@@ -1,3 +1,15 @@
+module CarrierWave
+  module MiniMagick
+    def quality(percentage)
+      manipulate! do |img|
+        img.quality(percentage.to_s)
+        img = yield(img) if block_given?
+        img
+      end
+    end
+  end
+end
+
 # NullStorage provider for CarrierWave for use in tests. Doesn't actually
 # upload or store files but allows test to pass as if the files were stored
 class NullStorage
