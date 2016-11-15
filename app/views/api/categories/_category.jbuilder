@@ -1,1 +1,1 @@
-json.extract! category, :id, :name, :description, :icon_url
+json.extract! category, :id, :name, :description, :icon_url, :color

@@ -9,6 +9,7 @@ h1 Категории
       tr
         th Название
         th Описание
+        th Цвет
         th
         th
     tbody
@@ -16,5 +17,6 @@ h1 Категории
         tr
           td = link_to category.name, admin_category_items_path(category)
           td = link_to category.description, admin_category_items_path(category)
+          td = category.color
           td = link_to 'Изменить', edit_admin_category_path(category), class: 'btn btn-warning'
           td = link_to 'Удалить', admin_category_path(category), method: :delete, data: { confirm: 'Вы действительно хотите удалить город?' }, class: 'btn btn-danger'
