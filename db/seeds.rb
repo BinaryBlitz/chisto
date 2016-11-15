@@ -16,14 +16,15 @@ user.update!(api_token: 'foobar')
 category = Category.create!(
   name: 'Name',
   description: 'Description',
-  icon: 'icon'
+  icon: image,
+  color: '#000000'
 )
 
 item = Item.create!(
   category: category,
   name: 'Name',
   description: 'Description',
-  icon: 'icon'
+  icon: image
 )
 
 treatment = item.treatments.create!(name: 'Name', description: 'Description')
@@ -34,13 +35,14 @@ laundry = Laundry.create!(
   email: 'foo@bar.com', password: 'qwerty123'
 )
 
-laundry.laundry_treatments.create!(treatment: treatment, price: 100)
+laundry_treatment = laundry.laundry_treatments.create!(treatment: treatment, price: 100)
 
 order = Order.create!(
   user: user, laundry: laundry,
   street_name: user.street_name, house_number: user.house_number,
   apartment_number: user.apartment_number, contact_number: user.contact_number,
-  email: user.email
+  email: user.email,
+  line_items_attributes: [{ laundry_treatment: laundry_treatment, quantity: 1 }]
 )
 
 admin = Admin.create!(email: 'foo@bar.com', password: 'qwerty123')

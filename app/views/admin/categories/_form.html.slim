@@ -8,6 +8,10 @@
     = f.text_field :description, class: 'form-control'
   
   .form-group
+    = f.label :color
+    = f.text_field :color, placeholder: '#abcdef', class: 'form-control'
+  
+  .form-group
     = f.label :icon
     br
     = f.label :icon, class: 'custom-file' do
