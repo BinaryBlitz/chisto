@@ -6,6 +6,7 @@
 #  order_id             :integer
 #  laundry_treatment_id :integer
 #  quantity             :integer          default(1)
+#  price                :integer          not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
