@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root 'landing#index'
+
+  get 'about', to: 'landing#about'
+  get 'partner', to: 'landing#partner'
+  get 'contact', to: 'landing#contact'
+
   constraints subdomain: 'partner' do
     get '/', to: 'partner/orders#index'
     get 'profile', to: 'partner/laundries#edit', as: :edit_laundry_profile
