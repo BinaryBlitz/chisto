@@ -1,0 +1,55 @@
+#main {
+  h2 {
+    margin-bottom: 2rem;
+  }
+
+  h4 {
+    color: $primary-color;
+    margin-bottom: 1.5rem;
+  }
+
+  #description {
+    padding-top: 1rem;
+    padding-right: 2rem;
+  }
+
+  #steps {
+    padding-left: 2.5em;
+    list-style: none;
+
+    li {
+      counter-increment: step-counter;
+
+      float: left;
+      position: relative;
+
+      color: $text-color-muted;
+      margin-bottom: 1rem;
+      margin-right: 1rem;
+
+      // Circled list items
+      &::before {
+        content: counter(step-counter);
+
+        position: absolute;
+        left: -2.5em;
+        width: 1.5em;
+        height: 1.5em;
+
+        text-align: center;
+        vertical-align: middle;
+
+        color: $light-gray;
+        font-weight: 500;
+        border: 1px solid $light-gray;
+        border-radius: 50%;
+
+        line-height: 1.5em;
+      }
+    }
+  }
+
+  #screenshot {
+    text-align: center;
+  }
+}

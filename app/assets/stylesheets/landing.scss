@@ -1,0 +1,166 @@
+// Bootstrap overrides
+$brand-primary: #48c2f8;
+
+@import 'bootstrap';
+
+@import 'landing/variables';
+@import 'landing/main';
+@import 'landing/about';
+@import 'landing/partner';
+@import 'landing/contact';
+
+body {
+  background-color: $background-color;
+}
+
+header {
+  padding-top: 2rem;
+
+  nav {
+    vertical-align: middle;
+    margin: 0.75rem 0;
+
+    ul {
+      margin-top: 1.5rem;
+      margin-bottom: 0;
+
+      li {
+        margin-left: 1rem;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        a {
+          color: $text-color-primary;
+
+          &:hover {
+            text-decoration: none;
+            padding-bottom: 3px;
+            border-bottom: 3px solid $primary-color;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+main {
+  padding: 1rem 0;
+
+  h1, h2, h3, h4 {
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  h3 {
+    font-size: 1.4em;
+  }
+}
+
+footer {
+  background-color: $primary-color;
+  color: white;
+  padding: 1.5rem 0;
+  font-size: 0.8em;
+  font-weight: 200;
+
+  // Separators between sections
+  .container .row > div:not(:last-child) {
+    border-bottom: 0.5px solid $gray-color;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  h5 {
+    font-weight: 300;
+    font-size: 1.3em;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: white;
+  }
+
+  #footer-contact {
+    ul {
+      li {
+        margin-bottom: 0.4rem;
+
+        &.phone-number {
+          &::before {
+            content: url('icon-phone-footer.png');
+            padding-right: 1em;
+            vertical-align: text-top;
+          }
+        }
+
+        &.email {
+          &::before {
+            content: url('icon-mail-footer.png');
+            padding-right: 1em;
+            vertical-align: text-top;
+          }
+        }
+      }
+
+      #social {
+        li {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+
+  #payments {
+    #processing {
+      li {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  #download {
+    ul li {
+      margin-bottom: 0.75rem;
+
+      img {
+        // max-width: 100px;
+      }
+    }
+  }
+
+  #legal {
+    color: $white-color-muted;
+    font-size: 0.9em;
+    margin-top: 1.5rem;
+
+    a {
+      color: $white-color-muted;
+    }
+
+    ul {
+      display: inline-block;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+
+      li {
+        a:hover {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+@import 'landing/queries';

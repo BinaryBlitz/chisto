@@ -1,0 +1,13 @@
+<header class="container">
+  <%= link_to root_path do %>
+    <%= image_tag 'logo-header', alt: 'Chisto logo', width: 150 %>
+  <% end %>
+
+  <nav class="float-sm-right">
+    <ul class="list-inline">
+      <li class="list-inline-item"><%= link_to 'О сервисе', about_path %></li>
+      <li class="list-inline-item"><%= link_to 'Для партнеров', partner_path %></li>
+      <li class="list-inline-item"><%= link_to 'Контакты', contact_path %></li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,113 @@
+// Small
+@media (min-width: 544px) {
+  header {
+    nav ul {
+      margin-top: 0;
+    }
+  }
+
+  main {
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 1.5rem;
+    }
+
+    #description {
+      padding-right: 2rem;
+    }
+  }
+}
+
+// Medium
+@media (min-width: 768px) {
+  header {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+
+    nav ul {
+      &:first-child {
+        margin-left: 1.25rem;
+      }
+    }
+  }
+
+  main {
+    padding-bottom: 0;
+  }
+
+  #main {
+    h2 {
+      margin-bottom: 2.5rem;
+    }
+
+    #description {
+      padding-top: 1.5rem;
+      padding-right: 3rem;
+    }
+  }
+
+  #about {
+    h2 {
+      margin-bottom: 3.5rem;
+    }
+
+    .about-item {
+      padding-right: 2rem;
+    }
+  }
+
+  footer {
+    padding-top: 2.5rem;
+
+    .container .row > div:not(:last-child) {
+      border-right: 0.5px solid $gray-color;
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .container .row > div:not(:first-child) {
+      padding-left: 1.5rem;
+    }
+
+    #legal {
+      ul {
+        margin-top: 0;
+
+        li {
+          margin-left: 0.75rem;
+        }
+      }
+    }
+  }
+}
+
+// Large
+@media (min-width: 992px) {
+  header {
+    padding: 3rem 0 3rem;
+  }
+
+  #main {
+    h2 {
+      margin-bottom: 2.5rem;
+    }
+
+    #description {
+      padding-top: 3.5rem;
+      padding-right: 3rem;
+    }
+  }
+
+  #about {
+    .about-item {
+      padding-right: 4rem;
+    }
+  }
+
+  footer {
+    .container .row > div:not(:first-child) {
+      padding-left: 1.5rem;
+    }
+  }
+}
