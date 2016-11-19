@@ -99,7 +99,7 @@ footer {
 
         &.phone-number {
           &::before {
-            content: url('icon-phone-footer.png');
+            content: image-url('icon-phone-footer.png');
             padding-right: 1em;
             vertical-align: text-top;
           }
@@ -107,7 +107,7 @@ footer {
 
         &.email {
           &::before {
-            content: url('icon-mail-footer.png');
+            content: image-url('icon-mail-footer.png');
             padding-right: 1em;
             vertical-align: text-top;
           }
