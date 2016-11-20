@@ -6,6 +6,11 @@ class API::RatingsControllerTest < ActionDispatch::IntegrationTest
     @laundry = @rating.laundry
   end
 
+  test 'should get index' do
+    get api_laundry_ratings_path(@laundry, api_token: api_token)
+    assert_response :success
+  end
+
   test 'should create rating' do
     @rating.destroy
 

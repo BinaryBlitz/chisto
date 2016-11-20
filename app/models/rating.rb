@@ -21,9 +21,11 @@ class Rating < ApplicationRecord
   validates :value, inclusion: { in: 1..5 }
   validates :laundry, uniqueness: { scope: :user }
 
+  scope :verified, -> { where(verified: true) }
+
   def update_rating_cache
     return unless laundry.present?
 
-    laundry.update(rating: laundry.ratings.average(:value) || 0)
+    laundry.update(rating: laundry.ratings.verified.average(:value) || 0)
   end
 end

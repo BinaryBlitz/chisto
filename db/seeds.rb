@@ -37,6 +37,8 @@ laundry = Laundry.create!(
 
 laundry_treatment = laundry.laundry_treatments.create!(treatment: treatment, price: 100)
 
+rating = Rating.create!(laundry: laundry, user: user, value: 5, content: 'Content', verified: true)
+
 order = Order.create!(
   user: user, laundry: laundry,
   street_name: user.street_name, house_number: user.house_number,
