@@ -28,6 +28,7 @@
 #  confirmed_at            :datetime
 #  confirmation_sent_at    :datetime
 #  unconfirmed_email       :string
+#  rating                  :float            default(0.0)
 #
 
 laundry:
@@ -42,3 +43,4 @@ laundry:
   order_processing_time: 1
   email: foo@bar.com
   encrypted_password: <%= Devise::Encryptor.digest(Laundry, 'password') %>
+  rating: 0.0

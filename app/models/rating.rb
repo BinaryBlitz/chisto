@@ -13,9 +13,17 @@
 #
 
 class Rating < ApplicationRecord
+  after_commit :update_rating_cache, on: [:create, :update]
+
   belongs_to :user
   belongs_to :laundry
 
   validates :value, inclusion: { in: 1..5 }
   validates :laundry, uniqueness: { scope: :user }
+
+  def update_rating_cache
+    return unless laundry.present?
+
+    laundry.update(rating: laundry.ratings.average(:value) || 0)
+  end
 end
