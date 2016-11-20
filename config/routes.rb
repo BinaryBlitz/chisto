@@ -67,7 +67,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :orders, only: [:index]
+    resources :orders, only: [:index, :show]
   end
 
   root 'landing#index'

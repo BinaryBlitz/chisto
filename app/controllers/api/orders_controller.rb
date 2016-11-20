@@ -1,8 +1,12 @@
 class API::OrdersController < API::APIController
   before_action :set_laundry, only: [:create]
+  before_action :set_order, only: [:show]
 
   def index
     @orders = current_user.orders
+  end
+
+  def show    
   end
 
   def create
@@ -19,6 +23,10 @@ class API::OrdersController < API::APIController
 
   def set_laundry
     @laundry = Laundry.find(params[:laundry_id])
+  end
+
+  def set_order
+    @order = current_user.orders.find(params[:id])
   end
 
   def laundry_params
