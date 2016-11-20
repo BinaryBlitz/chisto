@@ -12,6 +12,11 @@ class API::OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should get show' do
+    get api_order_path(@order, api_token: api_token)
+    assert_response :success
+  end
+
   test 'should create order' do
     assert_difference 'Order.count' do
       post api_laundry_orders_path(@laundry, api_token: api_token), params: {
