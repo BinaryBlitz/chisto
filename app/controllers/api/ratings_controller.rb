@@ -1,5 +1,9 @@
 class API::RatingsController < API::APIController
-  before_action :set_laundry, only: [:create]
+  before_action :set_laundry, only: [:index, :create]
+
+  def index
+    @ratings = @laundry.ratings.verified
+  end
 
   def create
     @rating = @laundry.ratings.build(rating_params.merge(user: current_user))

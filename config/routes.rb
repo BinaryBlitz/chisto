@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     end
 
     resources :laundries, only: [:show] do
-      resources :ratings, only: [:create]
+      resources :ratings, only: [:index, :create]
       resources :orders, only: [:create]
     end
 
