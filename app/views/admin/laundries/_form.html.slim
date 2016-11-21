@@ -9,7 +9,7 @@
 
   .form-group
     = f.label :category
-    = f.select :category, [['Economy', 'economy'], ['Premium', 'premium']], {}, class: 'form-control'
+    = f.select :category, [['Economy', 'economy'], ['Premium', 'premium']], { include_blank: true }, class: 'form-control'
 
   .form-group
     = f.label :background_image

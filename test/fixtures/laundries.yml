@@ -7,7 +7,7 @@
 #  description             :string           not null
 #  logo                    :string
 #  background_image        :string
-#  category                :string           not null
+#  category                :string           default("")
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  city_id                 :integer
