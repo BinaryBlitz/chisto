@@ -12,3 +12,7 @@ json.line_items @order.line_items do |line_item|
     end
   end
 end
+
+json.laundry do
+  json.partial! 'api/laundries/laundry', laundry: @order.laundry
+end
