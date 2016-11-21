@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120173724) do
+ActiveRecord::Schema.define(version: 20161121141042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20161120173724) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.float    "rating",                  default: 0.0
+    t.integer  "ratings_count",           default: 0
     t.index ["city_id"], name: "index_laundries_on_city_id", using: :btree
     t.index ["confirmation_token"], name: "index_laundries_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_laundries_on_email", unique: true, using: :btree

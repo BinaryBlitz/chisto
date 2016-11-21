@@ -29,6 +29,7 @@
 #  confirmation_sent_at    :datetime
 #  unconfirmed_email       :string
 #  rating                  :float            default(0.0)
+#  ratings_count           :integer          default(0)
 #
 
 class Laundry < ApplicationRecord
