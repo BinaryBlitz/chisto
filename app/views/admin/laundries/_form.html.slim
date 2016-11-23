@@ -10,20 +10,24 @@
   .form-group
     = f.label :category
     = f.select :category, [['Economy', 'economy'], ['Premium', 'premium']], { include_blank: true }, class: 'form-control'
-
-  .form-group
-    = f.label :background_image
-    br
-    = f.label :background_image, class: 'custom-file' do
-      = f.file_field :background_image, class: 'custom-file-input'
-      span.custom-file-control
   
   .form-group
+    = f.label :background_image
+    = f.file_field :background_image, class: 'form-control-file'
+
+    - if f.object.background_image?
+      br
+      = image_tag(f.object.background_image_url)
+      = f.hidden_field :background_image_cache
+    
+  .form-group
     = f.label :logo
-    br
-    = f.label :logo, class: 'custom-file' do
-      = f.file_field :logo, class: 'custom-file-input'
-      span.custom-file-control
+    = f.file_field :logo, class: 'form-control-file'
+    
+    - if f.object.logo?
+      br
+      = image_tag(f.object.logo_url)
+      = f.hidden_field :logo_cache
   
   .form-group
     = f.label :email

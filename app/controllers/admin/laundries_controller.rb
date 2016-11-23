@@ -54,7 +54,8 @@ class Admin::LaundriesController < Admin::AdminController
       .require(:laundry)
       .permit(
         :name, :description, :category, :city_id,
-        :logo, :background_image, :email, :password
+        :logo, :logo_cache, :background_image, :background_image_cache,
+        :email, :password
       )
   end
 end
