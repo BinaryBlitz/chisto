@@ -12,7 +12,7 @@ class API::VerificationTokensController < API::APIController
   end
 
   def update
-    @verification_token = VerificationToken.find_by!(token: params[:token])
+    @verification_token = VerificationToken.recent.find_by!(token: params[:token])
 
     if @verification_token.verify(params[:code])
       render json: { api_token: @verification_token.user.try(:api_token) }
