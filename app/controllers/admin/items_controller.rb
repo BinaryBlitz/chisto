@@ -47,6 +47,6 @@ class Admin::ItemsController < Admin::AdminController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :icon)
+    params.require(:item).permit(:name, :description, :icon, :icon_cache)
   end
 end
