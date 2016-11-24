@@ -3,6 +3,24 @@ $brand-primary: #48c2f8;
 
 @import 'bootstrap';
 
+// Alerts
+.alert-notice {
+  @extend .alert-info !optional;
+}
+
+.alert-alert {
+  @extend .alert-danger !optional;
+}
+
+.field_with_errors {
+  @extend .has-danger !optional;
+}
+
+// Form errors
+.field_with_errors {
+  @extend .has-danger !optional;
+}
+
 @import 'landing/variables';
 @import 'landing/main';
 @import 'landing/about';
