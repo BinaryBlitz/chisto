@@ -7,9 +7,6 @@ class LandingController < ApplicationController
   def about
   end
 
-  def partner
-  end
-
   def contact
   end
 end

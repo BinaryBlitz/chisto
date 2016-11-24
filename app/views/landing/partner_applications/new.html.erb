@@ -1,0 +1,44 @@
+<main id="partner" class="container">
+  <h2>Вы представитель химчистки?</h2>
+  <h3>Напишите нам, и мы свяжемся с вами для сотрудничества</h3>
+
+  <div id="form" class="row">
+    <%= form_for [:landing, @partner_application] do |f| %>
+      <%= render 'shared/error_messages', object: @partner_application %>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :representative_name, 'Имя' %>
+          <%= f.text_field :representative_name, placeholder: 'Имя', class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :laundry_name, 'Название химчистки' %>
+          <%= f.text_field :laundry_name, placeholder: 'Название', class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :city, 'Город' %>
+          <%= f.text_field :city, placeholder: 'Москва', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :phone_number, 'Телефон' %>
+          <%= f.text_field :phone_number, placeholder: '+7 999 111-22-33', class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, 'Email' %>
+          <%= f.email_field :email, placeholder: 'name@example.com', class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :content, 'Комментарий' %>
+          <%= f.text_area :content, placeholder: 'Комментарий', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div id="submit-button" class="col-xs-12 text-xs-center form-group">
+        <%= f.submit 'Отправить', class: 'btn btn-outline-primary' %>
+      </div>
+    <% end %>
+  </div>
+</main>
