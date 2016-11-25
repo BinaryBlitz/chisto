@@ -26,9 +26,10 @@ class VerificationToken < ApplicationRecord
   has_secure_token
 
   scope :verified, -> { where(verified: true) }
-  scope :recent, -> { where('created_at > ?', Time.zone.now - 15.minutes) }
+  scope :recent, -> { where('created_at > ?', 15.minutes.ago) }
 
   def verify(code)
+    return false if created_at < 15.minutes.ago
     return false unless self.code == code || demo?(code)
     update(verified: true)
   end
