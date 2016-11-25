@@ -30,6 +30,7 @@ gem 'slim-rails'
 gem 'phonelib'
 gem 'email_validator'
 gem 'httparty'
+gem 'biz'
 
 # Image processing
 gem 'carrierwave'
