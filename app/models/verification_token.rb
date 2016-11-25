@@ -29,8 +29,9 @@ class VerificationToken < ApplicationRecord
   scope :recent, -> { where('created_at > ?', 15.minutes.ago) }
 
   def verify(code)
-    return false if created_at < 15.minutes.ago
+    return false unless created_at > 15.minutes.ago || demo?(code)
     return false unless self.code == code || demo?(code)
+
     update(verified: true)
   end
 
