@@ -15,5 +15,8 @@ module Laundromat
       g.helper = false
       g.assets = false
     end
+
+    # TODO: remove in 5.1
+    config.active_record.time_zone_aware_types = [:datetime, :time]
   end
 end

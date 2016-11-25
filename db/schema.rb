@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123190524) do
+ActiveRecord::Schema.define(version: 20161124225655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,16 @@ ActiveRecord::Schema.define(version: 20161123190524) do
     t.index ["user_id"], name: "index_ratings_on_user_id", using: :btree
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "laundry_id"
+    t.integer  "day_of_the_week", null: false
+    t.time     "opens_at",        null: false
+    t.time     "closes_at",       null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["laundry_id"], name: "index_schedules_on_laundry_id", using: :btree
+  end
+
   create_table "treatments", force: :cascade do |t|
     t.integer  "item_id"
     t.string   "name",        null: false
@@ -211,5 +221,6 @@ ActiveRecord::Schema.define(version: 20161123190524) do
   add_foreign_key "payments", "orders"
   add_foreign_key "ratings", "laundries"
   add_foreign_key "ratings", "users"
+  add_foreign_key "schedules", "laundries"
   add_foreign_key "treatments", "items"
 end

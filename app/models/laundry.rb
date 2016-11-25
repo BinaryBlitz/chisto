@@ -37,6 +37,7 @@ class Laundry < ApplicationRecord
 
   has_many :orders, dependent: :destroy
   has_many :ratings, dependent: :destroy
+  has_many :schedules, dependent: :destroy
   has_many :laundry_treatments, dependent: :destroy
   has_many :treatments, through: :laundry_treatments
 
