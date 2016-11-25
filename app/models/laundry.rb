@@ -58,4 +58,47 @@ class Laundry < ApplicationRecord
 
   mount_uploader :background_image, ImageUploader
   mount_uploader :logo, LogoUploader
+
+  def collection_date
+    @collection_date ||= begin
+      configure_business_hours
+      Biz.time(5, :hours).after(Time.zone.now).in_time_zone.to_date
+    end
+  end
+
+  def delivery_date
+    @delivery_date ||= begin
+      configure_business_hours
+      Biz.time(30, :hours).after(Time.zone.now).in_time_zone.to_date
+    end
+  end
+
+  def delivery_date_opens_at
+    @delivery_date_opens_at ||= delivery_date_business_hours.keys.first
+  end
+
+  def delivery_date_closes_at
+    @delivery_date_closes_at ||= delivery_date_business_hours.values.first
+  end
+
+  private
+
+  def schedule
+    @schedule ||= schedules.map(&:to_hash).inject({}, &:merge)
+  end
+
+  def configure_business_hours
+    Biz.configure do |config|
+      config.hours = schedule
+      config.time_zone = Rails.application.config.time_zone
+    end
+  end
+
+  def delivery_date_business_hours
+    @delivery_date_business_hours ||= begin
+      day_of_the_week = Schedule::DAYS_OF_THE_WEEK[delivery_date.wday]
+      # { '9:00' => '18:00' }
+      schedule[day_of_the_week]
+    end
+  end
 end
