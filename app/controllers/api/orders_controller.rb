@@ -3,10 +3,10 @@ class API::OrdersController < API::APIController
   before_action :set_order, only: [:show]
 
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.order(updated_at: :desc)
   end
 
-  def show    
+  def show
   end
 
   def create
