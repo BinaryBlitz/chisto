@@ -35,6 +35,16 @@ laundry = Laundry.create!(
   email: 'foo@bar.com', password: 'qwerty123'
 )
 
+schedule = Schedule.create!([
+  { laundry: laundry, day_of_the_week: :mon, opens_at: '9:00', closes_at: '18:00' },
+  { laundry: laundry, day_of_the_week: :tue, opens_at: '9:00', closes_at: '18:00' },
+  { laundry: laundry, day_of_the_week: :wed, opens_at: '9:00', closes_at: '18:00' },
+  { laundry: laundry, day_of_the_week: :thu, opens_at: '9:00', closes_at: '18:00' },
+  { laundry: laundry, day_of_the_week: :fri, opens_at: '9:00', closes_at: '18:00' },
+  { laundry: laundry, day_of_the_week: :sat, opens_at: '10:00', closes_at: '17:00' },
+  { laundry: laundry, day_of_the_week: :sun, opens_at: '10:00', closes_at: '17:00' }
+])
+
 laundry_treatment = laundry.laundry_treatments.create!(treatment: treatment, price: 100)
 
 rating = Rating.create!(laundry: laundry, user: user, value: 5, content: 'Content', verified: true)

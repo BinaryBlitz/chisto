@@ -2,7 +2,7 @@ class API::LaundriesController < API::APIController
   before_action :set_city, only: [:index]
 
   def index
-    @laundries = Laundry.all
+    @laundries = Laundry.includes(:schedules, laundry_treatments: :treatment)
   end
 
   def show
