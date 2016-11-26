@@ -1,0 +1,7 @@
+ru:
+  number:
+    currency:
+      format:
+        format: '%n %u'
+        unit: '₽'
+        precision: 0

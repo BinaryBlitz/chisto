@@ -1,7 +1,7 @@
 tr
   td = treatment.name
   - if laundry_treatment = current_laundry.laundry_treatments.find_by(treatment: treatment)
-    td = "#{laundry_treatment.price} ₽"
+    td = number_to_currency(laundry_treatment.price)
     td
       = link_to 'Изменить',
                 edit_partner_treatment_laundry_treatment_path(treatment),
