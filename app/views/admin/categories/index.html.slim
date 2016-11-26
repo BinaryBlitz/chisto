@@ -16,7 +16,7 @@ h1 Категории
     tbody
       - @categories.each do |category|
         tr
-          td = image_tag category.icon.thumb.url
+          td = image_tag category.icon.thumb.url, class: 'category-icon'
           td = link_to category.name, admin_category_items_path(category)
           td = link_to category.description, admin_category_items_path(category)
           td
