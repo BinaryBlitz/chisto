@@ -61,6 +61,15 @@ class Laundry < ApplicationRecord
   mount_uploader :background_image, ImageUploader
   mount_uploader :logo, LogoUploader
 
+  def update_rating_cache
+    return if destroyed?
+    update_attribute(:rating, ratings.verified.average(:value) || 0)
+  end
+
+  def update_counter_cache
+    update_attribute(:ratings_count, ratings.verified.count)
+  end
+
   def collection_date
     @collection_date ||= begin
       configure_business_hours
