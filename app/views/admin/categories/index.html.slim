@@ -7,6 +7,7 @@ h1 Категории
   table.table
     thead
       tr
+        th
         th Название
         th Описание
         th Цвет
@@ -15,8 +16,10 @@ h1 Категории
     tbody
       - @categories.each do |category|
         tr
+          td = image_tag category.icon.thumb.url
           td = link_to category.name, admin_category_items_path(category)
           td = link_to category.description, admin_category_items_path(category)
-          td = category.color
+          td
+            span.tag[style="background-color:#{category.color}"] = category.color
           td = link_to 'Изменить', edit_admin_category_path(category), class: 'btn btn-warning'
           td = link_to 'Удалить', admin_category_path(category), method: :delete, data: { confirm: 'Вы действительно хотите удалить город?' }, class: 'btn btn-danger'

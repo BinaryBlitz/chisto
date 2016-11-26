@@ -17,7 +17,7 @@
 
     - if f.object.background_image?
       br
-      = image_tag(f.object.background_image_url)
+      = image_tag(f.object.background_image.thumb.url)
       = f.hidden_field :background_image_cache
     
   .form-group

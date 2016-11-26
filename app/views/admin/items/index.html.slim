@@ -7,6 +7,7 @@ h1 Вещи
   table.table
     thead
       tr
+        th
         th Название
         th Описание
         th
@@ -14,6 +15,7 @@ h1 Вещи
     tbody
       - @items.each do |item|
         tr
+          td = image_tag item.icon.thumb.url
           td = link_to item.name, admin_item_treatments_path(item)
           td = link_to item.description, admin_item_treatments_path(item)
           td = link_to 'Изменить', edit_admin_item_path(item), class: 'btn btn-warning'
