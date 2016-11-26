@@ -53,6 +53,8 @@ class Laundry < ApplicationRecord
   validates :background_image, presence: true
   validates :logo, presence: true
 
+  accepts_nested_attributes_for :schedules, allow_destroy: true
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -74,11 +76,11 @@ class Laundry < ApplicationRecord
   end
 
   def delivery_date_opens_at
-    @delivery_date_opens_at ||= delivery_date_business_hours.keys.first
+    @delivery_date_opens_at ||= delivery_date_business_hours&.keys&.first
   end
 
   def delivery_date_closes_at
-    @delivery_date_closes_at ||= delivery_date_business_hours.values.first
+    @delivery_date_closes_at ||= delivery_date_business_hours&.values&.first
   end
 
   private
