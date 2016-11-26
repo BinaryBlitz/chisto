@@ -51,4 +51,11 @@ class Order < ApplicationRecord
   def address
     "Улица #{street_name}, дом #{house_number}, квартира #{apartment_number}"
   end
+
+  # Grouping: [item, quantity] => [line_items]
+  def grouped_line_items
+    line_items.group_by do |line_item|
+      [line_item.laundry_treatment.treatment.item, line_item.quantity]
+    end
+  end
 end
