@@ -4,6 +4,6 @@ class ImageUploader < ApplicationUploader
   process quality: 90
 
   version :thumb do
-    process resize_to_limit: [320, 320]
+    process resize_to_limit: [240, 240]
   end
 end
