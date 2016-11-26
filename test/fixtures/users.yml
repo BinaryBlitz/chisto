@@ -17,6 +17,7 @@
 #  apartment_number :string
 #  notes            :text
 #  contact_number   :string
+#  orders_count     :integer          default(0)
 #
 
 foo:
