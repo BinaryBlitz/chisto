@@ -1,0 +1,22 @@
+h1 График работы
+
+= form_for @laundry, url: partner_schedule_path, method: :patch do |f|
+  = f.fields_for :schedules do |ff|
+    .form-group
+      = ff.label ff.object.day_of_the_week
+      = ff.hidden_field :day_of_the_week
+      .form-inline
+        .form-group
+          = ff.time_field :opens_at, placeholder: '9:00', class: 'form-control'
+        | &nbsp;
+        .form-group
+          = ff.time_field :closes_at, placeholder: '18:00', class: 'form-control'
+        | &nbsp;
+        .form-check
+          = ff.label :_destroy, class: 'form-check-label' do
+            = ff.check_box :_destroy, { checked: ff.object.new_record? }, class: 'form-check-input'
+            | &nbsp;
+            | Выходной
+    
+  .form-group
+    = f.submit class: 'btn btn-primary'
