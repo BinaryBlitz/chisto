@@ -98,7 +98,10 @@ class Laundry < ApplicationRecord
 
   def delivery_date_business_hours
     @delivery_date_business_hours ||= begin
-      day_of_the_week = Schedule::DAYS_OF_THE_WEEK[delivery_date.wday]
+      # Start weeks on Mondays
+      number_of_the_day = (delivery_date.wday + 6) % 7
+      # Get the name (:mon)
+      day_of_the_week = Schedule::DAYS_OF_THE_WEEK[number_of_the_day]
       # { '9:00' => '18:00' }
       schedule[day_of_the_week]
     end
