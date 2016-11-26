@@ -9,9 +9,7 @@ class API::VerificationTokensControllerTest < ActionDispatch::IntegrationTest
     @verification_token.destroy
 
     assert_difference 'VerificationToken.count' do
-      post api_verification_tokens_url, params: {
-        phone_number: @verification_token.phone_number
-      }
+      post api_verification_token_url, params: { phone_number: @verification_token.phone_number }
     end
 
     assert_response :created
@@ -19,7 +17,8 @@ class API::VerificationTokensControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update user' do
     demo_code = Rails.application.secrets.demo_code
-    patch api_verification_token_path(@verification_token.token), params: {
+    patch api_verification_token_path, params: {
+      token: @verification_token.token,
       code: demo_code
     }
     assert_response :ok

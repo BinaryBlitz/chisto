@@ -51,7 +51,7 @@ Rails.application.routes.draw do
   resources :payments, only: [:create]
 
   namespace :api do
-    resources :verification_tokens, only: [:create, :update], param: :token
+    resource :verification_token, only: [:create, :update]
     resource :user, only: [:show, :create, :update]
 
     resources :cities do
