@@ -18,7 +18,7 @@
 #
 
 class Order < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   belongs_to :laundry
 
   has_one :payment, dependent: :destroy
