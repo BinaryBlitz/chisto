@@ -7,12 +7,12 @@ class API::LaundriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get api_city_laundries_path(@city, api_token: api_token)
+    get api_city_laundries_path(@city)
     assert_response :success
   end
 
   test 'should get show' do
-    get api_laundry_path(@laundry, api_token: api_token)
+    get api_laundry_path(@laundry)
     assert_response :success
   end
 end
