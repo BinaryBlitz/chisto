@@ -30,12 +30,18 @@ table.table
   thead
     tr
       th Вещь
-      th Наличие декора
+      th Количество
+      th Декор
       th Услуги
       th Итого
   tbody
-    tr
-      td Свитер
-      td Нет
-      td Чистка — 500 р.
-      td 500 р.
+    - @order.grouped_line_items.each do |(item, quantity), line_items|
+      tr
+        td = item.name
+        td = "#{quantity} шт."
+        td = 'Нет'
+        td
+          ul.list-unstyled
+            - line_items.each do |line_item|
+              li = "#{line_item.laundry_treatment.treatment.name} — #{number_to_currency(line_item.price)}"
+        td = number_to_currency(line_items.sum(&:price))

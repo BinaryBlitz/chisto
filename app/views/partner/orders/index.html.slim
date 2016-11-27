@@ -15,4 +15,4 @@ table.table
         td = link_to order.created_at.to_formatted_s(:short), [:partner, order]
         td = order.contact_number
         td = status_for_order(order)
-        td = order.total_price
+        td = number_to_currency(order.total_price)
