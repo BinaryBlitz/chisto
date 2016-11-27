@@ -7,7 +7,7 @@ class API::RatingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get api_laundry_ratings_path(@laundry, api_token: api_token)
+    get api_laundry_ratings_path(@laundry)
     assert_response :success
   end
 
