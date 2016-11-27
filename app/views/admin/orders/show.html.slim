@@ -44,4 +44,4 @@ table.table
           ul.list-unstyled
             - line_items.each do |line_item|
               li = "#{line_item.laundry_treatment.treatment.name} — #{number_to_currency(line_item.price)}"
-        td = number_to_currency(line_items.sum(&:price))
+        td = number_to_currency(line_items.sum(&:price) * quantity)
