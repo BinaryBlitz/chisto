@@ -12,7 +12,7 @@ table.table
     - @orders.each do |order|
       tr
         td = link_to order.id, [:partner, order]
-        td = link_to order.created_at.to_formatted_s(:short), [:partner, order]
+        td = link_to l(order.created_at, format: :short), [:partner, order]
         td = order.contact_number
-        td = status_for_order(order)
+        td = status_tag_for_order(order)
         td = number_to_currency(order.total_price)
