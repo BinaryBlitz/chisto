@@ -9,6 +9,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  color       :string           not null
+#  featured    :boolean          default(FALSE)
 #
 
 category:
@@ -16,3 +17,10 @@ category:
   description: Description
   icon: Icon
   color: '#000'
+
+featured:
+  name: Featured
+  description: Featured
+  icon: Icon
+  color: '#000'
+  featured: true
