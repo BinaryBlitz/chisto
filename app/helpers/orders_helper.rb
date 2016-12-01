@@ -1,15 +1,11 @@
 module OrdersHelper
   def status_for_order(order)
-    content_tag(:span, class: ['tag', status_tag_class_for_order(order)]) do
-      status_tag_for_order(order)
-    end
+    Order.human_attribute_name("status.#{order.status}")
   end
 
   def status_tag_for_order(order)
-    case order.status
-    when 'processing' then 'На рассмотрении'
-    when 'completed' then 'Выполнен'
-    when 'canceled' then 'Отменён'
+    content_tag(:span, class: ['tag', status_tag_class_for_order(order)]) do
+      status_for_order(order)
     end
   end
 

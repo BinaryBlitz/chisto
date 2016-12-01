@@ -9,12 +9,13 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  color       :string           not null
+#  featured    :boolean          default(FALSE)
 #
 
 class Category < ApplicationRecord
   COLOR_HEX_FORMAT = /\A#(?:[A-F0-9]{3}){1,2}\z/i
 
-  has_many :items, dependent: :destroy
+  has_many :items, -> { order(name: :asc) }, dependent: :destroy
 
   validates :name, presence: true
   validates :icon, presence: true

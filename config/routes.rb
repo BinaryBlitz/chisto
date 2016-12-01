@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   constraints subdomain: 'partner' do
-    get '/', to: 'partner/orders#index'
+    get '/', to: 'partner/orders#index', as: :partner_root
     get 'profile', to: 'partner/laundries#edit', as: :edit_laundry_profile
 
     devise_for :laundries, path: '', skip: [:registrations]

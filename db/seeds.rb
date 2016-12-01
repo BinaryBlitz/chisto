@@ -17,7 +17,8 @@ category = Category.create!(
   name: 'Name',
   description: 'Description',
   icon: image,
-  color: '#000000'
+  color: '#000000',
+  featured: false
 )
 
 item = Item.create!(
