@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_action :set_devise_locale, if: :devise_controller?
+
   layout :layout_by_resource
 
   protected
@@ -12,6 +14,12 @@ class ApplicationController < ActionController::Base
     when :laundry then 'partner'
     when :admin then 'admin'
     else 'application'
+    end
+  end
+
+  def set_devise_locale
+    if resource_name == :laundry
+      I18n.locale = :ru
     end
   end
 end
