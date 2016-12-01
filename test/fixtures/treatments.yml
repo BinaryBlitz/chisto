@@ -15,3 +15,13 @@ treatment:
   item: item
   name: Name
   description: Description
+
+treatment_two:
+  item: item
+  name: Name
+  description: Description
+
+treatment_without_price:
+  item: item
+  name: Name
+  description: Description
