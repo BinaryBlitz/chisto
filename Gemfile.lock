@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/dankimio/devise-bootstrap-views
-  revision: da9a1bffe724bf6902d9de76115ab7c12333bb04
-  branch: bootstrap4
+  revision: 0f6f83f4136f553c8c4e6ce641b0357537abe914
   specs:
     devise-bootstrap-views (0.0.9)
 
