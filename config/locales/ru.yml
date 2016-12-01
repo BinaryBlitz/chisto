@@ -41,7 +41,10 @@ ru:
         sun: Воскресенье
   helpers:
     submit:
-      create: Отправить
+      create: Создать
+      update: Сохранить
+      partner_application:
+        create: Отправить
   number:
     currency:
       format:
