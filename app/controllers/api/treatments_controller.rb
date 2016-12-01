@@ -3,7 +3,7 @@ class API::TreatmentsController < API::APIController
   before_action :set_item, only: [:index]
 
   def index
-    @treatments = @item.treatments.all
+    @treatments = @item.treatments.order(name: :asc)
   end
 
   private

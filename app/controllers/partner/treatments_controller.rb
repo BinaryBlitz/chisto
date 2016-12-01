@@ -1,5 +1,5 @@
 class Partner::TreatmentsController < Partner::PartnerController
   def index
-    @categories = Category.all.includes(items: [:treatments])
+    @categories = Category.includes(items: [:treatments]).order(name: :asc)
   end
 end

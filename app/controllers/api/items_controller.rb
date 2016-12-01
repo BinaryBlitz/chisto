@@ -3,7 +3,7 @@ class API::ItemsController < API::APIController
   before_action :set_category, only: [:index]
 
   def index
-    @items = @category.items
+    @items = @category.items.order(name: :asc)
   end
 
   private
