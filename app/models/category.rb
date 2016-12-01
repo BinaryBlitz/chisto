@@ -9,6 +9,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  color       :string           not null
+#  featured    :boolean          default(FALSE)
 #
 
 class Category < ApplicationRecord

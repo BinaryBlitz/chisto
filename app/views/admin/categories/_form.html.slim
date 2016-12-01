@@ -10,6 +10,12 @@
   .form-group
     = f.label :color
     = f.text_field :color, placeholder: '#abcdef', class: 'form-control'
+    
+  .form-check
+    = f.label :featured, class: 'form-check-label' do
+      = f.check_box :featured, class: 'form-check-input'
+      | &nbsp;
+      = Category.human_attribute_name('featured')
   
   .form-group
     = f.label :icon
