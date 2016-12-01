@@ -20,6 +20,13 @@ ru:
         processing: На рассмотрении
         completed: Выполнен
         canceled: Отменён
+      partner_application:
+        representative_name: Имя
+        laundry_name: Название химчистки
+        city: Город
+        phone_number: Телефон
+        email: Email
+        content: Комментарий
       schedule:
         _destroy: Выходной
       laundry_treatment:
@@ -32,6 +39,9 @@ ru:
         fri: Пятница
         sat: Суббота
         sun: Воскресенье
+  helpers:
+    submit:
+      create: Отправить
   number:
     currency:
       format:
