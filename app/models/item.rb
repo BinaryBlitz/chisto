@@ -14,7 +14,7 @@
 class Item < ApplicationRecord
   belongs_to :category
 
-  has_many :treatments, dependent: :destroy
+  has_many :treatments, -> { order(name: :asc) }, dependent: :destroy
 
   validates :name, presence: true
   validates :icon, presence: true
