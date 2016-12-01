@@ -3,7 +3,7 @@ h1 График работы
 = form_for @laundry, url: partner_schedule_path, method: :patch do |f|
   = f.fields_for :schedules do |ff|
     .form-group
-      = ff.label ff.object.day_of_the_week
+      = ff.label ff.object.day_of_the_week, Schedule.human_attribute_name("day_of_the_week.#{ff.object.day_of_the_week}")
       = ff.hidden_field :day_of_the_week
       .form-inline
         .form-group
@@ -16,7 +16,7 @@ h1 График работы
           = ff.label :_destroy, class: 'form-check-label' do
             = ff.check_box :_destroy, { checked: ff.object.new_record? }, class: 'form-check-input'
             | &nbsp;
-            | Выходной
+            = Schedule.human_attribute_name('_destroy')
     
   .form-group
     = f.submit class: 'btn btn-primary'

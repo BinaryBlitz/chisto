@@ -8,36 +8,36 @@
 
       <div class="col-md-6">
         <div class="form-group">
-          <%= f.label :representative_name, 'Имя' %>
-          <%= f.text_field :representative_name, placeholder: 'Имя', class: 'form-control' %>
+          <%= f.label :representative_name %>
+          <%= f.text_field :representative_name, placeholder: 'Евгений Харитонов', class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :laundry_name, 'Название химчистки' %>
+          <%= f.label :laundry_name %>
           <%= f.text_field :laundry_name, placeholder: 'Название', class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :city, 'Город' %>
+          <%= f.label :city %>
           <%= f.text_field :city, placeholder: 'Москва', class: 'form-control' %>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
-          <%= f.label :phone_number, 'Телефон' %>
+          <%= f.label :phone_number %>
           <%= f.text_field :phone_number, placeholder: '+7 999 111-22-33', class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :email, 'Email' %>
+          <%= f.label :email %>
           <%= f.email_field :email, placeholder: 'name@example.com', class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :content, 'Комментарий' %>
-          <%= f.text_area :content, placeholder: 'Комментарий', class: 'form-control' %>
+          <%= f.label :content %>
+          <%= f.text_area :content, placeholder: 'Ваш комментарий', class: 'form-control' %>
         </div>
       </div>
 
       <div id="submit-button" class="col-xs-12 text-xs-center form-group">
-        <%= f.submit 'Отправить', class: 'btn btn-outline-primary' %>
+        <%= f.submit class: 'btn btn-outline-primary' %>
       </div>
     <% end %>
   </div>
