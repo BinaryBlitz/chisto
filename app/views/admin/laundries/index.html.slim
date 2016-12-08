@@ -12,6 +12,7 @@ h1 Химчистки
         th Рейтинг
         th Фотография
         th Логотип
+        th Включена
         th
         th
     tbody
@@ -26,5 +27,8 @@ h1 Химчистки
           td
             - if laundry.logo?
               = image_tag(laundry.logo_url)
-          td = link_to 'Изменить', edit_admin_laundry_path(laundry), class: 'btn btn-sm btn-warning'
-          td = link_to 'Удалить', admin_laundry_path(laundry), method: :delete, data: { confirm: 'Вы действительно хотите удалить химчистку?' }, class: 'btn btn-sm btn-danger'
+          td = laundry.enabled? ? 'Да' : 'Нет'
+          td = link_to 'Изменить',
+                       edit_admin_laundry_path(laundry), class: 'btn btn-sm btn-warning'
+          td = link_to 'Удалить',
+                        admin_laundry_path(laundry), method: :delete, data: { confirm: 'Вы действительно хотите удалить химчистку?' }, class: 'btn btn-sm btn-danger'

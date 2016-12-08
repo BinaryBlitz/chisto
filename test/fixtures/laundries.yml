@@ -29,6 +29,7 @@
 #  unconfirmed_email       :string
 #  rating                  :float            default(0.0)
 #  ratings_count           :integer          default(0)
+#  enabled                 :boolean          default(FALSE)
 #
 
 laundry:
@@ -43,3 +44,14 @@ laundry:
   email: foo@bar.com
   encrypted_password: <%= Devise::Encryptor.digest(Laundry, 'password') %>
   rating: 0.0
+  enabled: true
+
+disabled_laundry:
+  name: Disabled laundry
+  description: Description
+  logo: Logo
+  background_image: Background image
+  city: city
+  email: baz@qux.com
+  encrypted_password: <%= Devise::Encryptor.digest(Laundry, 'password') %>
+  enabled: false
