@@ -1,5 +1,8 @@
 h1 = "Заказ №#{@order.id}"
 
+.form-group
+  = link_to 'Изменить', edit_partner_order_path(@order), class: 'btn btn-primary'
+
 dl.row
   dt.col-sm-3 Дата и время
   dd.col-sm-9 = l(@order.created_at, format: :short)

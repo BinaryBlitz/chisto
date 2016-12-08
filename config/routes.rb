@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       resource :schedule
 
       resource :laundry, only: [:update]
-      resources :orders, only: [:index, :show]
+      resources :orders, except: [:new, :create, :destroy]
 
       resources :treatments, only: [:index]
 

@@ -11,4 +11,11 @@ class Partner::OrdersControllerTest < ActionDispatch::IntegrationTest
     get partner_orders_path
     assert_response :success
   end
+
+  test 'should update order' do
+    new_status = Order.statuses.keys.last
+    patch partner_order_path(@order), params: { order: { status: new_status } }
+    assert_redirected_to partner_order_path(@order)
+    assert_equal new_status, @order.reload.status
+  end
 end
