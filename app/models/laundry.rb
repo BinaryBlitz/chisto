@@ -29,6 +29,7 @@
 #  rating                  :float            default(0.0)
 #  ratings_count           :integer          default(0)
 #  enabled                 :boolean          default(FALSE)
+#  minimum_order_price     :integer
 #  free_delivery_from      :integer          default(0)
 #  delivery_fee            :integer          default(0)
 #
@@ -47,7 +48,8 @@ class Laundry < ApplicationRecord
   validates :name, :description, presence: true
   validates :city, presence: true
 
-  validates :minimum_collection_time,
+  validates :minimum_order_price,
+            :minimum_collection_time,
             :order_processing_time,
             numericality: { greater_than: 0 }, allow_nil: true
 

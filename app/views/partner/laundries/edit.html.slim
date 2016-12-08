@@ -1,6 +1,8 @@
-h1 Профиль
+h1 Настройки
 
 = form_for [:partner, @laundry] do |f|
+  h2 Профиль
+
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control'
@@ -26,6 +28,20 @@ h1 Профиль
       br
       = image_tag(f.object.logo_url)
       = f.hidden_field :logo_cache
+
+  h2 Доставка
+  
+  .form-group
+    = f.label :delivery_fee
+    .input-group
+      .input-group-addon ₽
+      = f.number_field :delivery_fee, class: 'form-control'
+  
+  .form-group
+    = f.label :free_delivery_from
+    .input-group
+      .input-group-addon ₽
+      = f.number_field :free_delivery_from, class: 'form-control'
 
   .form-group
     = f.submit class: 'btn btn-primary'

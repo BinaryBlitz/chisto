@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20161208203614) do
     t.float    "rating",                  default: 0.0
     t.integer  "ratings_count",           default: 0
     t.boolean  "enabled",                 default: false
+    t.integer  "minimum_order_price"
     t.integer  "free_delivery_from",      default: 0
     t.integer  "delivery_fee",            default: 0
     t.index ["city_id"], name: "index_laundries_on_city_id", using: :btree
