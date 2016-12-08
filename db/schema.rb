@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208163357) do
+ActiveRecord::Schema.define(version: 20161208162628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,14 +106,12 @@ ActiveRecord::Schema.define(version: 20161208163357) do
   end
 
   create_table "laundry_treatments", force: :cascade do |t|
-    t.integer  "laundry_id"
     t.integer  "treatment_id"
-    t.integer  "price",           null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "laundry_item_id"
+    t.integer  "price",        null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "laundry_id"
     t.index ["laundry_id"], name: "index_laundry_treatments_on_laundry_id", using: :btree
-    t.index ["laundry_item_id"], name: "index_laundry_treatments_on_laundry_item_id", using: :btree
     t.index ["treatment_id"], name: "index_laundry_treatments_on_treatment_id", using: :btree
   end
 
@@ -231,7 +229,6 @@ ActiveRecord::Schema.define(version: 20161208163357) do
   add_foreign_key "laundry_items", "items"
   add_foreign_key "laundry_items", "laundries"
   add_foreign_key "laundry_treatments", "laundries"
-  add_foreign_key "laundry_treatments", "laundry_items"
   add_foreign_key "laundry_treatments", "treatments"
   add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "laundries"

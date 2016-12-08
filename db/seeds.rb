@@ -46,6 +46,7 @@ schedule = Schedule.create!([
   { laundry: laundry, day_of_the_week: :sun, opens_at: '10:00', closes_at: '17:00' }
 ])
 
+laundry_item = laundry.laundry_items.create!(item: item, decoration_multiplier: 1.5)
 laundry_treatment = laundry.laundry_treatments.create!(treatment: treatment, price: 100)
 
 rating = Rating.create!(laundry: laundry, user: user, value: 5, content: 'Content', verified: true)

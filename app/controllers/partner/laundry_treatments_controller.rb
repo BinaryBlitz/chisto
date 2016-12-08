@@ -8,7 +8,6 @@ class Partner::LaundryTreatmentsController < Partner::PartnerController
 
   def create
     @laundry_treatment = @treatment.laundry_treatments.build(laundry_treatment_params)
-    @laundry_treatment.laundry = current_laundry
 
     if @laundry_treatment.save
       redirect_to partner_treatments_path, notice: 'Услуга успешно создана'
@@ -44,6 +43,9 @@ class Partner::LaundryTreatmentsController < Partner::PartnerController
   end
 
   def laundry_treatment_params
-    params.require(:laundry_treatment).permit(:price)
+    params
+      .require(:laundry_treatment)
+      .permit(:price)
+      .merge(laundry: current_laundry)
   end
 end

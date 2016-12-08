@@ -17,8 +17,14 @@ Rails.application.routes.draw do
       resource :laundry, only: [:update]
       resources :orders, only: [:index, :show]
 
-      resources :treatments, only: [:index] do
-        resource :laundry_treatment, except: [:show], shallow: true
+      resources :treatments, only: [:index]
+
+      resources :items, only: [] do
+        resource :laundry_item, except: [:show]
+      end
+
+      resources :treatments, only: [] do
+        resource :laundry_treatment, except: [:show]
       end
     end
   end

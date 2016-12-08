@@ -2,13 +2,12 @@
 #
 # Table name: laundry_treatments
 #
-#  id              :integer          not null, primary key
-#  laundry_id      :integer
-#  treatment_id    :integer
-#  price           :integer          not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  laundry_item_id :integer
+#  id           :integer          not null, primary key
+#  treatment_id :integer
+#  price        :integer          not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  laundry_id   :integer
 #
 
 require 'test_helper'

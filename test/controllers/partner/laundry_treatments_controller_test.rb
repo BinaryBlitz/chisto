@@ -5,6 +5,7 @@ class Partner::LaundryTreatmentsControllerTest < ActionDispatch::IntegrationTest
     host! 'partner.domain.com'
     sign_in_laundry
     @laundry_treatment = laundry_treatments(:laundry_treatment)
+    @laundry_item = laundry_items(:laundry_item)
     @treatment = @laundry_treatment.treatment
   end
 
