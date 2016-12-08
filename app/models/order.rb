@@ -24,7 +24,7 @@ class Order < ApplicationRecord
   has_one :payment, dependent: :destroy
   has_many :line_items, dependent: :destroy, inverse_of: :order
 
-  enum status: %i(processing completed canceled)
+  enum status: %i(processing confirmed cleaning dispatched completed canceled)
 
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true
   validates :line_items, presence: true

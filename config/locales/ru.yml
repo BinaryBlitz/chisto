@@ -25,6 +25,9 @@ ru:
         price: Цена
       order/status:
         processing: На рассмотрении
+        confirmed: Согласован
+        cleaning: В чистке
+        dispatched: Доставка
         completed: Выполнен
         canceled: Отменён
       partner_application:

@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     end
 
     scope module: :admin, as: :admin do
-      resources :orders, only: [:index, :show]
+      resources :orders, except: [:new, :create, :destroy]
 
       resources :cities do
         resources :laundries, shallow: true

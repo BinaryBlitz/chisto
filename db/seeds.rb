@@ -32,7 +32,7 @@ treatment = item.treatments.create!(name: 'Name', description: 'Description')
 
 laundry = Laundry.create!(
   name: 'Name', description: 'Description', city: city,
-  logo: image, background_image: image, category: 'premium',
+  logo: image, background_image: image,
   email: 'foo@bar.com', password: 'qwerty123', enabled: true
 )
 

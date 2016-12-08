@@ -11,7 +11,10 @@ module OrdersHelper
 
   def status_tag_class_for_order(order)
     case order.status
-    when 'processing' then 'tag-warning'
+    when 'processing' then 'tag-default'
+    when 'confirmed' then 'tag-primary'
+    when 'cleaning' then 'tag-info'
+    when 'dispatched' then 'tag-warning'
     when 'completed' then 'tag-success'
     when 'canceled' then 'tag-danger'
     end
