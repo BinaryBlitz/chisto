@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208160128) do
+ActiveRecord::Schema.define(version: 20161208162628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,12 +95,22 @@ ActiveRecord::Schema.define(version: 20161208160128) do
     t.index ["reset_password_token"], name: "index_laundries_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "laundry_treatments", force: :cascade do |t|
+  create_table "laundry_items", force: :cascade do |t|
     t.integer  "laundry_id"
+    t.integer  "item_id"
+    t.float    "decoration_multiplier", default: 1.0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["item_id"], name: "index_laundry_items_on_item_id", using: :btree
+    t.index ["laundry_id"], name: "index_laundry_items_on_laundry_id", using: :btree
+  end
+
+  create_table "laundry_treatments", force: :cascade do |t|
     t.integer  "treatment_id"
     t.integer  "price",        null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "laundry_id"
     t.index ["laundry_id"], name: "index_laundry_treatments_on_laundry_id", using: :btree
     t.index ["treatment_id"], name: "index_laundry_treatments_on_treatment_id", using: :btree
   end
@@ -216,6 +226,8 @@ ActiveRecord::Schema.define(version: 20161208160128) do
   end
 
   add_foreign_key "items", "categories"
+  add_foreign_key "laundry_items", "items"
+  add_foreign_key "laundry_items", "laundries"
   add_foreign_key "laundry_treatments", "laundries"
   add_foreign_key "laundry_treatments", "treatments"
   add_foreign_key "line_items", "orders"

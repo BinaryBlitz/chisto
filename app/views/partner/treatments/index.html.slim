@@ -10,10 +10,4 @@ h1 Прайс-лист
         th Цена
         th
     tbody
-      - category.items.each do |item|
-        tr
-          td
-            strong = item.name
-          td
-          td
-        = render item.treatments
+      = render partial: 'item', collection: category.items

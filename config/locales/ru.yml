@@ -18,6 +18,10 @@ ru:
         remember_me: "Запомнить меня"
         reset_password_token: "Ссылка сброса пароля"
         unlock_token: "Токен разблокировки"
+      laundry_item:
+        decoration_multiplier: Множитель (декор)
+      laundry_treatment:
+        price: Цена
       order/status:
         processing: На рассмотрении
         completed: Выполнен
@@ -31,8 +35,6 @@ ru:
         content: Комментарий
       schedule:
         _destroy: Выходной
-      laundry_treatment:
-        price: Цена
       schedule/day_of_the_week:
         mon: Понедельник
         tue: Вторник

@@ -1,0 +1,22 @@
+tr
+  td
+    strong = item.name
+  - if laundry_item = current_laundry.laundry_items.find_by(item: item)
+    td = laundry_item.decoration_multiplier
+    td
+      = link_to 'Изменить',
+                edit_partner_item_laundry_item_path(item),
+                class: 'btn btn-sm btn-warning'
+      | &nbsp;
+      = link_to 'Удалить',
+                partner_item_laundry_item_path(item), method: :delete,
+                data: { confirm: 'Вы действительно хотите удалить услугу?' },
+                class: 'btn btn-sm btn-danger'
+  - else
+    td Не указано
+    td
+      = link_to 'Добавить',
+                new_partner_item_laundry_item_path(item),
+                class: 'btn btn-sm btn-success'
+= render item.treatments,
+         laundry_item: current_laundry.laundry_items.find_or_initialize_by(item: item)
