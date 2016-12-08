@@ -6,7 +6,13 @@
   .form-group
     = f.label :description
     = f.text_field :description, class: 'form-control'
-  
+
+  .form-check
+    = f.label :use_area, class: 'form-check-label' do
+      = f.check_box :use_area, class: 'form-check-input'
+      | &nbsp;
+      = Item.human_attribute_name('use_area')    
+
   .form-group
     = f.label :icon
     = f.file_field :icon, class: 'form-control-file'
@@ -15,6 +21,6 @@
       br
       = image_tag(f.object.icon_url)
       = f.hidden_field :icon_cache
-  
+
   .form-group
     = f.submit class: 'btn btn-primary'

@@ -3,6 +3,8 @@ ru:
     models:
       laundry: Химчистка
     attributes:
+      item:
+        use_area: Использовать площадь
       laundry:
         background_image: Фоновое изображение
         category: Категория
