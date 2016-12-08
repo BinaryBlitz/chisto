@@ -17,3 +17,10 @@ item:
   name: Name
   description: Description
   icon: Icon
+
+item_with_area:
+  category: category
+  name: Item with area
+  description: Description
+  icon: Icon
+  use_area: true
