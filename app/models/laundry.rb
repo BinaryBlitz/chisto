@@ -7,7 +7,6 @@
 #  description             :string           not null
 #  logo                    :string
 #  background_image        :string
-#  category                :string           default("")
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  city_id                 :integer
@@ -43,7 +42,6 @@ class Laundry < ApplicationRecord
   has_many :laundry_treatments, dependent: :destroy
   has_many :treatments, through: :laundry_treatments
 
-  validates :category, inclusion: { in: %w(economy premium) }, allow_blank: true
   validates :name, :description, presence: true
   validates :city, presence: true
 

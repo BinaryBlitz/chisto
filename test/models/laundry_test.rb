@@ -7,7 +7,6 @@
 #  description             :string           not null
 #  logo                    :string
 #  background_image        :string
-#  category                :string           default("")
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  city_id                 :integer
@@ -41,17 +40,6 @@ class LaundryTest < ActiveSupport::TestCase
 
   test 'valid' do
     assert @laundry.valid?
-  end
-
-  test 'category from list' do
-    valid_categories = %w(economy premium)
-    valid_categories.each do |category|
-      @laundry.category = category
-      assert @laundry.valid?
-    end
-
-    @laundry.category = 'a'
-    assert @laundry.invalid?
   end
 
   test 'minimum order price is positive' do

@@ -7,7 +7,6 @@
 #  description             :string           not null
 #  logo                    :string
 #  background_image        :string
-#  category                :string           default("")
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  city_id                 :integer
@@ -37,7 +36,6 @@ laundry:
   description: Description
   logo: Logo
   background_image: Background image
-  category: economy
   city: city
   minimum_order_price: 1
   minimum_collection_time: 1

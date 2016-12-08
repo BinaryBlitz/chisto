@@ -18,6 +18,6 @@ class Partner::LaundriesController < Partner::PartnerController
   def laundry_params
     params
       .require(:laundry)
-      .permit(:name, :description, :category, :city_id, :logo, :background_image, :email, :password)
+      .permit(:name, :description, :city_id, :logo, :background_image, :email, :password)
   end
 end

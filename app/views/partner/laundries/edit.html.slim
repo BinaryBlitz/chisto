@@ -10,10 +10,6 @@ h1 Профиль
     = f.text_area :description, rows: 3, cols: 100, class: 'form-control'
 
   .form-group
-    = f.label :category
-    = f.select :category, [['Economy', 'economy'], ['Premium', 'premium']], {}, class: 'form-control'
-
-  .form-group
     = f.label :background_image
     = f.file_field :background_image, class: 'form-control-file'
     
