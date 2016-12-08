@@ -44,3 +44,14 @@ laundry:
   email: foo@bar.com
   encrypted_password: <%= Devise::Encryptor.digest(Laundry, 'password') %>
   rating: 0.0
+  enabled: true
+
+disabled_laundry:
+  name: Disabled laundry
+  description: Description
+  logo: Logo
+  background_image: Background image
+  city: city
+  email: baz@qux.com
+  encrypted_password: <%= Devise::Encryptor.digest(Laundry, 'password') %>
+  enabled: false

@@ -62,6 +62,8 @@ class Laundry < ApplicationRecord
   mount_uploader :background_image, ImageUploader
   mount_uploader :logo, LogoUploader
 
+  scope :enabled, -> { where(enabled: true) }
+
   def update_rating_cache
     return if destroyed?
     update_attribute(:rating, ratings.verified.average(:value) || 0)
