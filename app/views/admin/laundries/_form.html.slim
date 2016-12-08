@@ -32,6 +32,12 @@
   .form-group
     = f.label :password
     = f.password_field :password, class: 'form-control'
+  
+  .form-check
+    = f.label :enabled, class: 'form-check-label' do
+      = f.check_box :enabled, class: 'form-check-input'
+      | &nbsp;
+      = Laundry.human_attribute_name('enabled')
 
   .form-group
     = f.submit class: 'btn btn-primary'
