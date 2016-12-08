@@ -29,6 +29,7 @@
 #  unconfirmed_email       :string
 #  rating                  :float            default(0.0)
 #  ratings_count           :integer          default(0)
+#  enabled                 :boolean          default(FALSE)
 #
 
 class Laundry < ApplicationRecord
