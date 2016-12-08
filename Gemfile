@@ -47,7 +47,7 @@ gem 'devise-bootstrap-views', git: 'https://github.com/dankimio/devise-bootstrap
 gem 'tinkoff'
 
 # Error logging
-gem 'rollbar'
+gem 'rollbar', '2.12.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
