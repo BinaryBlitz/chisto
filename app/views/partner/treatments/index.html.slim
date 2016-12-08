@@ -6,8 +6,9 @@ h1 Прайс-лист
   table.table
     thead
       tr
+        th
         th Услуга
-        th Цена
+        th Цена / коэффициент
         th
     tbody
       = render partial: 'item', collection: category.items
