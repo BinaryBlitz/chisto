@@ -1,4 +1,5 @@
 tr
+  td
   td = treatment.name
   - if laundry_treatment = current_laundry.laundry_treatments.find_by(treatment: treatment)
     td = number_to_currency(laundry_treatment.price)

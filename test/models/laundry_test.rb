@@ -10,7 +10,6 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  city_id                 :integer
-#  minimum_order_price     :integer
 #  minimum_collection_time :integer
 #  order_processing_time   :integer
 #  email                   :string           default(""), not null
@@ -30,6 +29,9 @@
 #  rating                  :float            default(0.0)
 #  ratings_count           :integer          default(0)
 #  enabled                 :boolean          default(FALSE)
+#  minimum_order_price     :integer
+#  free_delivery_from      :integer          default(0)
+#  delivery_fee            :integer          default(0)
 #
 
 require 'test_helper'
@@ -43,8 +45,8 @@ class LaundryTest < ActiveSupport::TestCase
     assert @laundry.valid?
   end
 
-  test 'minimum order price is positive' do
-    @laundry.minimum_order_price = 0
+  test 'minimum order price is zero or positive' do
+    @laundry.minimum_order_price = -1
     assert @laundry.invalid?
   end
 

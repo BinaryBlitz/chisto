@@ -8,6 +8,7 @@ class API::LaundriesController < API::APIController
       .includes(:schedules, laundry_treatments: :treatment)
       .order(rating: :desc)
       .enabled
+      .valid
   end
 
   def show

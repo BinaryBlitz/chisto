@@ -27,3 +27,9 @@ $custom-file-text: (
     ru: "Browse"
   )
 );
+
+// Icons
+.category-icon, .item-icon {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}

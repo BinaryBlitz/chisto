@@ -9,8 +9,10 @@ ru:
         background_image: Фоновое изображение
         category: Категория
         current_password: "Текущий пароль"
+        delivery_fee: Стоимость доставки
         description: Описание
         email: Email
+        free_delivery_from: Бесплатная доставка при заказе на сумму
         logo: Логотип
         name: Название
         password_confirmation: "Подтверждение пароля"
