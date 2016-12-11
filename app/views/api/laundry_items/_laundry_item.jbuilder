@@ -1,1 +1,1 @@
-json.extract! laundry_item, :id, :decoration_multiplier
+json.extract! laundry_item, :id, :item_id, :decoration_multiplier

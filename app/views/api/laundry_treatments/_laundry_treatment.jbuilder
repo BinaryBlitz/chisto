@@ -1,1 +1,1 @@
-json.extract! laundry_treatment, :id, :price
+json.extract! laundry_treatment, :id, :treatment_id, :price
