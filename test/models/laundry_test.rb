@@ -45,8 +45,8 @@ class LaundryTest < ActiveSupport::TestCase
     assert @laundry.valid?
   end
 
-  test 'minimum order price is positive' do
-    @laundry.minimum_order_price = 0
+  test 'minimum order price is zero or positive' do
+    @laundry.minimum_order_price = -1
     assert @laundry.invalid?
   end
 
