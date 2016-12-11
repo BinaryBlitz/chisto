@@ -1,12 +1,15 @@
 class API::OrdersController < API::APIController
   before_action :set_laundry, only: [:create]
-  before_action :set_order, only: [:show]
+  before_action :set_order, only: []
 
   def index
     @orders = current_user.orders.order(updated_at: :desc)
   end
 
   def show
+    @order = Order
+      .includes(:laundry, line_items: { laundry_treatment: { treatment: :item } })
+      .find(params[:id])
   end
 
   def create
