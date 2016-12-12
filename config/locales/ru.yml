@@ -12,15 +12,18 @@ ru:
         delivery_fee: Стоимость доставки
         description: Описание
         email: Email
+        enabled: Включена
         free_delivery_from: Бесплатная доставка при заказе на сумму
         logo: Логотип
+        minimum_collection_time: Среднее время забора вещей
+        minimum_order_price: Минимальная сумма заказа
         name: Название
+        order_processing_time: Среднее время выполнения заказа
         password_confirmation: "Подтверждение пароля"
         password: "Пароль"
         remember_me: "Запомнить меня"
         reset_password_token: "Ссылка сброса пароля"
         unlock_token: "Токен разблокировки"
-        enabled: Включена
       laundry_item:
         decoration_multiplier: Множитель (декор)
       laundry_treatment:

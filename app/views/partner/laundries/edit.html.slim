@@ -29,7 +29,7 @@ h1 Настройки
       = image_tag(f.object.logo_url)
       = f.hidden_field :logo_cache
 
-  h2 Доставка
+  h2 Заказ и доставка
   
   .form-group
     = f.label :delivery_fee
@@ -42,6 +42,24 @@ h1 Настройки
     .input-group
       .input-group-addon ₽
       = f.number_field :free_delivery_from, class: 'form-control'
+  
+  .form-group
+    = f.label :minimum_order_price
+    .input-group
+      .input-group-addon ₽
+      = f.number_field :minimum_order_price, class: 'form-control'
+  
+  .form-group
+    = f.label :minimum_collection_time
+    .input-group
+      .input-group-addon ч.
+      = f.number_field :minimum_collection_time, class: 'form-control'
+  
+  .form-group
+    = f.label :order_processing_time
+    .input-group
+      .input-group-addon ч.
+      = f.number_field :order_processing_time, class: 'form-control'
 
   .form-group
     = f.submit class: 'btn btn-primary'

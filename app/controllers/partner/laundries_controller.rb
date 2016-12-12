@@ -22,7 +22,8 @@ class Partner::LaundriesController < Partner::PartnerController
         :name, :description, :city_id,
         :logo, :background_image,
         :email, :password,
-        :delivery_fee, :free_delivery_from
+        :delivery_fee, :free_delivery_from,
+        :minimum_order_price, :minimum_collection_time, :order_processing_time
       )
   end
 end
