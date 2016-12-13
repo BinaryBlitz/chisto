@@ -20,8 +20,10 @@ class API::VerificationTokensControllerTest < ActionDispatch::IntegrationTest
   test 'should update user' do
     demo_code = Rails.application.secrets.demo_code
     patch api_verification_token_path, params: {
-      token: @verification_token.token,
-      code: demo_code
+      verification_token: {
+        token: @verification_token.token,
+        code: demo_code
+      }
     }
     assert_response :ok
   end
