@@ -9,7 +9,9 @@ class API::VerificationTokensControllerTest < ActionDispatch::IntegrationTest
     @verification_token.destroy
 
     assert_difference 'VerificationToken.count' do
-      post api_verification_token_url, params: { phone_number: @verification_token.phone_number }
+      post api_verification_token_url, params: {
+        verification_token: @verification_token.attributes
+      }
     end
 
     assert_response :created
