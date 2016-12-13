@@ -13,7 +13,7 @@
 #
 
 class Item < ApplicationRecord
-  belongs_to :category
+  belongs_to :category, counter_cache: true
 
   has_many :treatments, -> { order(name: :asc) }, dependent: :destroy
   has_many :laundry_items, dependent: :destroy
@@ -21,6 +21,9 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :icon, presence: true
   validates :description, presence: true
+
+  after_create -> { category.update_items_preview }
+  after_destroy -> { category.update_items_preview }
 
   mount_uploader :icon, IconUploader
 end

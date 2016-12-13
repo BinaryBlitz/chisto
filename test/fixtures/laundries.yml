@@ -29,7 +29,7 @@
 #  rating                  :float            default(0.0)
 #  ratings_count           :integer          default(0)
 #  enabled                 :boolean          default(FALSE)
-#  minimum_order_price     :integer
+#  minimum_order_price     :integer          default(0)
 #  free_delivery_from      :integer          default(0)
 #  delivery_fee            :integer          default(0)
 #
