@@ -10,6 +10,7 @@
 #  updated_at  :datetime         not null
 #  color       :string           not null
 #  featured    :boolean          default(FALSE)
+#  items_count :integer          default(0)
 #
 
 category:
