@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213002613) do
+ActiveRecord::Schema.define(version: 20161214013718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20161213002613) do
     t.string   "color",                         null: false
     t.boolean  "featured",      default: false
     t.integer  "items_count",   default: 0
-    t.string   "items_preview",                              array: true
+    t.string   "items_preview", default: [],                 array: true
   end
 
   create_table "cities", force: :cascade do |t|

@@ -11,7 +11,7 @@
 #  color         :string           not null
 #  featured      :boolean          default(FALSE)
 #  items_count   :integer          default(0)
-#  items_preview :string           is an Array
+#  items_preview :string           default([]), is an Array
 #
 
 class Category < ApplicationRecord
