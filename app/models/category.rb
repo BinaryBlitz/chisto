@@ -16,6 +16,7 @@
 
 class Category < ApplicationRecord
   COLOR_HEX_FORMAT = /\A#(?:[A-F0-9]{3}){1,2}\z/i
+  ITEMS_IN_PREVIEW = 3
 
   has_many :items, -> { order(name: :asc) }, dependent: :destroy
 
@@ -28,7 +29,11 @@ class Category < ApplicationRecord
   mount_uploader :icon, IconUploader
 
   def update_items_preview
-    item_names = Item.where(category: self).order(:name).distinct.pluck(:name)
+    item_names = Item.where(category: self)
+      .order(:name)
+      .limit(ITEMS_IN_PREVIEW)
+      .distinct
+      .pluck(:name)
     update_attribute(:items_preview, item_names)
   end
 end
