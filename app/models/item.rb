@@ -22,7 +22,7 @@ class Item < ApplicationRecord
   validates :icon, presence: true
   validates :description, presence: true
 
-  after_create -> { category.update_items_preview }
+  after_save -> { category.update_items_preview }
   after_destroy -> { category.update_items_preview }
 
   mount_uploader :icon, IconUploader
