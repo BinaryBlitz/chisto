@@ -18,7 +18,7 @@ h1 Вещи
         tr
           td = image_tag item.icon.thumb.url, class: 'item-icon'
           td = link_to item.name, admin_item_treatments_path(item)
-          td = link_to item.description, admin_item_treatments_path(item)
+          td = item.description
           td = item.use_area ? 'Да' : 'Нет'
           td = link_to 'Изменить', edit_admin_item_path(item), class: 'btn btn-warning'
           td = link_to 'Удалить', admin_item_path(item), method: :delete, data: { confirm: 'Вы действительно хотите удалить город?' }, class: 'btn btn-danger'

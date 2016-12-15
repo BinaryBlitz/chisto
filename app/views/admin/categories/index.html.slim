@@ -20,7 +20,7 @@ h1 Категории
           td = image_tag category.icon.thumb.url, class: 'category-icon'
           td = '⭐️' if category.featured?
           td = link_to category.name, admin_category_items_path(category)
-          td = link_to category.description, admin_category_items_path(category)
+          td = category.description
           td
             span.tag[style="background-color:#{category.color}"] = category.color
           td
