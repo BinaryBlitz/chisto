@@ -15,6 +15,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  email            :string
+#  total_price      :integer          not null
 #
 
 class Order < ApplicationRecord
@@ -30,6 +31,8 @@ class Order < ApplicationRecord
   validates :line_items, presence: true
   validates :email, email: true
 
+  before_create :calculate_total_price
+
   accepts_nested_attributes_for :line_items
 
   def payment
@@ -44,10 +47,6 @@ class Order < ApplicationRecord
     end
   end
 
-  def total_price
-    line_items.inject(0) { |sum, line_item| sum + line_item.total_price }
-  end
-
   def address
     "Улица #{street_name}, дом #{house_number}, квартира #{apartment_number}"
   end
@@ -57,5 +56,11 @@ class Order < ApplicationRecord
     line_items.group_by do |line_item|
       [line_item.laundry_treatment.treatment.item, line_item.quantity]
     end
+  end
+
+  private
+
+  def calculate_total_price
+    self.total_price = line_items.inject(0) { |sum, line_item| sum + line_item.total_price }
   end
 end
