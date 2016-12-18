@@ -19,6 +19,13 @@
 #
 
 class Order < ApplicationRecord
+  STATUS_MESSAGES = {
+    'confirmed' => 'Вы согласовали дату и время забора вещей. Ожидайте курьера.',
+    'cleaning' => 'Ваши вещи уехали в чистку! Не беспокойтесь, скоро они вернутся!',
+    'dispatched' => 'Чистые и свежие вещи уже едут к вам!',
+    'completed' => 'Надеемся вы остались довольны! Пожалуйста оцените вашего исполнителя.'
+  }
+
   belongs_to :user, counter_cache: true
   belongs_to :laundry
 
@@ -32,6 +39,7 @@ class Order < ApplicationRecord
   validates :email, email: true
 
   before_create :calculate_total_price
+  before_save :notify
 
   accepts_nested_attributes_for :line_items
 
@@ -62,5 +70,14 @@ class Order < ApplicationRecord
 
   def calculate_total_price
     self.total_price = line_items.inject(0) { |sum, line_item| sum + line_item.total_price }
+  end
+
+  def notify
+    return unless status_changed?
+
+    message = STATUS_MESSAGES[status]
+    return unless message
+
+    Notifier.new(user, message, order_id: id)
   end
 end
