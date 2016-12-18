@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161215050605) do
+ActiveRecord::Schema.define(version: 20161218212316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,6 +216,8 @@ ActiveRecord::Schema.define(version: 20161215050605) do
     t.text     "notes"
     t.string   "contact_number"
     t.integer  "orders_count",     default: 0
+    t.string   "device_token"
+    t.integer  "platform",         default: 0
     t.index ["api_token"], name: "index_users_on_api_token", unique: true, using: :btree
     t.index ["city_id"], name: "index_users_on_city_id", using: :btree
   end
