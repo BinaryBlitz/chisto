@@ -62,14 +62,18 @@ class Order < ApplicationRecord
   # Grouping: [item, quantity] => [line_items]
   def grouped_line_items
     line_items.group_by do |line_item|
-      [line_item.laundry_treatment.treatment.item, line_item.quantity]
+      [line_item.item, line_item.quantity, line_item.has_decoration]
     end
+  end
+
+  def line_items_price
+    @line_items_price ||= line_items.inject(0) { |sum, line_item| sum + line_item.total_price }
   end
 
   private
 
   def calculate_total_price
-    self.total_price = line_items.inject(0) { |sum, line_item| sum + line_item.total_price }
+    self.total_price = line_items_price
   end
 
   def notify
