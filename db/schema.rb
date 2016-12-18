@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218212316) do
+ActiveRecord::Schema.define(version: 20161218233415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,9 +123,10 @@ ActiveRecord::Schema.define(version: 20161218212316) do
     t.integer  "order_id"
     t.integer  "laundry_treatment_id"
     t.integer  "quantity",             default: 1
-    t.integer  "price",                            null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.integer  "price",                                null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "has_decoration",       default: false
     t.index ["laundry_treatment_id"], name: "index_line_items_on_laundry_treatment_id", using: :btree
     t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
   end
