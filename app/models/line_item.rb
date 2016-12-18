@@ -9,6 +9,7 @@
 #  price                :integer          not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  has_decoration       :boolean          default(FALSE)
 #
 
 class LineItem < ApplicationRecord
@@ -20,13 +21,23 @@ class LineItem < ApplicationRecord
 
   before_validation :set_price, on: :create
 
+  delegate :laundry, to: :order
+  delegate :treatment, to: :laundry_treatment
+  delegate :item, to: :treatment
+
   def total_price
-    price * quantity
+    (price * quantity * multiplier).to_i
   end
 
   private
 
   def set_price
-    self.price = laundry_treatment&.price
+    self.price = laundry_treatment.price
+  end
+
+  def multiplier
+    return 1.0 unless has_decoration?
+
+    laundry.laundry_items.find_by(item: item).decoration_multiplier || 1.0
   end
 end

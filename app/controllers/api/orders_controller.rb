@@ -38,7 +38,7 @@ class API::OrdersController < API::APIController
       .permit(
         :street_name, :house_number,
         :apartment_number,:contact_number, :notes, :email,
-        line_items_attributes: [:laundry_treatment_id, :quantity]
+        line_items_attributes: [:laundry_treatment_id, :quantity, :has_decoration]
       )
   end
 end
