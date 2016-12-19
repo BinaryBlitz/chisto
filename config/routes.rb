@@ -12,8 +12,6 @@ Rails.application.routes.draw do
     end
 
     scope module: :partner, as: :partner do
-      resource :schedule
-
       resource :laundry, only: [:update]
       resources :orders, except: [:new, :create, :destroy]
 
