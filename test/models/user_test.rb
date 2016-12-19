@@ -19,7 +19,7 @@
 #  contact_number   :string
 #  orders_count     :integer          default(0)
 #  device_token     :string
-#  platform         :integer          default(0)
+#  platform         :integer          default("ios")
 #
 
 require 'test_helper'
