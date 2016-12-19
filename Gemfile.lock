@@ -4,6 +4,14 @@ GIT
   specs:
     devise-bootstrap-views (0.0.9)
 
+GIT
+  remote: https://github.com/nomad/houston.git
+  revision: 638fee7602f6f957c2aaacaf8289235ac45ba066
+  specs:
+    houston (2.2.3)
+      commander (~> 4.1)
+      json
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -112,9 +120,6 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     highline (1.7.8)
-    houston (2.2.3)
-      commander (~> 4.1)
-      json
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
@@ -261,7 +266,7 @@ DEPENDENCIES
   email_validator
   fog-aws
   gcm
-  houston
+  houston!
   httparty
   jbuilder (~> 2.5)
   jquery-rails
