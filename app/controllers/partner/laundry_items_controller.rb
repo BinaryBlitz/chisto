@@ -10,7 +10,8 @@ class Partner::LaundryItemsController < Partner::PartnerController
     @laundry_item = @item.laundry_items.build(laundry_item_params)
 
     if @laundry_item.save
-      redirect_to partner_treatments_path, notice: 'Вещь успешно добавлена'
+      redirect_to partner_category_treatments_path(@laundry_item.item.category),
+                  notice: 'Вещь успешно добавлена'
     else
       render :new
     end
@@ -21,7 +22,8 @@ class Partner::LaundryItemsController < Partner::PartnerController
 
   def update
     if @laundry_item.update(laundry_item_params)
-      redirect_to partner_treatments_path, notice: 'Вещь успешно обновлена'
+      redirect_to partner_category_treatments_path(@laundry_item.item.category),
+                  notice: 'Вещь успешно обновлена'
     else
       render :edit
     end
@@ -29,7 +31,8 @@ class Partner::LaundryItemsController < Partner::PartnerController
 
   def destroy
     @laundry_item.destroy
-    redirect_to partner_treatments_path, notice: 'Вещь успешно удалена'
+    redirect_to partner_category_treatments_path(@laundry_item.item.category),
+                notice: 'Вещь успешно удалена'
   end
 
   private

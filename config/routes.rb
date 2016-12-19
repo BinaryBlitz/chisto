@@ -17,7 +17,9 @@ Rails.application.routes.draw do
       resource :laundry, only: [:update]
       resources :orders, except: [:new, :create, :destroy]
 
-      resources :treatments, only: [:index]
+      resources :categories, only: [:index] do
+        resources :treatments, only: [:index]
+      end
 
       resources :items, only: [] do
         resource :laundry_item, except: [:show]

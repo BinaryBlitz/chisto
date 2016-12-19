@@ -6,6 +6,7 @@ class Partner::LaundryItemsControllerTest < ActionDispatch::IntegrationTest
     sign_in_laundry
     @laundry_item = laundry_items(:laundry_item)
     @item = @laundry_item.item
+    @category = @item.category
   end
 
   test 'should create laundry item' do
@@ -16,7 +17,7 @@ class Partner::LaundryItemsControllerTest < ActionDispatch::IntegrationTest
         laundry_item: @laundry_item.attributes
       }
     end
-    assert_redirected_to partner_treatments_path
+    assert_redirected_to partner_category_treatments_path(@category)
   end
 
   test 'should update laundry treatment' do
@@ -24,7 +25,7 @@ class Partner::LaundryItemsControllerTest < ActionDispatch::IntegrationTest
     patch partner_item_laundry_item_path(@item), params: {
       laundry_item: { decoration_multiplier: new_multiplier }
     }
-    assert_redirected_to partner_treatments_path
+    assert_redirected_to partner_category_treatments_path(@category)
     assert_equal new_multiplier, @laundry_item.reload.decoration_multiplier
   end
 
@@ -33,6 +34,6 @@ class Partner::LaundryItemsControllerTest < ActionDispatch::IntegrationTest
       delete partner_item_laundry_item_url(@item)
     end
 
-    assert_redirected_to partner_treatments_path
+    assert_redirected_to partner_category_treatments_path(@category)
   end
 end

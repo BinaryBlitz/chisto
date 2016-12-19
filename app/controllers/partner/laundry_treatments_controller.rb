@@ -10,7 +10,8 @@ class Partner::LaundryTreatmentsController < Partner::PartnerController
     @laundry_treatment = @treatment.laundry_treatments.build(laundry_treatment_params)
 
     if @laundry_treatment.save
-      redirect_to partner_treatments_path, notice: 'Услуга успешно создана'
+      redirect_to partner_category_treatments_path(@laundry_treatment.treatment.item.category),
+                  notice: 'Услуга успешно создана'
     else
       render :new
     end
@@ -21,7 +22,8 @@ class Partner::LaundryTreatmentsController < Partner::PartnerController
 
   def update
     if @laundry_treatment.update(laundry_treatment_params)
-      redirect_to partner_treatments_path, notice: 'Услуга успешно обновлена'
+      redirect_to partner_category_treatments_path(@laundry_treatment.treatment.item.category),
+                  notice: 'Услуга успешно обновлена'
     else
       render :edit
     end
@@ -29,7 +31,8 @@ class Partner::LaundryTreatmentsController < Partner::PartnerController
 
   def destroy
     @laundry_treatment.destroy
-    redirect_to partner_treatments_path, notice: 'Услуга успешно удалена'
+    redirect_to partner_category_treatments_path(@laundry_treatment.treatment.item.category),
+                notice: 'Услуга успешно удалена'
   end
 
   private

@@ -5,10 +5,11 @@ class Partner::TreatmentsControllerTest < ActionDispatch::IntegrationTest
     host! 'partner.domain.com'
     sign_in_laundry
     @treatment = treatments(:treatment)
+    @category = @treatment.item.category
   end
 
   test 'should get index' do
-    get partner_treatments_path
+    get partner_category_treatments_path(@category)
     assert_response :success
   end
 end
