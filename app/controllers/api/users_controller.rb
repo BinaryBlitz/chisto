@@ -4,6 +4,7 @@ class API::UsersController < API::APIController
 
   def show
     @order = @user.orders.completed.order(updated_at: :desc).first
+    @rating = @order.laundry.ratings.find_by(user: current_user) if @order
   end
 
   def create
