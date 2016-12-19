@@ -89,7 +89,11 @@ class Laundry < ApplicationRecord
   def delivery_date
     @delivery_date ||= begin
       configure_business_hours
-      Biz.time(order_processing_time, :hours).after(Time.zone.now).in_time_zone.to_date
+
+      Biz.time(order_processing_time + minimum_collection_time, :hours)
+        .after(Time.zone.now)
+        .in_time_zone
+        .to_date
     end
   end
 
