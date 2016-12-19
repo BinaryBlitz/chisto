@@ -28,6 +28,8 @@ ru:
         decoration_multiplier: Множитель (декор)
       laundry_treatment:
         price: Цена
+      order:
+        status: Статус
       order/status:
         processing: На рассмотрении
         confirmed: Согласован
