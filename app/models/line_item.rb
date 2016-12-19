@@ -10,19 +10,23 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  has_decoration       :boolean          default(FALSE)
+#  treatment_id         :integer
+#  multiplier           :float            default(1.0)
 #
 
 class LineItem < ApplicationRecord
   belongs_to :order, inverse_of: :line_items
   belongs_to :laundry_treatment
+  belongs_to :treatment
 
   validates :quantity, numericality: { greater_than: 0 }
   validates :price, numericality: { greater_than: 0 }
 
+  before_validation :set_treatment, on: :create
+  before_validation :set_multiplier, on: :create
   before_validation :set_price, on: :create
 
   delegate :laundry, to: :order
-  delegate :treatment, to: :laundry_treatment
   delegate :item, to: :treatment
 
   def total_price
@@ -31,13 +35,20 @@ class LineItem < ApplicationRecord
 
   private
 
+  # Use treatment when laundry_treatment record is deleted
+  def set_treatment
+    self.treatment = laundry_treatment.treatment
+  end
+
   def set_price
     self.price = laundry_treatment.price
   end
 
-  def multiplier
-    return 1.0 unless has_decoration?
-
-    laundry.laundry_items.find_by(item: item).decoration_multiplier || 1.0
+  def set_multiplier
+    if has_decoration?
+      self.multiplier = laundry.laundry_items.find_by(item: item)&.decoration_multiplier || 1.0
+    else
+      self.multiplier = 1.0
+    end
   end
 end

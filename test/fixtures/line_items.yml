@@ -10,6 +10,8 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  has_decoration       :boolean          default(FALSE)
+#  treatment_id         :integer
+#  multiplier           :float            default(1.0)
 #
 
 line_item:
@@ -17,3 +19,5 @@ line_item:
   laundry_treatment: laundry_treatment
   quantity: 1
   price: 1
+  treatment: treatment
+  multiplier: 1.5

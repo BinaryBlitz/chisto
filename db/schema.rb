@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218233415) do
+ActiveRecord::Schema.define(version: 20161219014919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,8 +127,11 @@ ActiveRecord::Schema.define(version: 20161218233415) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.boolean  "has_decoration",       default: false
+    t.integer  "treatment_id"
+    t.float    "multiplier",           default: 1.0
     t.index ["laundry_treatment_id"], name: "index_line_items_on_laundry_treatment_id", using: :btree
     t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
+    t.index ["treatment_id"], name: "index_line_items_on_treatment_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|

@@ -10,6 +10,8 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  has_decoration       :boolean          default(FALSE)
+#  treatment_id         :integer
+#  multiplier           :float            default(1.0)
 #
 
 require 'test_helper'
