@@ -59,7 +59,7 @@ class Order < ApplicationRecord
     "Улица #{street_name}, дом #{house_number}, квартира #{apartment_number}"
   end
 
-  # Grouping: [item, quantity] => [line_items]
+  # Grouping: [item, quantity, has_decoration] => [line_items]
   def grouped_line_items
     line_items.group_by do |line_item|
       [line_item.item, line_item.quantity, line_item.has_decoration]
