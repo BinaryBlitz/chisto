@@ -3,6 +3,7 @@ class API::UsersController < API::APIController
   before_action :set_user, only: [:show, :update]
 
   def show
+    @order = @user.orders.completed.order(updated_at: :desc).first
   end
 
   def create
