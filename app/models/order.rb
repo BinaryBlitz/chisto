@@ -16,6 +16,7 @@
 #  updated_at       :datetime         not null
 #  email            :string
 #  total_price      :integer          not null
+#  delivery_fee     :integer          default(0)
 #
 
 class Order < ApplicationRecord
@@ -38,6 +39,7 @@ class Order < ApplicationRecord
   validates :line_items, presence: true
   validates :email, email: true
 
+  before_create :set_delivery_fee
   before_create :calculate_total_price
   before_save :notify
 
@@ -72,8 +74,12 @@ class Order < ApplicationRecord
 
   private
 
+  def set_delivery_fee
+    self.delivery_fee = laundry.delivery_fee if line_items_price < laundry.free_delivery_from
+  end
+
   def calculate_total_price
-    self.total_price = line_items_price
+    self.total_price = line_items_price + delivery_fee
   end
 
   def notify

@@ -16,6 +16,7 @@
 #  updated_at       :datetime         not null
 #  email            :string
 #  total_price      :integer          not null
+#  delivery_fee     :integer          default(0)
 #
 
 require 'test_helper'
