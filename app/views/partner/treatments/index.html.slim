@@ -3,12 +3,13 @@ ol.breadcrumb
     = link_to 'Услуги', partner_categories_path
   li.breadcrumb-item = @category.name
   
-table.table
-  thead
-    tr
-      th
-      th Услуга
-      th Цена / коэффициент
-      th
-  tbody
-    = render partial: 'item', collection: @category.items
+.table-responsive
+  table.table
+    thead
+      tr
+        th
+        th Услуга
+        th Цена / коэффициент
+        th
+    tbody
+      = render partial: 'item', collection: @category.items
