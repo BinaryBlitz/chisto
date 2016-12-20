@@ -37,7 +37,7 @@ class Notifier
   def push_android_notification
     gcm = GCM.new(Rails.application.secrets.gcm_api_key)
     registration_ids = [@device_token]
-    gcm.send(registration_ids, @options)
+    gcm.send(registration_ids, data: @options)
 
     Rails.logger.debug "#{Time.zone.now} Android notification: #{@message}, user: #{@user.id}"
   end
