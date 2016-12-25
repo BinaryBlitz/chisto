@@ -1,0 +1,10 @@
+= form_for [:partner, @order] do |f|
+  .form-group
+    = f.label :status
+    = f.select :status,
+               Order.statuses.map { |key, _| [Order.human_attribute_name("status.#{key}"), key] },
+               {},
+               class: 'form-control'
+
+  .form-group
+    = f.submit class: 'btn btn-primary'

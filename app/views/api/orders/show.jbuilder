@@ -9,6 +9,10 @@ json.line_items @order.line_items do |line_item|
 
     json.treatment do
       json.partial! 'api/treatments/treatment', treatment: line_item.laundry_treatment.treatment
+
+      json.item do
+        json.partial! 'api/items/item', item: line_item.laundry_treatment.treatment.item
+      end
     end
   end
 end

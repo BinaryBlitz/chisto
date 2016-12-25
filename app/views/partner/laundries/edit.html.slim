@@ -1,6 +1,8 @@
-h1 Профиль
+h1 Настройки
 
 = form_for [:partner, @laundry] do |f|
+  h2 Профиль
+
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control'
@@ -8,10 +10,6 @@ h1 Профиль
   .form-group
     = f.label :description
     = f.text_area :description, rows: 3, cols: 100, class: 'form-control'
-
-  .form-group
-    = f.label :category
-    = f.select :category, [['Economy', 'economy'], ['Premium', 'premium']], {}, class: 'form-control'
 
   .form-group
     = f.label :background_image
@@ -30,6 +28,57 @@ h1 Профиль
       br
       = image_tag(f.object.logo_url)
       = f.hidden_field :logo_cache
+
+  h2 Заказ и доставка
+  
+  .form-group
+    = f.label :delivery_fee
+    .input-group
+      .input-group-addon ₽
+      = f.number_field :delivery_fee, class: 'form-control'
+  
+  .form-group
+    = f.label :free_delivery_from
+    .input-group
+      .input-group-addon ₽
+      = f.number_field :free_delivery_from, class: 'form-control'
+  
+  .form-group
+    = f.label :minimum_order_price
+    .input-group
+      .input-group-addon ₽
+      = f.number_field :minimum_order_price, class: 'form-control'
+  
+  .form-group
+    = f.label :minimum_collection_time
+    .input-group
+      .input-group-addon ч.
+      = f.number_field :minimum_collection_time, class: 'form-control'
+  
+  .form-group
+    = f.label :order_processing_time
+    .input-group
+      .input-group-addon ч.
+      = f.number_field :order_processing_time, class: 'form-control'
+  
+  h2 График работы
+  
+  = f.fields_for :schedules do |ff|
+    .form-group
+      = ff.label ff.object.day_of_the_week, Schedule.human_attribute_name("day_of_the_week.#{ff.object.day_of_the_week}")
+      = ff.hidden_field :day_of_the_week
+      .form-inline
+        .form-group
+          = ff.time_field :opens_at, placeholder: '9:00', class: 'form-control'
+        | &nbsp;
+        .form-group
+          = ff.time_field :closes_at, placeholder: '18:00', class: 'form-control'
+        | &nbsp;
+        .form-check
+          = ff.label :_destroy, class: 'form-check-label' do
+            = ff.check_box :_destroy, { checked: ff.object.new_record? }, class: 'form-check-input'
+            | &nbsp;
+            = Schedule.human_attribute_name('_destroy')
 
   .form-group
     = f.submit class: 'btn btn-primary'

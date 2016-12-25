@@ -9,10 +9,10 @@ h1 Химчистки
       tr
         th Название
         th Описание
-        th Класс
         th Рейтинг
         th Фотография
         th Логотип
+        th Включена
         th
         th
     tbody
@@ -20,7 +20,6 @@ h1 Химчистки
         tr
           td = link_to laundry.name, [:admin, laundry]
           td = laundry.description.truncate(140)
-          td = laundry.category
           td = laundry.rating
           td
             - if laundry.background_image?
@@ -28,5 +27,8 @@ h1 Химчистки
           td
             - if laundry.logo?
               = image_tag(laundry.logo_url)
-          td = link_to 'Изменить', edit_admin_laundry_path(laundry), class: 'btn btn-sm btn-warning'
-          td = link_to 'Удалить', admin_laundry_path(laundry), method: :delete, data: { confirm: 'Вы действительно хотите удалить химчистку?' }, class: 'btn btn-sm btn-danger'
+          td = laundry.enabled? ? 'Да' : 'Нет'
+          td = link_to 'Изменить',
+                       edit_admin_laundry_path(laundry), class: 'btn btn-sm btn-warning'
+          td = link_to 'Удалить',
+                        admin_laundry_path(laundry), method: :delete, data: { confirm: 'Вы действительно хотите удалить химчистку?' }, class: 'btn btn-sm btn-danger'

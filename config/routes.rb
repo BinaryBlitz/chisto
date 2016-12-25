@@ -12,13 +12,19 @@ Rails.application.routes.draw do
     end
 
     scope module: :partner, as: :partner do
-      resource :schedule
-
       resource :laundry, only: [:update]
-      resources :orders, only: [:index, :show]
+      resources :orders, except: [:new, :create, :destroy]
 
-      resources :treatments, only: [:index] do
-        resource :laundry_treatment, except: [:show], shallow: true
+      resources :categories, only: [:index] do
+        resources :treatments, only: [:index]
+      end
+
+      resources :items, only: [] do
+        resource :laundry_item, except: [:show]
+      end
+
+      resources :treatments, only: [] do
+        resource :laundry_treatment, except: [:show]
       end
     end
   end
@@ -34,7 +40,7 @@ Rails.application.routes.draw do
     end
 
     scope module: :admin, as: :admin do
-      resources :orders, only: [:index, :show]
+      resources :orders, except: [:new, :create, :destroy]
 
       resources :cities do
         resources :laundries, shallow: true

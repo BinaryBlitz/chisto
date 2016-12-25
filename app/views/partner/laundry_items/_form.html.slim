@@ -1,0 +1,7 @@
+= form_for @laundry_item, url: partner_item_laundry_item_path(@item) do |f|
+  .form-group
+    = f.label :decoration_multiplier
+    = f.number_field :decoration_multiplier, step: :any, class: 'form-control'
+  
+  .form-group
+    = f.submit class: 'btn btn-primary'

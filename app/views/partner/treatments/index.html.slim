@@ -1,19 +1,15 @@
-h1 Прайс-лист
-
-- @categories.each do |category|
-  h2 = category.name
+ol.breadcrumb
+  li.breadcrumb-item
+    = link_to 'Услуги', partner_categories_path
+  li.breadcrumb-item = @category.name
   
+.table-responsive
   table.table
     thead
       tr
+        th
         th Услуга
-        th Цена
+        th Цена / коэффициент
         th
     tbody
-      - category.items.each do |item|
-        tr
-          td
-            strong = item.name
-          td
-          td
-        = render item.treatments
+      = render partial: 'item', collection: @category.items

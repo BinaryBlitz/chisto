@@ -1,12 +1,15 @@
 class API::OrdersController < API::APIController
   before_action :set_laundry, only: [:create]
-  before_action :set_order, only: [:show]
+  before_action :set_order, only: []
 
   def index
     @orders = current_user.orders.order(updated_at: :desc)
   end
 
   def show
+    @order = Order
+      .includes(:laundry, line_items: { laundry_treatment: { treatment: :item } })
+      .find(params[:id])
   end
 
   def create
@@ -35,7 +38,7 @@ class API::OrdersController < API::APIController
       .permit(
         :street_name, :house_number,
         :apartment_number,:contact_number, :notes, :email,
-        line_items_attributes: [:laundry_treatment_id, :quantity]
+        line_items_attributes: [:laundry_treatment_id, :quantity, :has_decoration]
       )
   end
 end

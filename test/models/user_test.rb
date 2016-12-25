@@ -18,6 +18,8 @@
 #  notes            :text
 #  contact_number   :string
 #  orders_count     :integer          default(0)
+#  device_token     :string
+#  platform         :integer          default("ios")
 #
 
 require 'test_helper'

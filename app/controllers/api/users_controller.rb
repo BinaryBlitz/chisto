@@ -3,6 +3,8 @@ class API::UsersController < API::APIController
   before_action :set_user, only: [:show, :update]
 
   def show
+    @order = @user.orders.completed.order(updated_at: :desc).first
+    @rating = @order.laundry.ratings.find_by(user: current_user) if @order
   end
 
   def create
@@ -34,7 +36,8 @@ class API::UsersController < API::APIController
       .require(:user)
       .permit(
         :first_name, :last_name, :email, :phone_number, :birthdate,
-        :city_id, :street_name, :house_number, :apartment_number, :notes
+        :city_id, :street_name, :house_number, :apartment_number, :notes,
+        :device_token, :platform
       )
   end
 end

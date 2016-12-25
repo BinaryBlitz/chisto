@@ -9,6 +9,7 @@
 #  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  use_area    :boolean          default(FALSE)
 #
 
 item:
@@ -16,3 +17,10 @@ item:
   name: Name
   description: Description
   icon: Icon
+
+item_with_area:
+  category: category
+  name: Item with area
+  description: Description
+  icon: Icon
+  use_area: true

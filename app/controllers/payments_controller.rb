@@ -4,12 +4,8 @@ class PaymentsController < ApplicationController
   before_action :set_payment, only: [:create]
 
   def create
-    if @notification.success?
-      @payment.paid!
-      render plain: 'OK', status: :ok
-    else
-      head :unprocessable_entity
-    end
+    @payment.paid! if @notification.success?
+    render plain: 'OK', status: :ok
   end
 
   private

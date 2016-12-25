@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201203350) do
+ActiveRecord::Schema.define(version: 20161219022016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,13 +33,15 @@ ActiveRecord::Schema.define(version: 20161201203350) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",                        null: false
+    t.string   "name",                          null: false
     t.string   "description"
     t.string   "icon"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "color",                       null: false
-    t.boolean  "featured",    default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "color",                         null: false
+    t.boolean  "featured",      default: false
+    t.integer  "items_count",   default: 0
+    t.string   "items_preview", default: [],                 array: true
   end
 
   create_table "cities", force: :cascade do |t|
@@ -52,32 +54,31 @@ ActiveRecord::Schema.define(version: 20161201203350) do
 
   create_table "items", force: :cascade do |t|
     t.integer  "category_id"
-    t.string   "name",        null: false
+    t.string   "name",                        null: false
     t.string   "icon"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "use_area",    default: false
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
   end
 
   create_table "laundries", force: :cascade do |t|
-    t.string   "name",                                  null: false
-    t.string   "description",                           null: false
+    t.string   "name",                                    null: false
+    t.string   "description",                             null: false
     t.string   "logo"
     t.string   "background_image"
-    t.string   "category",                default: ""
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "city_id"
-    t.integer  "minimum_order_price"
     t.integer  "minimum_collection_time"
     t.integer  "order_processing_time"
-    t.string   "email",                   default: "",  null: false
-    t.string   "encrypted_password",      default: "",  null: false
+    t.string   "email",                   default: "",    null: false
+    t.string   "encrypted_password",      default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",           default: 0,   null: false
+    t.integer  "sign_in_count",           default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -88,18 +89,32 @@ ActiveRecord::Schema.define(version: 20161201203350) do
     t.string   "unconfirmed_email"
     t.float    "rating",                  default: 0.0
     t.integer  "ratings_count",           default: 0
+    t.boolean  "enabled",                 default: false
+    t.integer  "minimum_order_price",     default: 0
+    t.integer  "free_delivery_from",      default: 0
+    t.integer  "delivery_fee",            default: 0
     t.index ["city_id"], name: "index_laundries_on_city_id", using: :btree
     t.index ["confirmation_token"], name: "index_laundries_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_laundries_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_laundries_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "laundry_treatments", force: :cascade do |t|
+  create_table "laundry_items", force: :cascade do |t|
     t.integer  "laundry_id"
+    t.integer  "item_id"
+    t.float    "decoration_multiplier", default: 1.0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["item_id"], name: "index_laundry_items_on_item_id", using: :btree
+    t.index ["laundry_id"], name: "index_laundry_items_on_laundry_id", using: :btree
+  end
+
+  create_table "laundry_treatments", force: :cascade do |t|
     t.integer  "treatment_id"
     t.integer  "price",        null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "laundry_id"
     t.index ["laundry_id"], name: "index_laundry_treatments_on_laundry_id", using: :btree
     t.index ["treatment_id"], name: "index_laundry_treatments_on_treatment_id", using: :btree
   end
@@ -108,11 +123,15 @@ ActiveRecord::Schema.define(version: 20161201203350) do
     t.integer  "order_id"
     t.integer  "laundry_treatment_id"
     t.integer  "quantity",             default: 1
-    t.integer  "price",                            null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.integer  "price",                                null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "has_decoration",       default: false
+    t.integer  "treatment_id"
+    t.float    "multiplier",           default: 1.0
     t.index ["laundry_treatment_id"], name: "index_line_items_on_laundry_treatment_id", using: :btree
     t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
+    t.index ["treatment_id"], name: "index_line_items_on_treatment_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -128,6 +147,8 @@ ActiveRecord::Schema.define(version: 20161201203350) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "email"
+    t.integer  "total_price",                      null: false
+    t.integer  "delivery_fee",     default: 0
     t.index ["laundry_id"], name: "index_orders_on_laundry_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
@@ -200,6 +221,8 @@ ActiveRecord::Schema.define(version: 20161201203350) do
     t.text     "notes"
     t.string   "contact_number"
     t.integer  "orders_count",     default: 0
+    t.string   "device_token"
+    t.integer  "platform",         default: 0
     t.index ["api_token"], name: "index_users_on_api_token", unique: true, using: :btree
     t.index ["city_id"], name: "index_users_on_city_id", using: :btree
   end
@@ -215,6 +238,8 @@ ActiveRecord::Schema.define(version: 20161201203350) do
   end
 
   add_foreign_key "items", "categories"
+  add_foreign_key "laundry_items", "items"
+  add_foreign_key "laundry_items", "laundries"
   add_foreign_key "laundry_treatments", "laundries"
   add_foreign_key "laundry_treatments", "treatments"
   add_foreign_key "line_items", "orders"

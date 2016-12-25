@@ -1,3 +1,4 @@
 json.extract! laundry,
-              :id, :name, :description, :category,
-              :background_image_url, :logo_url, :rating, :ratings_count
+              :id, :name, :description,
+              :background_image_url, :logo_url, :rating, :ratings_count,
+              :delivery_fee, :free_delivery_from, :minimum_order_price

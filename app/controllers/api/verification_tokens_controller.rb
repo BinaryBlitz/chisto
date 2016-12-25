@@ -12,9 +12,9 @@ class API::VerificationTokensController < API::APIController
   end
 
   def update
-    @verification_token = VerificationToken.find_by!(token: params[:token])
+    @verification_token = VerificationToken.find_by!(token: update_verification_token_params[:token])
 
-    if @verification_token.verify(params[:code])
+    if @verification_token.verify(update_verification_token_params[:code])
       render json: { api_token: @verification_token.user.try(:api_token) }
     else
       head :forbidden
@@ -24,6 +24,10 @@ class API::VerificationTokensController < API::APIController
   private
 
   def verification_token_params
-    params.permit(:phone_number)
+    params.require(:verification_token).permit(:phone_number)
+  end
+
+  def update_verification_token_params
+    params.require(:verification_token).permit(:token, :code)
   end
 end

@@ -32,8 +32,9 @@ treatment = item.treatments.create!(name: 'Name', description: 'Description')
 
 laundry = Laundry.create!(
   name: 'Name', description: 'Description', city: city,
-  logo: image, background_image: image, category: 'premium',
-  email: 'foo@bar.com', password: 'qwerty123'
+  logo: image, background_image: image,
+  email: 'foo@bar.com', password: 'qwerty123', enabled: true,
+  minimum_collection_time: 12, order_processing_time: 24
 )
 
 schedule = Schedule.create!([
@@ -46,6 +47,7 @@ schedule = Schedule.create!([
   { laundry: laundry, day_of_the_week: :sun, opens_at: '10:00', closes_at: '17:00' }
 ])
 
+laundry_item = laundry.laundry_items.create!(item: item, decoration_multiplier: 1.5)
 laundry_treatment = laundry.laundry_treatments.create!(treatment: treatment, price: 100)
 
 rating = Rating.create!(laundry: laundry, user: user, value: 5, content: 'Content', verified: true)

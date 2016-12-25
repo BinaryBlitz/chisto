@@ -7,11 +7,9 @@
 #  description             :string           not null
 #  logo                    :string
 #  background_image        :string
-#  category                :string           default("")
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  city_id                 :integer
-#  minimum_order_price     :integer
 #  minimum_collection_time :integer
 #  order_processing_time   :integer
 #  email                   :string           default(""), not null
@@ -30,6 +28,10 @@
 #  unconfirmed_email       :string
 #  rating                  :float            default(0.0)
 #  ratings_count           :integer          default(0)
+#  enabled                 :boolean          default(FALSE)
+#  minimum_order_price     :integer          default(0)
+#  free_delivery_from      :integer          default(0)
+#  delivery_fee            :integer          default(0)
 #
 
 laundry:
@@ -37,7 +39,6 @@ laundry:
   description: Description
   logo: Logo
   background_image: Background image
-  category: economy
   city: city
   minimum_order_price: 1
   minimum_collection_time: 1
@@ -45,3 +46,16 @@ laundry:
   email: foo@bar.com
   encrypted_password: <%= Devise::Encryptor.digest(Laundry, 'password') %>
   rating: 0.0
+  enabled: true
+  delivery_fee: 100
+  free_delivery_from: 1000
+
+disabled_laundry:
+  name: Disabled laundry
+  description: Description
+  logo: Logo
+  background_image: Background image
+  city: city
+  email: baz@qux.com
+  encrypted_password: <%= Devise::Encryptor.digest(Laundry, 'password') %>
+  enabled: false

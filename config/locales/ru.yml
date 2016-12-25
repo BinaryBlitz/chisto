@@ -3,21 +3,38 @@ ru:
     models:
       laundry: Химчистка
     attributes:
+      item:
+        use_area: Использовать площадь
       laundry:
         background_image: Фоновое изображение
         category: Категория
         current_password: "Текущий пароль"
+        delivery_fee: Стоимость доставки
         description: Описание
         email: Email
+        enabled: Включена
+        free_delivery_from: Бесплатная доставка при заказе на сумму
         logo: Логотип
+        minimum_collection_time: Среднее время забора вещей
+        minimum_order_price: Минимальная сумма заказа
         name: Название
+        order_processing_time: Среднее время выполнения заказа
         password_confirmation: "Подтверждение пароля"
         password: "Пароль"
         remember_me: "Запомнить меня"
         reset_password_token: "Ссылка сброса пароля"
         unlock_token: "Токен разблокировки"
+      laundry_item:
+        decoration_multiplier: Множитель (декор)
+      laundry_treatment:
+        price: Цена
+      order:
+        status: Статус
       order/status:
         processing: На рассмотрении
+        confirmed: Согласован
+        cleaning: В чистке
+        dispatched: Доставка
         completed: Выполнен
         canceled: Отменён
       partner_application:
@@ -29,8 +46,6 @@ ru:
         content: Комментарий
       schedule:
         _destroy: Выходной
-      laundry_treatment:
-        price: Цена
       schedule/day_of_the_week:
         mon: Понедельник
         tue: Вторник

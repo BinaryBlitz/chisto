@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '~> 2.3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.0.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -47,7 +47,11 @@ gem 'devise-bootstrap-views', git: 'https://github.com/dankimio/devise-bootstrap
 gem 'tinkoff'
 
 # Error logging
-gem 'rollbar'
+gem 'rollbar', '2.12.0'
+
+# Push notifications
+gem 'houston', git: 'https://github.com/nomad/houston.git'
+gem 'gcm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -59,7 +63,7 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # Spring speeds up development by keeping your application running in the background.
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Pry

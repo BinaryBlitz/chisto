@@ -7,11 +7,9 @@
 #  description             :string           not null
 #  logo                    :string
 #  background_image        :string
-#  category                :string           default("")
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  city_id                 :integer
-#  minimum_order_price     :integer
 #  minimum_collection_time :integer
 #  order_processing_time   :integer
 #  email                   :string           default(""), not null
@@ -30,6 +28,10 @@
 #  unconfirmed_email       :string
 #  rating                  :float            default(0.0)
 #  ratings_count           :integer          default(0)
+#  enabled                 :boolean          default(FALSE)
+#  minimum_order_price     :integer          default(0)
+#  free_delivery_from      :integer          default(0)
+#  delivery_fee            :integer          default(0)
 #
 
 class Laundry < ApplicationRecord
@@ -38,17 +40,21 @@ class Laundry < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :ratings, dependent: :destroy
   has_many :schedules, dependent: :destroy
+  has_many :laundry_items, dependent: :destroy
+  has_many :items, through: :laundry_items
   has_many :laundry_treatments, dependent: :destroy
   has_many :treatments, through: :laundry_treatments
 
-  validates :category, inclusion: { in: %w(economy premium) }, allow_blank: true
   validates :name, :description, presence: true
   validates :city, presence: true
 
-  validates :minimum_order_price,
-            :minimum_collection_time,
+  validates :minimum_collection_time,
             :order_processing_time,
             numericality: { greater_than: 0 }, allow_nil: true
+
+  validates :minimum_order_price,
+            :delivery_fee,
+            :free_delivery_from, numericality: { greater_than_or_equal_to: 0 }
 
   validates :background_image, presence: true
   validates :logo, presence: true
@@ -60,6 +66,9 @@ class Laundry < ApplicationRecord
 
   mount_uploader :background_image, ImageUploader
   mount_uploader :logo, LogoUploader
+
+  scope :enabled, -> { where(enabled: true) }
+  scope :valid, -> { where.not(minimum_collection_time: nil, order_processing_time: nil) }
 
   def update_rating_cache
     return if destroyed?
@@ -73,14 +82,18 @@ class Laundry < ApplicationRecord
   def collection_date
     @collection_date ||= begin
       configure_business_hours
-      Biz.time(5, :hours).after(Time.zone.now).in_time_zone.to_date
+      Biz.time(minimum_collection_time, :hours).after(Time.zone.now).in_time_zone.to_date
     end
   end
 
   def delivery_date
     @delivery_date ||= begin
       configure_business_hours
-      Biz.time(30, :hours).after(Time.zone.now).in_time_zone.to_date
+
+      Biz.time(order_processing_time + minimum_collection_time, :hours)
+        .after(Time.zone.now)
+        .in_time_zone
+        .to_date
     end
   end
 

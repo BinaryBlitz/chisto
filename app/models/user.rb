@@ -18,6 +18,8 @@
 #  notes            :text
 #  contact_number   :string
 #  orders_count     :integer          default(0)
+#  device_token     :string
+#  platform         :integer          default("ios")
 #
 
 # TODO: Validate contact number
@@ -34,6 +36,8 @@ class User < ApplicationRecord
   validates :phone_number, uniqueness: true
 
   has_secure_token :api_token
+
+  enum platform: %i(ios android)
 
   def full_name
     "#{first_name} #{last_name}"
