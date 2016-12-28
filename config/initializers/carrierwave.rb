@@ -48,8 +48,7 @@ CarrierWave.configure do |config|
 
   # Use AWS storage if in production
   if Rails.env.production?
-    config.storage = :fog
-
+    config.fog_provider = 'fog/aws'
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: Rails.application.secrets.aws_access_key_id,
@@ -57,5 +56,7 @@ CarrierWave.configure do |config|
       region: 'eu-west-1'
     }
     config.fog_directory = Rails.application.secrets.aws_s3_bucket_name
+
+    config.storage = :fog
   end
 end
