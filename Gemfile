@@ -47,7 +47,7 @@ gem 'devise-bootstrap-views', '~> 1.0.0.alpha1'
 gem 'tinkoff'
 
 # Error logging
-gem 'rollbar', '2.12.0'
+gem 'rollbar'
 
 # Push notifications
 gem 'houston', git: 'https://github.com/nomad/houston.git'
