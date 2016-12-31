@@ -20,18 +20,12 @@
 #
 
 class Order < ApplicationRecord
-  STATUS_MESSAGES = {
-    'confirmed' => 'Дата и время забора вещей согласованы. Ожидайте курьера.',
-    'cleaning' => 'Ваши вещи уехали в чистку. Не беспокойтесь, скоро они вернутся!',
-    'dispatched' => 'Чистые и свежие вещи уже едут к вам!',
-    'completed' => 'Надеемся вы остались довольны! Пожалуйста оцените вашего исполнителя.'
-  }
-
   belongs_to :user, counter_cache: true
   belongs_to :laundry
 
   has_one :payment, dependent: :destroy
   has_many :line_items, dependent: :destroy, inverse_of: :order
+  has_many :statuses, dependent: :destroy
 
   enum status: %i(processing confirmed cleaning dispatched completed canceled)
 
@@ -41,7 +35,7 @@ class Order < ApplicationRecord
 
   before_create :set_delivery_fee
   before_create :calculate_total_price
-  before_save :notify
+  before_save :build_status
 
   accepts_nested_attributes_for :line_items
 
@@ -82,12 +76,8 @@ class Order < ApplicationRecord
     self.total_price = line_items_price + delivery_fee
   end
 
-  def notify
+  def build_status
     return unless status_changed?
-
-    message = STATUS_MESSAGES[status]
-    return unless message
-
-    Notifier.new(user, message, order_id: id)
+    statuses.build(state: status)
   end
 end

@@ -45,3 +45,17 @@ h2 Услуги
               - line_items.each do |line_item|
                 li = "#{line_item.treatment.name} — #{number_to_currency(line_item.price)}"
           td = number_to_currency(line_items.sum(&:total_price))
+
+h2 История
+
+.table-responsive
+  table.table
+    thead
+      tr
+        th Статус
+        th Дата
+    tbody
+      - @order.statuses.order(created_at: :desc).each do |status|
+        tr
+          td = tag_for_status(status)
+          td = l(status.created_at, format: :short)
