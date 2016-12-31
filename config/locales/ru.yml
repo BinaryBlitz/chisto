@@ -54,6 +54,13 @@ ru:
         fri: Пятница
         sat: Суббота
         sun: Воскресенье
+      status/state:
+        processing: На рассмотрении
+        confirmed: Согласован
+        cleaning: В чистке
+        dispatched: Доставка
+        completed: Выполнен
+        canceled: Отменён
   helpers:
     submit:
       create: Создать
