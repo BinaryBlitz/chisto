@@ -16,19 +16,4 @@ h1 Химчистки
         th
         th
     tbody
-      - @laundries.each do |laundry|
-        tr
-          td = link_to laundry.name, [:admin, laundry]
-          td = laundry.description.truncate(140)
-          td = laundry.rating
-          td
-            - if laundry.background_image?
-              = image_tag(laundry.background_image.thumb)
-          td
-            - if laundry.logo?
-              = image_tag(laundry.logo_url)
-          td = laundry.enabled? ? 'Да' : 'Нет'
-          td = link_to 'Изменить',
-                       edit_admin_laundry_path(laundry), class: 'btn btn-sm btn-warning'
-          td = link_to 'Удалить',
-                        admin_laundry_path(laundry), method: :delete, data: { confirm: 'Вы действительно хотите удалить химчистку?' }, class: 'btn btn-sm btn-danger'
+      = render @laundries

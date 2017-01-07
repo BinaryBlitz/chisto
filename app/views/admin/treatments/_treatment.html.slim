@@ -1,0 +1,8 @@
+- cache [:admin, treatment] do
+  tr
+    td = treatment.name
+    td = treatment.description
+    td = link_to 'Изменить', edit_admin_treatment_path(treatment), class: 'btn btn-warning'
+    td = link_to 'Удалить',
+                 admin_treatment_path(treatment), method: :delete,
+                 data: { confirm: 'Вы действительно хотите удалить город?' }, class: 'btn btn-danger'
