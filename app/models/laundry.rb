@@ -61,7 +61,7 @@ class Laundry < ApplicationRecord
 
   accepts_nested_attributes_for :schedules, allow_destroy: true
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :background_image, ImageUploader
