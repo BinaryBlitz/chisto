@@ -7,4 +7,12 @@
                class: 'form-control'
 
   .form-group
+    = f.label :collection_date
+    = f.datetime_field :collection_date, class: 'form-control'
+
+  .form-group
+    = f.label :delivery_date
+    = f.datetime_field :delivery_date, class: 'form-control'
+
+  .form-group
     = f.submit class: 'btn btn-primary'

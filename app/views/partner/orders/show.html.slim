@@ -6,7 +6,7 @@ h1 = "Заказ №#{@order.id}"
   = link_to 'Изменить', edit_partner_order_path(@order), class: 'btn btn-primary'
 
 dl.row
-  dt.col-sm-3 Дата и время
+  dt.col-sm-3 Дата создания
   dd.col-sm-9 = l(@order.created_at, format: :short)
   dt.col-sm-3 Телефон
   dd.col-sm-9 = @order.contact_number
@@ -24,6 +24,12 @@ dl.row
   dd.col-sm-9 = @order.notes || 'Нет'
   dt.col-sm-3 Дата забора
   dd.col-sm-9 = l(@order.created_at, format: :short)
+  - if @order.collection_date
+    dt.col-sm-3 Дата забора
+    dd.col-sm-9 = l(@order.collection_date, format: :short)
+  - if @order.delivery_date
+    dt.col-sm-3 Дата доставки
+    dd.col-sm-9 = l(@order.delivery_date, format: :short)
 
 h2 Услуги
 

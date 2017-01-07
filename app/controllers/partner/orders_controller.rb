@@ -28,6 +28,6 @@ class Partner::OrdersController < Partner::PartnerController
   end
 
   def order_params
-    params.require(:order).permit(:status)
+    params.require(:order).permit(:collection_date, :delivery_date, :status)
   end
 end

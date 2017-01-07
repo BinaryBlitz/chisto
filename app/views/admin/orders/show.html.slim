@@ -6,12 +6,10 @@ h1 = "Заказ №#{@order.id}"
   = link_to 'Изменить', edit_admin_order_path(@order), class: 'btn btn-primary'
 
 dl.row
-  dt.col-sm-3 №
-  dd.col-sm-9 = @order.id
   dt.col-sm-3 Химчистка
   dd.col-sm-9 = link_to @order.laundry.name, [:admin, @order.laundry]
-  dt.col-sm-3 Дата и время
-  dd.col-sm-9 = @order.created_at.to_formatted_s(:short)
+  dt.col-sm-3 Дата создания
+  dd.col-sm-9 = l(@order.created_at, format: :short)
   dt.col-sm-3 Телефон
   dd.col-sm-9 = @order.contact_number
   dt.col-sm-3 Статус
@@ -26,8 +24,12 @@ dl.row
   dd.col-sm-9 = @order.address
   dt.col-sm-3 Комментарии
   dd.col-sm-9 = @order.notes || 'Нет'
-  dt.col-sm-3 Дата забора
-  dd.col-sm-9 = @order.created_at
+  - if @order.collection_date
+    dt.col-sm-3 Дата забора
+    dd.col-sm-9 = l(@order.collection_date, format: :short)
+  - if @order.delivery_date
+    dt.col-sm-3 Дата доставки
+    dd.col-sm-9 = l(@order.delivery_date, format: :short)
 
 h2 Услуги
 
