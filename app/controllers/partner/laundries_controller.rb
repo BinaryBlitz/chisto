@@ -1,6 +1,9 @@
 class Partner::LaundriesController < Partner::PartnerController
-  before_action :set_laundry, only: [:edit, :update]
+  before_action :set_laundry
   before_action :build_schedules, only: [:edit]
+
+  def edit
+  end
 
   def update
     if @laundry.update(laundry_params)
