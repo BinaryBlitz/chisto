@@ -29,6 +29,8 @@ ru:
       laundry_treatment:
         price: Цена
       order:
+        collection_date: Дата забора
+        delivery_date: Дата доставки
         status: Статус
       order/status:
         processing: На рассмотрении

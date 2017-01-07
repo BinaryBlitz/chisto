@@ -17,6 +17,8 @@
 #  email            :string
 #  total_price      :integer          not null
 #  delivery_fee     :integer          default(0)
+#  collection_date  :datetime
+#  delivery_date    :datetime
 #
 
 class Order < ApplicationRecord
