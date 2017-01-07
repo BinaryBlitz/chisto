@@ -2,7 +2,7 @@
   .form-group
     = f.label :status
     = f.select :status,
-               Order.statuses.map { |key, _| [Order.human_attribute_name("status.#{key}"), key] },
+               Status::STATES.map { |key, _| [Order.human_attribute_name("status.#{key}"), key] },
                {},
                class: 'form-control'
 

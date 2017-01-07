@@ -1,3 +1,5 @@
+= provide(:title, 'Категории')
+
 h1 Категории
 
 .form-group
@@ -15,20 +17,4 @@ h1 Категории
         th
         th
     tbody
-      - @categories.each do |category|
-        tr
-          td = image_tag category.icon.thumb.url, class: 'category-icon'
-          td = '⭐️' if category.featured?
-          td = link_to category.name, admin_category_items_path(category)
-          td = category.description
-          td
-            span.tag[style="background-color:#{category.color}"] = category.color
-          td
-            = link_to 'Изменить',
-                      edit_admin_category_path(category),
-                      class: 'btn btn-warning btn-sm'
-          td
-            = link_to 'Удалить',
-                      admin_category_path(category), method: :delete,
-                      data: { confirm: 'Вы действительно хотите удалить город?' },
-                      class: 'btn btn-danger btn-sm'
+      = render @categories

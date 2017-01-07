@@ -1,5 +1,3 @@
-json.extract! rating, :id, :value, :content, :created_at
-
-json.user do
-  json.extract! rating.user, :id, :first_name, :last_name
+json.cache! rating do
+  json.extract! rating, :id, :value, :content, :created_at
 end

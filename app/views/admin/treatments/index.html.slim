@@ -1,3 +1,5 @@
+= provide(:title, "#{@item.name} – Услуги")
+
 h1 Услуги
 
 .form-group
@@ -12,9 +14,4 @@ h1 Услуги
         th
         th
     tbody
-      - @treatments.each do |treatment|
-        tr
-          td = treatment.name
-          td = treatment.description
-          td = link_to 'Изменить', edit_admin_treatment_path(treatment), class: 'btn btn-warning'
-          td = link_to 'Удалить', admin_treatment_path(treatment), method: :delete, data: { confirm: 'Вы действительно хотите удалить город?' }, class: 'btn btn-danger'
+      = render @treatments

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '~> 2.3.3'
+ruby '~> 2.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
@@ -41,13 +41,13 @@ gem 'rails-i18n'
 
 # Auth
 gem 'devise', '~> 4.1'
-gem 'devise-bootstrap-views', git: 'https://github.com/dankimio/devise-bootstrap-views'
+gem 'devise-bootstrap-views', '~> 1.0.0.alpha1'
 
 # Payments
 gem 'tinkoff'
 
 # Error logging
-gem 'rollbar', '2.12.0'
+gem 'rollbar'
 
 # Push notifications
 gem 'houston', git: 'https://github.com/nomad/houston.git'

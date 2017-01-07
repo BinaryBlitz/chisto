@@ -1,3 +1,5 @@
+= provide(:title, 'Заказы')
+
 h1 Заказы
 
 .table-responsive
@@ -11,11 +13,4 @@ h1 Заказы
         th Статус
         th Сумма
     tbody
-      - @orders.each do |order|
-        tr
-          td = link_to order.id, [:admin, order]
-          td = link_to order.laundry.name, [:admin, order.laundry]
-          td = link_to order.created_at.to_formatted_s(:short), [:admin, order]
-          td = order.contact_number
-          td = status_tag_for_order(order)
-          td = number_to_currency(order.total_price)
+      = render @orders
