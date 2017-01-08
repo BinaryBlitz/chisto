@@ -7,6 +7,7 @@
 #  laundry_treatment_id :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  price                :integer          not null
 #
 
 require 'test_helper'

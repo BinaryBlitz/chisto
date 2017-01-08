@@ -31,11 +31,6 @@ class OrderItemTest < ActiveSupport::TestCase
     assert @order_item.invalid?
   end
 
-  test 'total price is positive' do
-    @order_item.total_price = 0
-    assert @order_item.invalid?
-  end
-
   test 'area is positive' do
     @order_item.area = 0
     assert @order_item.invalid?

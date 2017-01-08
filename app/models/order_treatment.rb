@@ -11,7 +11,7 @@
 #
 
 class OrderTreatment < ApplicationRecord
-  belongs_to :order_item, inverse_of: :order_treatments
+  belongs_to :order_item
   belongs_to :laundry_treatment
 
   before_validation :set_price, on: :create

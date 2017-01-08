@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108015042) do
+ActiveRecord::Schema.define(version: 20170108023740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,7 +125,6 @@ ActiveRecord::Schema.define(version: 20170108015042) do
     t.integer  "laundry_item_id"
     t.integer  "quantity",        default: 1
     t.integer  "area"
-    t.integer  "total_price",                     null: false
     t.boolean  "has_decoration",  default: false
     t.float    "multiplier",      default: 1.0
     t.datetime "created_at",                      null: false

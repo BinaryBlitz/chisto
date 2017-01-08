@@ -7,8 +7,10 @@
 #  laundry_treatment_id :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  price                :integer          not null
 #
 
 order_treatment:
   order_item: order_item
   laundry_treatment: laundry_treatment
+  price: 1

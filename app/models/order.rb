@@ -27,6 +27,7 @@ class Order < ApplicationRecord
 
   has_one :payment, dependent: :destroy
   has_many :order_items, dependent: :destroy, inverse_of: :order
+  has_many :order_treatments, through: :order_items
   has_many :statuses, dependent: :destroy
 
   enum status: %i(processing confirmed cleaning dispatched completed canceled)
@@ -36,7 +37,7 @@ class Order < ApplicationRecord
   validates :email, email: true
 
   before_create :set_delivery_fee
-  before_create :calculate_total_price
+  before_create :set_total_price
   before_save :build_status
 
   accepts_nested_attributes_for :order_items
@@ -67,7 +68,7 @@ class Order < ApplicationRecord
     self.delivery_fee = laundry.delivery_fee if order_items_price < laundry.free_delivery_from
   end
 
-  def calculate_total_price
+  def set_total_price
     self.total_price = order_items_price + delivery_fee
   end
 
