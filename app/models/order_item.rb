@@ -20,16 +20,21 @@ class OrderItem < ApplicationRecord
   belongs_to :item
   belongs_to :laundry_item, optional: true
 
+  has_many :order_treatments, dependent: :destroy, inverse_of: :order_item
+  has_many :treatments, through: :order_treatments
+
   validates :quantity, numericality: { greater_than: 0 }
   validates :total_price, numericality: { greater_than: 0 }
   validates :area, numericality: { greater_than: 0 }, allow_nil: true
+  validates :order_treatments, presence: true
 
   before_validation :set_laundry_item, on: :create
   before_validation :set_multiplier, on: :create
   before_validation :set_total_price, on: :create
 
+  accepts_nested_attributes_for :order_treatments
+
   delegate :laundry, to: :order
-  delegate :item, to: :laundry_item
 
   private
 

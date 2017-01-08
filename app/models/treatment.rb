@@ -13,7 +13,7 @@
 class Treatment < ApplicationRecord
   belongs_to :item
 
-  has_many :line_items
+  has_many :order_items
   has_many :laundry_treatments, dependent: :destroy
   has_many :laundries, through: :laundry_treatments
 
