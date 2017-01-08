@@ -15,7 +15,7 @@ dl.row
   dt.col-sm-3 Статус
   dd.col-sm-9 = status_tag_for_order(@order)
   dt.col-sm-3 Стоимость заказа
-  dd.col-sm-9 = number_to_currency(@order.line_items_price)
+  dd.col-sm-9 = number_to_currency(@order.order_items_price)
   dt.col-sm-3 Стоимость доставки
   dd.col-sm-9 = number_to_currency(@order.delivery_fee)
   dt.col-sm-3 Итого
@@ -39,20 +39,12 @@ h2 Услуги
       tr
         th Вещь
         th Количество
+        th Площадь
         th Декор
         th Услуги
         th Итого
     tbody
-      - @order.grouped_line_items.each do |(item, quantity, has_decoration), line_items|
-        tr
-          td = item.name
-          td = "#{quantity} шт."
-          td = has_decoration ? 'Да' : 'Нет'
-          td
-            ul.list-unstyled
-              - line_items.each do |line_item|
-                li = "#{line_item.treatment.name} — #{number_to_currency(line_item.price)}"
-          td = number_to_currency(line_items.sum(&:total_price))
+      = render @order.order_items
 
 h2 История
 

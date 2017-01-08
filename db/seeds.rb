@@ -57,7 +57,12 @@ order = Order.create!(
   street_name: user.street_name, house_number: user.house_number,
   apartment_number: user.apartment_number, contact_number: user.contact_number,
   email: user.email,
-  line_items_attributes: [{ laundry_treatment: laundry_treatment, quantity: 1 }]
+  order_items_attributes: [
+    {
+      item: item, quantity: 1, has_decoration: true,
+      order_treatments_attributes: [{ laundry_treatment: laundry_treatment }]
+    }
+  ]
 )
 
 admin = Admin.create!(email: 'foo@bar.com', password: 'qwerty123')

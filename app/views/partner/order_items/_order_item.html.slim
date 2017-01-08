@@ -1,0 +1,10 @@
+- cache [:partner, order_item] do
+  tr
+    td = order_item.item.name
+    td = "#{order_item.quantity} шт."
+    td = order_item.area ? "#{order_item.area} м²" : 'Нет'
+    td = order_item.has_decoration ? 'Да' : 'Нет'
+    td
+      ul.list-unstyled
+        = render order_item.order_treatments
+    td = number_to_currency(order_item.total_price)

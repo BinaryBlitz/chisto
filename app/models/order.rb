@@ -26,20 +26,21 @@ class Order < ApplicationRecord
   belongs_to :laundry
 
   has_one :payment, dependent: :destroy
-  has_many :line_items, dependent: :destroy, inverse_of: :order
+  has_many :order_items, dependent: :destroy, inverse_of: :order
+  has_many :order_treatments, through: :order_items
   has_many :statuses, dependent: :destroy
 
   enum status: %i(processing confirmed cleaning dispatched completed canceled)
 
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true
-  validates :line_items, presence: true
+  validates :order_items, presence: true
   validates :email, email: true
 
   before_create :set_delivery_fee
-  before_create :calculate_total_price
+  before_create :set_total_price
   before_save :build_status
 
-  accepts_nested_attributes_for :line_items
+  accepts_nested_attributes_for :order_items
 
   def payment
     super || create_payment(amount: total_price)
@@ -57,25 +58,18 @@ class Order < ApplicationRecord
     "Улица #{street_name}, дом #{house_number}, квартира #{apartment_number}"
   end
 
-  # Grouping: [item, quantity, has_decoration] => [line_items]
-  def grouped_line_items
-    line_items.group_by do |line_item|
-      [line_item.item, line_item.quantity, line_item.has_decoration]
-    end
-  end
-
-  def line_items_price
-    @line_items_price ||= line_items.inject(0) { |sum, line_item| sum + line_item.total_price }
+  def order_items_price
+    @order_items_price ||= order_items.inject(0) { |sum, order_item| sum + order_item.total_price }
   end
 
   private
 
   def set_delivery_fee
-    self.delivery_fee = laundry.delivery_fee if line_items_price < laundry.free_delivery_from
+    self.delivery_fee = laundry.delivery_fee if order_items_price < laundry.free_delivery_from
   end
 
-  def calculate_total_price
-    self.total_price = line_items_price + delivery_fee
+  def set_total_price
+    self.total_price = order_items_price + delivery_fee
   end
 
   def build_status
