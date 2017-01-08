@@ -21,6 +21,8 @@ class OrderTreatment < ApplicationRecord
   private
 
   def set_price
+    return unless laundry_treatment.present?
+
     self.price = laundry_treatment.price
   end
 end
