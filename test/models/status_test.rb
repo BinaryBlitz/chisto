@@ -3,7 +3,7 @@
 # Table name: statuses
 #
 #  id         :integer          not null, primary key
-#  state      :integer          default(0)
+#  state      :integer          default("processing")
 #  order_id   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

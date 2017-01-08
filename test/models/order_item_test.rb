@@ -8,7 +8,6 @@
 #  laundry_item_id :integer
 #  quantity        :integer          default(1)
 #  area            :integer
-#  total_price     :integer          not null
 #  has_decoration  :boolean          default(FALSE)
 #  multiplier      :float            default(1.0)
 #  created_at      :datetime         not null
