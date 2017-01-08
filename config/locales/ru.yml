@@ -75,3 +75,7 @@ ru:
         format: '%n %u'
         unit: '₽'
         precision: 0
+  partner:
+    laundry_treatments:
+      form:
+        price_per_square_meter: Цена за 1 м²
