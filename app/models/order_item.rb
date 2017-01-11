@@ -34,7 +34,7 @@ class OrderItem < ApplicationRecord
   delegate :laundry, to: :order
 
   def total_price
-    order_treatments_price * quantity * (area || 1)
+    (order_treatments_price * quantity * (area || 1) * multiplier).ceil
   end
 
   private
