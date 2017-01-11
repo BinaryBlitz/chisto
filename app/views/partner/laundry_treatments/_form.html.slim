@@ -1,7 +1,13 @@
 = form_for @laundry_treatment, url: partner_treatment_laundry_treatment_path(@treatment) do |f|
   .form-group
-    = f.label :price
-    = f.number_field :price, class: 'form-control'
+    - if @treatment.item.use_area?
+      = f.label :price, t('.price_per_square_meter')
+    - else
+      = f.label :price
+
+    .input-group
+      .input-group-addon ₽
+      = f.number_field :price, class: 'form-control'
   
   .form-group
     = f.submit class: 'btn btn-primary'

@@ -4,15 +4,20 @@ json.payment do
   json.partial! 'api/payments/payment', payment: @order.payment
 end
 
-json.line_items @order.line_items do |line_item|
-  json.partial! 'api/line_items/line_item', line_item: line_item
+json.order_items @order.order_items do |order_item|
+  json.partial! 'api/order_items/order_item', order_item: order_item
 
-  json.laundry_treatment do
-    json.partial! 'api/laundry_treatments/laundry_treatment',
-                  laundry_treatment: line_item.laundry_treatment
+  json.order_treatments order_item.order_treatments do |order_treatment|
+    json.partial! 'api/order_treatments/order_treatment', order_treatment: order_treatment
 
-    json.treatment do
-      json.partial! 'api/treatments/treatment', treatment: line_item.laundry_treatment.treatment
+    json.laundry_treatment do
+      json.partial! 'api/laundry_treatments/laundry_treatment',
+                    laundry_treatment: order_treatment.laundry_treatment
+
+      json.treatment do
+        json.partial! 'api/treatments/treatment',
+                      treatment: order_treatment.laundry_treatment.treatment
+      end
     end
   end
 end

@@ -1,0 +1,14 @@
+# == Schema Information
+#
+# Table name: subscriptions
+#
+#  id           :integer          not null, primary key
+#  phone_number :string
+#  content      :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+subscription:
+  phone_number: "+79991112233"
+  content: Москва

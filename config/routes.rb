@@ -63,6 +63,7 @@ Rails.application.routes.draw do
     resources :cities do
       resources :laundries, only: [:index]
     end
+    resources :subscriptions, only: [:create]
 
     resources :laundries, only: [:show] do
       resources :ratings, only: [:index, :create]

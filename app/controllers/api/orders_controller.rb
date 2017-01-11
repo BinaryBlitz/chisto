@@ -8,7 +8,9 @@ class API::OrdersController < API::APIController
 
   def show
     @order = Order
-      .includes(:laundry, line_items: { laundry_treatment: { treatment: :item } })
+      .includes(
+        :laundry, order_items: { order_treatments: { laundry_treatment: { treatment: :item }}}
+      )
       .find(params[:id])
   end
 
@@ -36,9 +38,12 @@ class API::OrdersController < API::APIController
     params
       .require(:order)
       .permit(
-        :street_name, :house_number,
-        :apartment_number,:contact_number, :notes, :email,
-        line_items_attributes: [:laundry_treatment_id, :quantity, :has_decoration]
+        :street_name, :house_number, :apartment_number,
+        :contact_number, :notes, :email,
+        order_items_attributes: [
+          :item_id, :quantity, :area, :has_decoration,
+          order_treatments_attributes: [:laundry_treatment_id]
+        ]
       )
   end
 end

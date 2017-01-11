@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161231131608) do
+ActiveRecord::Schema.define(version: 20170108031650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,19 +119,29 @@ ActiveRecord::Schema.define(version: 20161231131608) do
     t.index ["treatment_id"], name: "index_laundry_treatments_on_treatment_id", using: :btree
   end
 
-  create_table "line_items", force: :cascade do |t|
+  create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
+    t.integer  "item_id"
+    t.integer  "laundry_item_id"
+    t.integer  "quantity",        default: 1
+    t.integer  "area"
+    t.boolean  "has_decoration",  default: false
+    t.float    "multiplier",      default: 1.0
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["item_id"], name: "index_order_items_on_item_id", using: :btree
+    t.index ["laundry_item_id"], name: "index_order_items_on_laundry_item_id", using: :btree
+    t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  end
+
+  create_table "order_treatments", force: :cascade do |t|
+    t.integer  "order_item_id"
     t.integer  "laundry_treatment_id"
-    t.integer  "quantity",             default: 1
-    t.integer  "price",                                null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.boolean  "has_decoration",       default: false
-    t.integer  "treatment_id"
-    t.float    "multiplier",           default: 1.0
-    t.index ["laundry_treatment_id"], name: "index_line_items_on_laundry_treatment_id", using: :btree
-    t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
-    t.index ["treatment_id"], name: "index_line_items_on_treatment_id", using: :btree
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "price",                null: false
+    t.index ["laundry_treatment_id"], name: "index_order_treatments_on_laundry_treatment_id", using: :btree
+    t.index ["order_item_id"], name: "index_order_treatments_on_order_item_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -149,6 +159,8 @@ ActiveRecord::Schema.define(version: 20161231131608) do
     t.string   "email"
     t.integer  "total_price",                      null: false
     t.integer  "delivery_fee",     default: 0
+    t.datetime "collection_date"
+    t.datetime "delivery_date"
     t.index ["laundry_id"], name: "index_orders_on_laundry_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
@@ -204,6 +216,13 @@ ActiveRecord::Schema.define(version: 20161231131608) do
     t.index ["order_id"], name: "index_statuses_on_order_id", using: :btree
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "phone_number"
+    t.string   "content"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "treatments", force: :cascade do |t|
     t.integer  "item_id"
     t.string   "name",        null: false
@@ -250,7 +269,8 @@ ActiveRecord::Schema.define(version: 20161231131608) do
   add_foreign_key "laundry_items", "laundries"
   add_foreign_key "laundry_treatments", "laundries"
   add_foreign_key "laundry_treatments", "treatments"
-  add_foreign_key "line_items", "orders"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_treatments", "order_items"
   add_foreign_key "orders", "laundries"
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
