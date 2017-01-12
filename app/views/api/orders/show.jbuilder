@@ -13,6 +13,10 @@ json.order_items @order.order_items do |order_item|
       json.treatment do
         json.partial! 'api/treatments/treatment',
                       treatment: order_treatment.laundry_treatment.treatment
+
+        json.item do
+          json.partial! 'api/items/item', item: order_treatment.laundry_treatment.treatment.item
+        end
       end
     end
   end
