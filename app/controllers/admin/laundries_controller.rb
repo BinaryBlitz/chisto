@@ -57,5 +57,6 @@ class Admin::LaundriesController < Admin::AdminController
         :logo, :logo_cache, :background_image, :background_image_cache,
         :email, :password, :enabled
       )
+      .delete_if { |_, value| value.blank? }
   end
 end
