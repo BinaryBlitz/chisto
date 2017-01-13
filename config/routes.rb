@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     scope module: :partner, as: :partner do
       resource :laundry, only: [:update]
       resources :orders, except: [:new, :create, :destroy]
+      resources :ratings, only: [:index]
 
       resources :categories, only: [:index] do
         resources :treatments, only: [:index]
