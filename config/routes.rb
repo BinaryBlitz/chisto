@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
     scope module: :admin, as: :admin do
       resources :orders, except: [:new, :create, :destroy]
+      resources :ratings, only: [:index, :update, :destroy]
 
       resources :cities do
         resources :laundries, shallow: true
