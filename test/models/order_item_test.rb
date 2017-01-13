@@ -19,6 +19,7 @@ require 'test_helper'
 class OrderItemTest < ActiveSupport::TestCase
   setup do
    @order_item = order_items(:order_item)
+   @item = @order_item.item
  end
 
   test 'valid' do
@@ -32,6 +33,20 @@ class OrderItemTest < ActiveSupport::TestCase
 
   test 'area is positive' do
     @order_item.area = 0
+    assert @order_item.invalid?
+  end
+
+  test 'item does not use area' do
+    @item.use_area = false
+    @order_item.area = 1
+
+    assert @order_item.invalid?
+  end
+
+  test 'item uses area' do
+    @item.use_area = true
+    @order_item.area = nil
+
     assert @order_item.invalid?
   end
 end
