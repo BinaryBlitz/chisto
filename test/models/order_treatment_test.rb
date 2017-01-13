@@ -15,9 +15,17 @@ require 'test_helper'
 class OrderTreatmentTest < ActiveSupport::TestCase
   setup do
    @order_treatment = order_treatments(:order_treatment)
+   @laundry_treatment = @order_treatment.laundry_treatment
  end
 
   test 'valid' do
     assert @order_treatment.valid?
+  end
+
+  test 'treatment belongs to laundry' do
+    another_laundry = laundries(:disabled_laundry)
+    @laundry_treatment.laundry = another_laundry
+
+    assert @order_treatment.invalid?
   end
 end

@@ -14,9 +14,13 @@ class OrderTreatment < ApplicationRecord
   belongs_to :order_item
   belongs_to :laundry_treatment
 
+  validate :treatment_belongs_to_laundry
+
   before_validation :set_price, on: :create
 
   delegate :treatment, to: :laundry_treatment
+  delegate :laundry, to: :laundry_treatment
+  delegate :order, to: :order_item
 
   private
 
@@ -24,5 +28,11 @@ class OrderTreatment < ApplicationRecord
     return unless laundry_treatment.present?
 
     self.price = laundry_treatment.price
+  end
+
+  def treatment_belongs_to_laundry
+    return unless laundry_treatment && order_item
+
+    errors.add(:laundry_treatment, 'does not belong to laundry') if laundry != order.laundry
   end
 end
