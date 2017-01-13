@@ -44,6 +44,10 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :order_items
 
+  scope :paid, -> { where(paid: true) }
+  # TODO: add tests
+  scope :visible, -> { where.not(payment_method: :card).or(card.paid) }
+
   def payment
     return if cash? || apple_pay?
 

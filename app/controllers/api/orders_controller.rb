@@ -3,7 +3,7 @@ class API::OrdersController < API::APIController
   before_action :set_order, only: []
 
   def index
-    @orders = current_user.orders.order(updated_at: :desc)
+    @orders = current_user.orders.order(updated_at: :desc).visible
   end
 
   def show

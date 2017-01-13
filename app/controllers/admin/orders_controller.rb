@@ -2,7 +2,7 @@ class Admin::OrdersController < Admin::AdminController
   before_action :set_order, only: [:show, :edit, :update]
 
   def index
-    @orders = Order.order(updated_at: :desc)
+    @orders = Order.order(updated_at: :desc).visible
   end
 
   def show
