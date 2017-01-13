@@ -19,6 +19,7 @@
 #  delivery_fee     :integer          default(0)
 #  collection_date  :datetime
 #  delivery_date    :datetime
+#  payment_method   :integer          default("card")
 #
 
 require 'test_helper'

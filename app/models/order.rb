@@ -19,6 +19,7 @@
 #  delivery_fee     :integer          default(0)
 #  collection_date  :datetime
 #  delivery_date    :datetime
+#  payment_method   :integer          default("card")
 #
 
 class Order < ApplicationRecord
@@ -31,6 +32,7 @@ class Order < ApplicationRecord
   has_many :statuses, dependent: :destroy
 
   enum status: %i(processing confirmed cleaning dispatched completed canceled)
+  enum payment_method: %i(card cash apple_pay)
 
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true
   validates :order_items, presence: true
