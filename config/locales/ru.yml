@@ -15,10 +15,10 @@ ru:
         enabled: Включена
         free_delivery_from: Бесплатная доставка при заказе на сумму
         logo: Логотип
-        minimum_collection_time: Среднее время забора вещей
+        minimum_collection_time: Время забора вещей
         minimum_order_price: Минимальная сумма заказа
         name: Название
-        order_processing_time: Среднее время выполнения заказа
+        order_processing_time: Время выполнения заказа
         password_confirmation: "Подтверждение пароля"
         password: "Пароль"
         remember_me: "Запомнить меня"
