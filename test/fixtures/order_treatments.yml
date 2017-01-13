@@ -8,9 +8,11 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  price                :integer          not null
+#  treatment_id         :integer
 #
 
 order_treatment:
   order_item: order_item
   laundry_treatment: laundry_treatment
   price: 1
+  treatment: treatment
