@@ -1,7 +1,9 @@
 json.partial! 'order', order: @order
 
-json.payment do
-  json.partial! 'api/payments/payment', payment: @order.payment
+if @order.payment.present?
+  json.payment do
+    json.partial! 'api/payments/payment', payment: @order.payment
+  end
 end
 
 json.order_items @order.order_items do |order_item|
