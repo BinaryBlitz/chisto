@@ -1,0 +1,13 @@
+= provide(:title, 'Отзывы')
+
+h1 Отзывы
+
+.table-responsive
+  table.table
+    thead
+      th
+      th Содержание
+      th Заказы
+      th Дата
+    tbody
+      = render @ratings

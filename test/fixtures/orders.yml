@@ -19,6 +19,7 @@
 #  delivery_fee     :integer          default(0)
 #  collection_date  :datetime
 #  delivery_date    :datetime
+#  payment_method   :integer          default("card")
 #
 
 order:
@@ -33,3 +34,4 @@ order:
   notes: Notes
   email: foo@bar.com
   total_price: 1
+  payment_method: card

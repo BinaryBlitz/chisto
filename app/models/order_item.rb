@@ -25,6 +25,7 @@ class OrderItem < ApplicationRecord
   validates :quantity, numericality: { greater_than: 0 }
   validates :area, numericality: { greater_than: 0 }, allow_nil: true
   validates :order_treatments, presence: true
+  validate :item_uses_area
 
   before_validation :set_laundry_item, on: :create
   before_validation :set_multiplier, on: :create
@@ -53,5 +54,12 @@ class OrderItem < ApplicationRecord
 
   def order_treatments_price
     order_treatments.inject(0) { |sum, order_treatment| sum + order_treatment.price }
+  end
+
+  def item_uses_area
+    return unless item.present?
+
+    errors.add(:area, 'is not allowed') if area.present? && !item.use_area?
+    errors.add(:area, 'must be present') if area.nil? && item.use_area?
   end
 end

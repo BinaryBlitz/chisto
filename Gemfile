@@ -50,7 +50,7 @@ gem 'tinkoff'
 gem 'rollbar'
 
 # Push notifications
-gem 'houston', git: 'https://github.com/nomad/houston.git'
+gem 'houston'
 gem 'gcm'
 
 group :development, :test do

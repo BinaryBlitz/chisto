@@ -23,5 +23,7 @@ class Rating < ApplicationRecord
   after_save -> { laundry.update_counter_cache }
   after_destroy -> { laundry.update_counter_cache }
 
+  scope :unverified, -> { where(verified: false) }
   scope :verified, -> { where(verified: true) }
+  scope :with_content, -> { where.not(content: nil) }
 end

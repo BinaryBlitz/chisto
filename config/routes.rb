@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     scope module: :partner, as: :partner do
       resource :laundry, only: [:update]
       resources :orders, except: [:new, :create, :destroy]
+      resources :ratings, only: [:index]
 
       resources :categories, only: [:index] do
         resources :treatments, only: [:index]
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
 
     scope module: :admin, as: :admin do
       resources :orders, except: [:new, :create, :destroy]
+      resources :ratings, only: [:index, :update, :destroy]
 
       resources :cities do
         resources :laundries, shallow: true

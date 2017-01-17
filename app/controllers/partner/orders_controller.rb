@@ -2,7 +2,7 @@ class Partner::OrdersController < Partner::PartnerController
   before_action :set_order, only: [:show, :edit, :update]
 
   def index
-    @orders = Order.order(updated_at: :desc)
+    @orders = current_laundry.orders.order(updated_at: :desc).visible
   end
 
   def show

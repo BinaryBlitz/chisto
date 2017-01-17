@@ -3,7 +3,7 @@ class API::OrdersController < API::APIController
   before_action :set_order, only: []
 
   def index
-    @orders = current_user.orders.order(updated_at: :desc)
+    @orders = current_user.orders.order(updated_at: :desc).visible
   end
 
   def show
@@ -39,7 +39,7 @@ class API::OrdersController < API::APIController
       .require(:order)
       .permit(
         :street_name, :house_number, :apartment_number,
-        :contact_number, :notes, :email,
+        :contact_number, :notes, :email, :payment_method,
         order_items_attributes: [
           :item_id, :quantity, :area, :has_decoration,
           order_treatments_attributes: [:laundry_treatment_id]

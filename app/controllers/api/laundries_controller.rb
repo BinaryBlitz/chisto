@@ -5,7 +5,7 @@ class API::LaundriesController < API::APIController
   def index
     @laundries = Laundry
       .joins(:schedules)
-      .includes(:schedules, laundry_treatments: :treatment)
+      .includes(laundry_treatments: :treatment)
       .order(rating: :desc)
       .enabled
       .valid
