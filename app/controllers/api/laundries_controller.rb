@@ -9,6 +9,7 @@ class API::LaundriesController < API::APIController
       .order(rating: :desc)
       .enabled
       .valid
+      .distinct
   end
 
   def show
