@@ -84,11 +84,11 @@ Rails.application.routes.draw do
   root 'landing#index'
 
   get 'about', to: 'landing#about'
-
   get 'partner', to: 'landing/partner_applications#new'
+  get 'contact', to: 'landing/support_requests#new'
+
   namespace :landing do
     resources :partner_applications, only: [:create]
+    resources :support_requests, only: [:create]
   end
-
-  get 'contact', to: 'landing#contact'
 end
