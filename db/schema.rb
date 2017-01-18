@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118165242) do
+ActiveRecord::Schema.define(version: 20170118180906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,12 +123,12 @@ ActiveRecord::Schema.define(version: 20170118165242) do
     t.integer  "order_id"
     t.integer  "item_id"
     t.integer  "laundry_item_id"
-    t.integer  "quantity",        default: 1
-    t.integer  "area"
-    t.boolean  "has_decoration",  default: false
-    t.float    "multiplier",      default: 1.0
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.integer  "quantity",                                 default: 1
+    t.decimal  "area",            precision: 10, scale: 1
+    t.boolean  "has_decoration",                           default: false
+    t.float    "multiplier",                               default: 1.0
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
     t.index ["item_id"], name: "index_order_items_on_item_id", using: :btree
     t.index ["laundry_item_id"], name: "index_order_items_on_laundry_item_id", using: :btree
     t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
