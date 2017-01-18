@@ -32,6 +32,6 @@ class Schedule < ApplicationRecord
   def closes_after_opening
     return unless opens_at.present? && closes_at.present?
 
-    errors.add(:closes_at, 'is invalid') if closes_at < opens_at
+    errors.add(:closes_at, 'is invalid') if closes_at <= opens_at
   end
 end
