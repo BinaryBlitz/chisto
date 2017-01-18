@@ -23,7 +23,7 @@
 #
 
 class Order < ApplicationRecord
-  belongs_to :user, counter_cache: true
+  belongs_to :user
   belongs_to :laundry
 
   has_one :payment, dependent: :destroy
@@ -41,6 +41,9 @@ class Order < ApplicationRecord
   before_create :set_delivery_fee
   before_create :set_total_price
   before_save :build_status
+
+  after_save -> { user.update_counter_cache }
+  after_destroy -> { user.update_counter_cache }
 
   accepts_nested_attributes_for :order_items
 
