@@ -14,24 +14,24 @@
     <div id="contact-form" class="offset-md-3 col-md-6">
       <h2>Напишите нам</h2>
 
-      <%= form_tag '' do %>
+      <%= form_for [:landing, @support_request] do |f| %>
         <div class="form-group">
-          <%= label_tag :name, 'Имя и фамилия' %>
-          <%= text_field_tag :name, nil, placeholder: 'Евгений Харитонов', class: 'form-control' %>
+          <%= f.label :name %>
+          <%= f.text_field :name, placeholder: 'Евгений Харитонов', class: 'form-control' %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :email, 'Email' %>
-          <%= email_field_tag :email, nil, placeholder: 'name@example.com', class: 'form-control' %>
+          <%= f.label :email %>
+          <%= f.email_field :email, placeholder: 'name@example.com', class: 'form-control' %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :content, 'Комментарий' %>
-          <%= text_area_tag :content, nil, placeholder: 'Ваш комментарий', class: 'form-control' %>
+          <%= f.label :content %>
+          <%= f.text_area :content, placeholder: 'Ваш комментарий', class: 'form-control' %>
         </div>
 
         <div id="submit-button" class="text-xs-center form-group">
-          <%= submit_tag 'Отправить', class: 'btn btn-outline-primary' %>
+          <%= f.submit class: 'btn btn-outline-primary' %>
         </div>
       <% end %>
     </div>
