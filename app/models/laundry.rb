@@ -86,6 +86,18 @@ class Laundry < ApplicationRecord
     end
   end
 
+  def collection_date_business_hours
+    @collection_date_business_hours ||= business_hours_on(collection_date)
+  end
+
+  def collection_date_opens_at
+    collection_date_business_hours&.keys&.first
+  end
+
+  def collection_date_closes_at
+    collection_date_business_hours&.values&.first
+  end
+
   def delivery_date
     @delivery_date ||= begin
       configure_business_hours
@@ -97,12 +109,16 @@ class Laundry < ApplicationRecord
     end
   end
 
+  def delivery_date_business_hours
+    @delivery_date_business_hours ||= business_hours_on(delivery_date)
+  end
+
   def delivery_date_opens_at
-    @delivery_date_opens_at ||= delivery_date_business_hours&.keys&.first
+    delivery_date_business_hours&.keys&.first
   end
 
   def delivery_date_closes_at
-    @delivery_date_closes_at ||= delivery_date_business_hours&.values&.first
+    delivery_date_business_hours&.values&.first
   end
 
   private
@@ -118,14 +134,12 @@ class Laundry < ApplicationRecord
     end
   end
 
-  def delivery_date_business_hours
-    @delivery_date_business_hours ||= begin
-      # Start weeks on Mondays
-      number_of_the_day = (delivery_date.wday + 6) % 7
-      # Get the name (:mon)
-      day_of_the_week = Schedule::DAYS_OF_THE_WEEK[number_of_the_day]
-      # { '9:00' => '18:00' }
-      schedule[day_of_the_week]
-    end
+  def business_hours_on(date)
+    # Start weeks on Mondays
+    number_of_the_day = (date.wday + 6) % 7
+    # Get the name (:mon)
+    day_of_the_week = Schedule::DAYS_OF_THE_WEEK[number_of_the_day]
+    # { '9:00' => '18:00' }
+    schedule[day_of_the_week]
   end
 end
