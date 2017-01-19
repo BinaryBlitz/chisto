@@ -12,4 +12,4 @@ h1 Отзывы
       th
       th
     tbody
-      = render @ratings
+      = render partial: 'admin/ratings/rating', collection: @ratings, cached: true

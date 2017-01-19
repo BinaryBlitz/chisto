@@ -14,4 +14,4 @@ h1 Услуги
         th
         th
     tbody
-      = render @treatments
+      = render partial: 'admin/treatments/treatment', collection: @treatments, cached: true

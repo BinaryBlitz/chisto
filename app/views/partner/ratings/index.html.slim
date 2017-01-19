@@ -10,4 +10,4 @@ h1 Отзывы
       th Заказы
       th Дата
     tbody
-      = render @ratings
+      = render partial: 'partner/ratings/rating', collection: @ratings, cached: true
