@@ -42,4 +42,8 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def update_counter_cache
+    update_attribute(:orders_count, orders.visible.count)
+  end
 end

@@ -28,4 +28,10 @@ class ScheduleTest < ActiveSupport::TestCase
 
     assert @schedule.invalid?
   end
+
+  test 'opens_at is different from closes_at' do
+    @schedule.closes_at = @schedule.opens_at
+
+    assert @schedule.invalid?
+  end
 end

@@ -16,4 +16,4 @@ h1 Вещи
         th
         th
     tbody
-      = render @items
+      = render partial: 'admin/items/item', collection: @items, cached: true

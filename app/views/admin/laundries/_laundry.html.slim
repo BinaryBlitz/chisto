@@ -4,11 +4,8 @@
     td = laundry.description.truncate(140)
     td = laundry.rating
     td
-      - if laundry.background_image?
-        = image_tag(laundry.background_image.thumb)
-    td
       - if laundry.logo?
-        = image_tag(laundry.logo_url)
+        = image_tag laundry.logo_url, width: 50
     td = laundry.enabled? ? 'Да' : 'Нет'
     td = link_to 'Изменить',
                  edit_admin_laundry_path(laundry), class: 'btn btn-sm btn-warning'

@@ -1,1 +1,3 @@
-json.array! @items, partial: 'item', as: :item
+json.cache! @items do
+  json.array! @items, partial: 'api/items/item', as: :item
+end

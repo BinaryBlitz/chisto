@@ -3,12 +3,10 @@ class API::LaundriesController < API::APIController
   before_action :set_city, only: [:index]
 
   def index
-    @laundries = Laundry
+    @laundries = @city.laundries
       .joins(:schedules)
-      .includes(laundry_treatments: :treatment)
       .order(rating: :desc)
-      .enabled
-      .valid
+      .enabled.valid
       .distinct
   end
 

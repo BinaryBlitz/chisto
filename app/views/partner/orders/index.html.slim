@@ -12,4 +12,4 @@ h1 Заказы
         th Статус
         th Сумма
     tbody
-      = render @orders
+      = render partial: 'partner/orders/order', collection: @orders, cached: true

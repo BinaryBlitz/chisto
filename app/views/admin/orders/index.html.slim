@@ -7,10 +7,10 @@ h1 Заказы
     thead
       tr
         th №
+        th Дата
         th Химчистка
-        th Дата и время
         th Телефон
         th Статус
         th Сумма
     tbody
-      = render @orders
+      = render partial: 'admin/orders/order', collection: @orders, cached: true

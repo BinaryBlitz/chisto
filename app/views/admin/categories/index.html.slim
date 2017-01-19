@@ -17,4 +17,4 @@ h1 Категории
         th
         th
     tbody
-      = render @categories
+      = render partial: 'admin/categories/category', collection: @categories, cached: true
