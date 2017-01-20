@@ -4,8 +4,8 @@
   <h2>Вы представитель химчистки?</h2>
   <h3>Напишите нам, и мы свяжемся с вами для сотрудничества</h3>
 
-  <div id="form" class="row">
-    <%= form_for [:landing, @partner_application] do |f| %>
+  <div id="form">
+    <%= form_for [:landing, @partner_application], html: { class: 'row' } do |f| %>
       <%= render 'shared/error_messages', object: @partner_application %>
 
       <div class="col-md-6">
@@ -38,8 +38,10 @@
         </div>
       </div>
 
-      <div id="submit-button" class="col-xs-12 text-xs-center form-group">
-        <%= f.submit class: 'btn btn-outline-primary' %>
+      <div class="col-md-12">
+        <div id="submit-button" class="form-group">
+          <%= f.submit class: 'btn btn-outline-primary' %>
+        </div>
       </div>
     <% end %>
   </div>

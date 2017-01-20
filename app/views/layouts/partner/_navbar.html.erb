@@ -1,36 +1,43 @@
-<nav class="navbar navbar-full navbar-light bg-faded">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <div class="container">
-    <%= link_to 'Chisto', partner_root_path, class: 'navbar-brand' %>
-    <ul class="nav navbar-nav pull-xs-right">
-      <% if laundry_signed_in? %>
-        <li class="nav-item">
-          <%= link_to 'Заказы', partner_orders_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Цены', partner_categories_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Отзывы', partner_ratings_path, class: 'nav-link' %>
-        </li>
-      <% end %>
-    </ul>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <ul class="nav navbar-nav float-xs-right">
-      <% if laundry_signed_in? %>
-        <li class="nav-item">
-          <%= link_to 'Настройки', edit_laundry_profile_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Аккаунт', edit_laundry_registration_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Выйти', destroy_laundry_session_path, method: :delete, class:'nav-link' %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Войти', new_laundry_session_path, class:'nav-link' %>
-        </li>
-      <% end %>
-    </ul>
+    <%= link_to 'Chisto', partner_root_path, class: 'navbar-brand' %>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav  mr-auto">
+        <% if laundry_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Заказы', partner_orders_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Цены', partner_categories_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Отзывы', partner_ratings_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <% if laundry_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Настройки', edit_laundry_profile_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Аккаунт', edit_laundry_registration_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Выйти', destroy_laundry_session_path, method: :delete, class:'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Войти', new_laundry_session_path, class:'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>

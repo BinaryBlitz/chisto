@@ -15,6 +15,8 @@
       <h2>Напишите нам</h2>
 
       <%= form_for [:landing, @support_request] do |f| %>
+        <%= render 'shared/error_messages', object: @support_request %>
+
         <div class="form-group">
           <%= f.label :name %>
           <%= f.text_field :name, placeholder: 'Евгений Харитонов', class: 'form-control' %>
@@ -30,7 +32,7 @@
           <%= f.text_area :content, placeholder: 'Ваш комментарий', class: 'form-control' %>
         </div>
 
-        <div id="submit-button" class="text-xs-center form-group">
+        <div id="submit-button" class="form-group">
           <%= f.submit class: 'btn btn-outline-primary' %>
         </div>
       <% end %>
