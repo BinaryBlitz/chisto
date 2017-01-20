@@ -8,9 +8,12 @@
 #  updated_at :datetime         not null
 #  latitude   :float            not null
 #  longitude  :float            not null
+#  deleted_at :datetime
 #
 
 class City < ApplicationRecord
+  include SoftDeletable
+
   has_many :users
   has_many :laundries
 
