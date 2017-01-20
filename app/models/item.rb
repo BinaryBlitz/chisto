@@ -10,9 +10,12 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  use_area    :boolean          default(FALSE)
+#  deleted_at  :datetime
 #
 
 class Item < ApplicationRecord
+  include SoftDeletable
+
   belongs_to :category, counter_cache: true
 
   has_many :treatments, -> { order(name: :asc) }, dependent: :destroy
@@ -26,4 +29,9 @@ class Item < ApplicationRecord
   after_destroy -> { category.update_items_preview }
 
   mount_uploader :icon, IconUploader
+
+  # Soft deleted association
+  def category
+    Category.unscoped { super }
+  end
 end
