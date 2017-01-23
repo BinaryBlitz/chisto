@@ -1,11 +1,11 @@
 - cache [:partner, category] do
   = link_to partner_category_treatments_path(category),
             class: 'list-group-item list-group-item-action' + (category.featured? ? ' list-group-item-warning' : '') do
-    span.tag.tag-default.float-xs-right.align-middle = category.items_count
+    span.badge.badge-default.float-xs-right.align-middle = category.items_count
     = image_tag category.icon.thumb.url, class: 'category-icon align-middle'
     | &nbsp;
     span.align-middle.ml-1
       = category.name
     - if category.featured
       | &nbsp;
-      span.tag.tag-danger.align-middle.ml-1 Промо
+      span.badge.badge-danger.align-middle.ml-1 Промо
