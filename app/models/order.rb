@@ -84,7 +84,7 @@ class Order < ApplicationRecord
   end
 
   def set_total_price
-    self.total_price = (order_items_price + delivery_fee) * promo_multiplier
+    self.total_price = (order_items_price + delivery_fee) * promo_code_multiplier
   end
 
   def build_status
@@ -93,7 +93,7 @@ class Order < ApplicationRecord
   end
 
   # 15% discount = 0.85 multiplier
-  def promo_multiplier
+  def promo_code_multiplier
     return 1.0 unless promo_code.present?
 
     (100 - promo_code.discount) / 100.0
