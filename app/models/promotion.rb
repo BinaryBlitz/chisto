@@ -24,7 +24,7 @@ class Promotion < ApplicationRecord
   has_many :promo_codes, dependent: :destroy
 
   validates :name, presence: true
-  validates :promo_codes_count, numericality: { greater_than: 0 }
+  validates :promo_codes_count, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
   validate :dates_are_valid
 
   after_create :generate_promo_codes
