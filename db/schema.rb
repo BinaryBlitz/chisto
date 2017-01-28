@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170128155602) do
+ActiveRecord::Schema.define(version: 20170128160606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -220,6 +220,8 @@ ActiveRecord::Schema.define(version: 20170128155602) do
     t.integer  "promo_codes_count", null: false
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.datetime "valid_from"
+    t.datetime "valid_until"
     t.index ["laundry_id"], name: "index_promotions_on_laundry_id", using: :btree
   end
 
