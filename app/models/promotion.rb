@@ -14,5 +14,7 @@
 class Promotion < ApplicationRecord
   belongs_to :laundry, optional: true
 
+  has_many :promo_codes, dependent: :destroy
+
   validates :name, presence: true
 end
