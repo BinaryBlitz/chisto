@@ -52,6 +52,8 @@ laundry_treatment = laundry.laundry_treatments.create!(treatment: treatment, pri
 
 rating = Rating.create!(laundry: laundry, user: user, value: 5, content: 'Content', verified: true)
 
+promo_code = PromoCode.create!(code: 'CODE', discount: 15)
+
 order = Order.create!(
   user: user, laundry: laundry,
   street_name: user.street_name, house_number: user.house_number,
