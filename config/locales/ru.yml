@@ -46,6 +46,13 @@ ru:
         phone_number: Телефон
         email: Email
         content: Комментарий
+      promotion:
+        name: Название
+        description: Описание
+        discount: Скидка в %
+        promo_codes_count: Количество промокодов
+        valid_from: Дата начала
+        valid_until: Дата окончания
       schedule:
         _destroy: Выходной
       schedule/day_of_the_week:

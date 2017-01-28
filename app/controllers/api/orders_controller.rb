@@ -39,7 +39,7 @@ class API::OrdersController < API::APIController
       .require(:order)
       .permit(
         :street_name, :house_number, :apartment_number,
-        :contact_number, :notes, :email, :payment_method,
+        :contact_number, :notes, :email, :payment_method, :promo_code_id,
         order_items_attributes: [
           :item_id, :quantity, :area, :has_decoration,
           order_treatments_attributes: [:laundry_treatment_id]

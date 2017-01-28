@@ -1,11 +1,5 @@
 json.partial! 'order', order: @order
 
-if @order.payment.present?
-  json.payment do
-    json.partial! 'api/payments/payment', payment: @order.payment
-  end
-end
-
 json.order_items @order.order_items do |order_item|
   json.partial! 'api/order_items/order_item', order_item: order_item
 
@@ -21,5 +15,17 @@ json.order_items @order.order_items do |order_item|
                       treatment: order_treatment.laundry_treatment.treatment
       end
     end
+  end
+end
+
+if @order.payment
+  json.payment do
+    json.partial! 'api/payments/payment', payment: @order.payment
+  end
+end
+
+if @order.promo_code
+  json.promo_code do
+    json.partial! 'api/promo_codes/promo_code', promo_code: @order.promo_code
   end
 end
