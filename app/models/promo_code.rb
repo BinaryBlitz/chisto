@@ -24,6 +24,8 @@ class PromoCode < ApplicationRecord
   validates :discount, numericality: { greater_than: 0, less_than: 100 }
   validate :dates_are_valid
 
+  before_save -> { code.upcase! }
+
   scope :general, -> { where(promotion: nil) }
 
   def redeem!
