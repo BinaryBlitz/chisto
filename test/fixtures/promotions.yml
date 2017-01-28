@@ -1,0 +1,5 @@
+promotion:
+  name: Promotion
+  description: Description
+  laundry: laundry
+  promo_codes_count: 1
