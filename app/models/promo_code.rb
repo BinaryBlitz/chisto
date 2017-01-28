@@ -24,6 +24,8 @@ class PromoCode < ApplicationRecord
   validates :discount, numericality: { greater_than: 0, less_than: 100 }
   validate :dates_are_valid
 
+  scope :general, -> { where(promotion: nil) }
+
   def redeem!
     return false if reusable?
 

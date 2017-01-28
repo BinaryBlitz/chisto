@@ -1,5 +1,13 @@
 h1 Промоакция: #{@promotion.name}
 
+dl.row
+  - if @promotion.valid_from
+    dt.col-sm-3 Дата начала
+    dd.col-sm-9 = l(@promotion.valid_from, format: :short)
+  - if @promotion.valid_until
+    dt.col-sm-3 Дата окончания
+    dd.col-sm-9 = l(@promotion.valid_until, format: :short)
+
 p = @promotion.description
 
 h2 Промокоды
@@ -7,5 +15,6 @@ h2 Промокоды
 table.table
   thead
     th Код
+    th Скидка
   tbody
-    = render partial: 'admin/promo_codes/promo_code', collection: @promotion.promo_codes
+    = render partial: 'promo_code', collection: @promotion.promo_codes

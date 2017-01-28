@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       resources :orders, except: [:new, :create, :destroy]
       resources :ratings, only: [:index, :update, :destroy]
       resources :promotions, except: [:edit, :update, :destroy]
+      resources :promo_codes, only: [:index, :new, :create]
 
       resources :cities do
         resources :laundries, shallow: true

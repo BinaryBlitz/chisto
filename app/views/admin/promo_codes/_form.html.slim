@@ -1,0 +1,19 @@
+= form_for [:admin, @promo_code] do |f|
+  .form-group
+    = f.label :code
+    = f.text_field :code, class: 'form-control'
+
+  .form-group
+    = f.label :valid_from
+    = f.datetime_local_field :valid_from, class: 'form-control'
+  
+  .form-group
+    = f.label :valid_until
+    = f.datetime_local_field :valid_until, class: 'form-control'
+
+  .form-group
+    = f.label :discount
+    = f.number_field :discount, class: 'form-control'
+  
+  .form-group
+    = f.submit class: 'btn btn-primary'
