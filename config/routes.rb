@@ -79,6 +79,7 @@ Rails.application.routes.draw do
     end
 
     resources :orders, only: [:index, :show]
+    resources :promo_codes, only: [:show], param: :code
   end
 
   root 'landing#index'
