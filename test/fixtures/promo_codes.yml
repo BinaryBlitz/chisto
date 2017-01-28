@@ -16,7 +16,7 @@
 #
 
 promo_code:
-  code: PROMO
+  code: PROMO1
   promotion: promotion
   laundry: laundry
   discount: 10
@@ -26,7 +26,7 @@ promo_code:
   valid_until: <%= 1.month.from_now %>
 
 reusable_promo_code:
-  code: PROMO
+  code: PROMO2
   promotion: promotion
   laundry: laundry
   discount: 10
@@ -36,7 +36,7 @@ reusable_promo_code:
   valid_until: <%= 1.month.from_now %>
 
 redeemed_promo_code:
-  code: PROMO
+  code: PROMO3
   promotion: promotion
   laundry: laundry
   discount: 10

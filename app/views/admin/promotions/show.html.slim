@@ -1,0 +1,11 @@
+h1 Промоакция: #{@promotion.name}
+
+p = @promotion.description
+
+h2 Промокоды
+
+table.table
+  thead
+    th Код
+  tbody
+    = render partial: 'admin/promo_codes/promo_code', collection: @promotion.promo_codes
