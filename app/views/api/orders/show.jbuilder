@@ -20,6 +20,12 @@ json.laundry do
   json.partial! 'api/laundries/laundry', laundry: @order.laundry
 end
 
+if @order.promo_code
+  json.promo_code do
+    json.partial! 'api/promo_codes/promo_code', promo_code: @order.promo_code
+  end
+end
+
 if @rating
   json.rating do
     json.partial! 'api/ratings/rating', rating: @rating
