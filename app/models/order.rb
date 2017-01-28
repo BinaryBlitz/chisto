@@ -20,11 +20,13 @@
 #  collection_date  :datetime
 #  delivery_date    :datetime
 #  payment_method   :integer          default("card")
+#  promo_code_id    :integer
 #
 
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :laundry
+  belongs_to :promo_code, optional: true
 
   has_one :payment, dependent: :destroy
   has_many :order_items, dependent: :destroy, inverse_of: :order
@@ -37,6 +39,7 @@ class Order < ApplicationRecord
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true
   validates :order_items, presence: true
   validates :email, email: true
+  validate :promo_code_is_valid, on: :create, if: 'promo_code.present?'
 
   before_create :set_delivery_fee
   before_create :set_total_price
@@ -62,6 +65,7 @@ class Order < ApplicationRecord
 
     ActiveRecord::Base.transaction do
       update_column(:paid, true)
+      promo_code.redeem! if promo_code.present?
     end
   end
 
@@ -80,11 +84,25 @@ class Order < ApplicationRecord
   end
 
   def set_total_price
-    self.total_price = order_items_price + delivery_fee
+    self.total_price = (order_items_price + delivery_fee) * promo_multiplier
   end
 
   def build_status
     return unless status_changed?
     statuses.build(state: status)
+  end
+
+  # 15% discount = 0.85 multiplier
+  def promo_multiplier
+    return 1.0 unless promo_code.present?
+
+    (100 - promo_code.discount) / 100.0
+  end
+
+  def promo_code_is_valid
+    return if promo_code.reusable?
+
+    errors.add(:promo_code, 'is already redeemed') if promo_code.redeemed?
+    errors.add(:promo_code, 'has expired') if promo_code.expired?
   end
 end

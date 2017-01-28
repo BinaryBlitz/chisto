@@ -19,6 +19,8 @@ class PromoCode < ApplicationRecord
   belongs_to :promotion, optional: true
   belongs_to :laundry, optional: true
 
+  has_one :order, dependent: :destroy
+
   validates :discount, numericality: { greater_than: 0, less_than: 100 }
   validate :dates_are_valid
 
@@ -26,6 +28,12 @@ class PromoCode < ApplicationRecord
     return false if reusable?
 
     update_attribute(:redeemed, true)
+  end
+
+  def expired?
+    return false unless valid_until
+
+    Time.zone.now >= valid_until
   end
 
   private

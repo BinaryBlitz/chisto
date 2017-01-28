@@ -43,4 +43,17 @@ class PromoCodeTest < ActiveSupport::TestCase
   test 'cannot be redeemed if reusable' do
     refute @reusable_promo_code.redeem!
   end
+
+  test 'expired?' do
+    @promo_code.valid_until = 1.day.from_now
+    refute @promo_code.expired?
+
+    @promo_code.valid_until = 1.day.ago
+    assert @promo_code.expired?
+
+    # Without expiry date
+    @promo_code.valid_from = nil
+    @promo_code.valid_until = nil
+    refute @promo_code.expired?
+  end
 end

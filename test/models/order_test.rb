@@ -27,6 +27,10 @@ require 'test_helper'
 class OrderTest < ActiveSupport::TestCase
   setup do
     @order = orders(:order)
+    @promo_code = promo_codes(:promo_code)
+
+    @new_order = @order.dup
+    @new_order.order_items = [order_items(:order_item)]
   end
 
   test 'valid' do
@@ -51,5 +55,19 @@ class OrderTest < ActiveSupport::TestCase
   test 'invalid without contact_number' do
     @order.contact_number = nil
     assert @order.invalid?
+  end
+
+  test 'promo code is not already redeemed' do
+    @new_order.promo_code = @promo_code
+    @new_order.promo_code.redeem!
+
+    assert @new_order.invalid?
+  end
+
+  test 'promo code has not expired' do
+    @new_order.promo_code = @promo_code
+    @new_order.promo_code.valid_until = 1.day.ago
+
+    assert @new_order.invalid?
   end
 end
