@@ -39,7 +39,8 @@ class Order < ApplicationRecord
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true
   validates :order_items, presence: true
   validates :email, email: true
-  validate :promo_code_is_valid, on: :create, if: 'promo_code.present?'
+  validates :promo_code, presence: true, if: -> { promo_code_id.present? }
+  validate :promo_code_is_valid, on: :create, if: -> { promo_code.present? }
 
   before_create :set_delivery_fee
   before_create :set_total_price

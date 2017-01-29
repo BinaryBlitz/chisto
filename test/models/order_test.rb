@@ -70,4 +70,9 @@ class OrderTest < ActiveSupport::TestCase
 
     assert @new_order.invalid?
   end
+
+  test 'promo_code_id is validated' do
+    @order.promo_code_id = PromoCode.last.id + 1
+    assert @order.invalid?
+  end
 end
