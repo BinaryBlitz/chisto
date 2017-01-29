@@ -45,6 +45,7 @@ class Order < ApplicationRecord
   before_create :set_total_price
   before_save :build_status
 
+  after_create :redeem_promo_code, if: :cash?
   after_save -> { user.update_counter_cache }
   after_destroy -> { user.update_counter_cache }
 
@@ -65,7 +66,7 @@ class Order < ApplicationRecord
 
     ActiveRecord::Base.transaction do
       update_column(:paid, true)
-      promo_code.redeem! if promo_code.present?
+      redeem_promo_code
     end
   end
 
@@ -78,6 +79,12 @@ class Order < ApplicationRecord
   end
 
   private
+
+  def redeem_promo_code
+    return unless promo_code.present?
+
+    promo_code.redeem!
+  end
 
   def set_delivery_fee
     self.delivery_fee = laundry.delivery_fee if order_items_price < laundry.free_delivery_from
