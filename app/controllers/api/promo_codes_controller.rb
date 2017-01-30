@@ -8,6 +8,9 @@ class API::PromoCodesController < API::APIController
   private
 
   def set_promo_code
-    @promo_code = PromoCode.find_by!(code: params[:code])
+    @promo_code = PromoCode.active
+      .or(PromoCode.indefinite)
+      .unredeemed
+      .find_by!(code: params[:code])
   end
 end

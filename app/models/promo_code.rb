@@ -29,6 +29,9 @@ class PromoCode < ApplicationRecord
   before_save -> { code.upcase! }
 
   scope :general, -> { where(promotion: nil) }
+  scope :unredeemed, -> { where(redeemed: false) }
+  scope :indefinite, -> { where(valid_from: nil, valid_until: nil) }
+  scope :active, -> { where('valid_from < :now AND valid_until > :now', now: Time.zone.now) }
 
   def redeem!
     return false if reusable?
