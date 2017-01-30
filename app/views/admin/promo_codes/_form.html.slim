@@ -1,4 +1,6 @@
 = form_for [:admin, @promo_code] do |f|
+  = render 'shared/error_messages', object: @promo_code
+  
   .form-group
     = f.label :code
     = f.text_field :code, class: 'form-control'
@@ -14,6 +16,12 @@
   .form-group
     = f.label :discount
     = f.number_field :discount, class: 'form-control'
+    
+  .form-check
+    = f.label :reusable, class: 'form-check-label' do
+      = f.check_box :reusable, class: 'form-check-input'
+      | &nbsp;
+      = PromoCode.human_attribute_name('reusable')
   
   .form-group
     = f.submit class: 'btn btn-primary'

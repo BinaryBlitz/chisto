@@ -46,6 +46,12 @@ ru:
         phone_number: Телефон
         email: Email
         content: Комментарий
+      promo_code:
+        code: Код
+        discount: Скидка в %
+        reusable: Многоразовый
+        valid_from: Дата начала
+        valid_until: Дата окончания
       promotion:
         name: Название
         description: Описание
