@@ -22,6 +22,7 @@ class PromoCode < ApplicationRecord
   has_one :order, dependent: :destroy
   has_many :orders, dependent: :destroy
 
+  validates :code, presence: true, uniqueness: { case_sensitive: false }
   validates :discount, numericality: { greater_than: 0, less_than: 100 }
   validate :dates_are_valid
 

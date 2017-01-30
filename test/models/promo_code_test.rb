@@ -56,4 +56,9 @@ class PromoCodeTest < ActiveSupport::TestCase
     @promo_code.valid_until = nil
     refute @promo_code.expired?
   end
+
+  test 'uniqueness' do
+    promo_code = @promo_code.dup
+    assert promo_code.invalid?
+  end
 end
