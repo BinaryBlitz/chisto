@@ -20,5 +20,7 @@ module Chisto
     config.active_record.time_zone_aware_types = [:datetime, :time]
 
     config.time_zone = 'Europe/Moscow'
+
+    ActiveSupport::JSON::Encoding.time_precision = 0
   end
 end

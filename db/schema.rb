@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118180906) do
+ActiveRecord::Schema.define(version: 20170128160606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170118180906) do
     t.boolean  "featured",      default: false
     t.integer  "items_count",   default: 0
     t.string   "items_preview", default: [],                 array: true
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_categories_on_deleted_at", using: :btree
   end
 
   create_table "cities", force: :cascade do |t|
@@ -50,6 +52,8 @@ ActiveRecord::Schema.define(version: 20170118180906) do
     t.datetime "updated_at", null: false
     t.float    "latitude",   null: false
     t.float    "longitude",  null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_cities_on_deleted_at", using: :btree
   end
 
   create_table "items", force: :cascade do |t|
@@ -60,7 +64,9 @@ ActiveRecord::Schema.define(version: 20170118180906) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "use_area",    default: false
+    t.datetime "deleted_at"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
+    t.index ["deleted_at"], name: "index_items_on_deleted_at", using: :btree
   end
 
   create_table "laundries", force: :cascade do |t|
@@ -164,7 +170,9 @@ ActiveRecord::Schema.define(version: 20170118180906) do
     t.datetime "collection_date"
     t.datetime "delivery_date"
     t.integer  "payment_method",   default: 0
+    t.integer  "promo_code_id"
     t.index ["laundry_id"], name: "index_orders_on_laundry_id", using: :btree
+    t.index ["promo_code_id"], name: "index_orders_on_promo_code_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
@@ -187,6 +195,34 @@ ActiveRecord::Schema.define(version: 20170118180906) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.index ["order_id"], name: "index_payments_on_order_id", using: :btree
+  end
+
+  create_table "promo_codes", force: :cascade do |t|
+    t.string   "code",                         null: false
+    t.integer  "promotion_id"
+    t.integer  "laundry_id"
+    t.integer  "discount",                     null: false
+    t.boolean  "reusable",     default: false
+    t.boolean  "redeemed",     default: false
+    t.datetime "valid_from"
+    t.datetime "valid_until"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["code"], name: "index_promo_codes_on_code", unique: true, using: :btree
+    t.index ["laundry_id"], name: "index_promo_codes_on_laundry_id", using: :btree
+    t.index ["promotion_id"], name: "index_promo_codes_on_promotion_id", using: :btree
+  end
+
+  create_table "promotions", force: :cascade do |t|
+    t.string   "name",              null: false
+    t.string   "description"
+    t.integer  "laundry_id"
+    t.integer  "promo_codes_count", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.datetime "valid_from"
+    t.datetime "valid_until"
+    t.index ["laundry_id"], name: "index_promotions_on_laundry_id", using: :btree
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -240,6 +276,8 @@ ActiveRecord::Schema.define(version: 20170118180906) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_treatments_on_deleted_at", using: :btree
     t.index ["item_id"], name: "index_treatments_on_item_id", using: :btree
   end
 
@@ -284,6 +322,7 @@ ActiveRecord::Schema.define(version: 20170118180906) do
   add_foreign_key "order_treatments", "order_items"
   add_foreign_key "order_treatments", "treatments"
   add_foreign_key "orders", "laundries"
+  add_foreign_key "orders", "promo_codes"
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
   add_foreign_key "ratings", "laundries"

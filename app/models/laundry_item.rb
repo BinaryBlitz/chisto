@@ -11,7 +11,7 @@
 #
 
 class LaundryItem < ApplicationRecord
-  belongs_to :laundry
+  belongs_to :laundry, touch: true
   belongs_to :item
 
   validates :decoration_multiplier, numericality: { greater_than_or_equal_to: 1.0 }

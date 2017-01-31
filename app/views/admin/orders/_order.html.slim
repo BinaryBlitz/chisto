@@ -4,5 +4,5 @@
     td = link_to order.created_at.to_formatted_s(:short), [:admin, order]
     td = link_to order.laundry.name, [:admin, order.laundry]
     td = order.contact_number
-    td = status_tag_for_order(order)
+    td = status_badge_for_order(order)
     td = number_to_currency(order.total_price)

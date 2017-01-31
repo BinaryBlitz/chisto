@@ -8,15 +8,6 @@
     = f.text_area :description, rows: 3, cols: 100, class: 'form-control'
 
   .form-group
-    = f.label :background_image
-    = f.file_field :background_image, class: 'form-control-file'
-
-    - if f.object.background_image?
-      br
-      = image_tag(f.object.background_image.thumb.url)
-      = f.hidden_field :background_image_cache
-    
-  .form-group
     = f.label :logo
     = f.file_field :logo, class: 'form-control-file'
     
@@ -24,6 +15,15 @@
       br
       = image_tag(f.object.logo_url)
       = f.hidden_field :logo_cache
+
+  .form-group
+    = f.label :background_image
+    = f.file_field :background_image, class: 'form-control-file'
+
+    - if f.object.background_image?
+      br
+      = image_tag(f.object.background_image.thumb.url)
+      = f.hidden_field :background_image_cache
   
   .form-group
     = f.label :email

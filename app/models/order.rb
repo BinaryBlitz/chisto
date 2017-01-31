@@ -20,11 +20,13 @@
 #  collection_date  :datetime
 #  delivery_date    :datetime
 #  payment_method   :integer          default("card")
+#  promo_code_id    :integer
 #
 
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :laundry
+  belongs_to :promo_code, optional: true
 
   has_one :payment, dependent: :destroy
   has_many :order_items, dependent: :destroy, inverse_of: :order
@@ -37,11 +39,14 @@ class Order < ApplicationRecord
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true
   validates :order_items, presence: true
   validates :email, email: true
+  validates :promo_code, presence: true, if: -> { promo_code_id.present? }
+  validate :promo_code_is_valid, on: :create, if: -> { promo_code.present? }
 
   before_create :set_delivery_fee
   before_create :set_total_price
   before_save :build_status
 
+  after_create :redeem_promo_code, if: :cash?
   after_save -> { user.update_counter_cache }
   after_destroy -> { user.update_counter_cache }
 
@@ -62,6 +67,7 @@ class Order < ApplicationRecord
 
     ActiveRecord::Base.transaction do
       update_column(:paid, true)
+      redeem_promo_code
     end
   end
 
@@ -75,16 +81,36 @@ class Order < ApplicationRecord
 
   private
 
+  def redeem_promo_code
+    return unless promo_code.present?
+
+    promo_code.redeem!
+  end
+
   def set_delivery_fee
     self.delivery_fee = laundry.delivery_fee if order_items_price < laundry.free_delivery_from
   end
 
   def set_total_price
-    self.total_price = order_items_price + delivery_fee
+    self.total_price = (order_items_price + delivery_fee) * promo_code_multiplier
   end
 
   def build_status
     return unless status_changed?
     statuses.build(state: status)
+  end
+
+  # 15% discount = 0.85 multiplier
+  def promo_code_multiplier
+    return 1.0 unless promo_code.present?
+
+    (100 - promo_code.discount) / 100.0
+  end
+
+  def promo_code_is_valid
+    return if promo_code.reusable?
+
+    errors.add(:promo_code, 'is already redeemed') if promo_code.redeemed?
+    errors.add(:promo_code, 'has expired') if promo_code.expired?
   end
 end

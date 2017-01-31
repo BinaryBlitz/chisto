@@ -1,0 +1,17 @@
+= provide(:title, 'Промокоды')
+
+h1 Промокоды
+
+.form-group
+  = link_to 'Новый промокод', new_admin_promo_code_path, class: 'btn btn-primary'
+
+.table-responsive
+  table.table
+    thead
+      tr
+        th Код
+        th Скидка
+        th Дата начала
+        th Дата окончания
+    tbody
+      = render partial: 'admin/promo_codes/promo_code', collection: @promo_codes, cached: true

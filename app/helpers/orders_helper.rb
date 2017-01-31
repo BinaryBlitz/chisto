@@ -1,18 +1,18 @@
 module OrdersHelper
-  def status_tag_for_order(order)
-    content_tag(:span, class: ['tag', status_tag_class_for_order(order)]) do
+  def status_badge_for_order(order)
+    content_tag(:span, class: ['badge', status_badge_class_for_order(order)]) do
       Order.human_attribute_name("status.#{order.status}")
     end
   end
 
-  def status_tag_class_for_order(order)
+  def status_badge_class_for_order(order)
     case order.status
-    when 'processing' then 'tag-default'
-    when 'confirmed' then 'tag-primary'
-    when 'cleaning' then 'tag-info'
-    when 'dispatched' then 'tag-warning'
-    when 'completed' then 'tag-success'
-    when 'canceled' then 'tag-danger'
+    when 'processing' then 'badge-default'
+    when 'confirmed' then 'badge-primary'
+    when 'cleaning' then 'badge-info'
+    when 'dispatched' then 'badge-warning'
+    when 'completed' then 'badge-success'
+    when 'canceled' then 'badge-danger'
     end
   end
 end

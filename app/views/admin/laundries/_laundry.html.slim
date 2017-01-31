@@ -1,14 +1,10 @@
 - cache [:admin, laundry] do
-  tr
-    td = link_to laundry.name, [:admin, laundry]
-    td = laundry.description.truncate(140)
-    td = laundry.rating
+  tr class=('table-active' unless laundry.enabled?)
     td
       - if laundry.logo?
         = image_tag laundry.logo_url, width: 50
-    td = laundry.enabled? ? 'Да' : 'Нет'
+    td = link_to laundry.name, [:admin, laundry]
+    td = laundry.description.truncate(140)
+    td = laundry.rating.round(1)
     td = link_to 'Изменить',
                  edit_admin_laundry_path(laundry), class: 'btn btn-sm btn-warning'
-    td = link_to 'Удалить',
-                  admin_laundry_path(laundry), method: :delete,
-                  data: { confirm: 'Вы действительно хотите удалить химчистку?' }, class: 'btn btn-sm btn-danger'

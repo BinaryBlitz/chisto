@@ -1,17 +1,13 @@
 class API::OrdersController < API::APIController
   before_action :set_laundry, only: [:create]
-  before_action :set_order, only: []
+  before_action :set_order, only: [:show]
+  before_action :set_rating, only: [:show]
 
   def index
     @orders = current_user.orders.order(updated_at: :desc).visible
   end
 
   def show
-    @order = Order
-      .includes(
-        :laundry, order_items: { order_treatments: { laundry_treatment: { treatment: :item }}}
-      )
-      .find(params[:id])
   end
 
   def create
@@ -34,12 +30,16 @@ class API::OrdersController < API::APIController
     @order = current_user.orders.find(params[:id])
   end
 
+  def set_rating
+    @rating = current_user.ratings.find_by(laundry: @order.laundry)
+  end
+
   def laundry_params
     params
       .require(:order)
       .permit(
         :street_name, :house_number, :apartment_number,
-        :contact_number, :notes, :email, :payment_method,
+        :contact_number, :notes, :email, :payment_method, :promo_code_id,
         order_items_attributes: [
           :item_id, :quantity, :area, :has_decoration,
           order_treatments_attributes: [:laundry_treatment_id]

@@ -11,8 +11,8 @@
 #
 
 class LaundryTreatment < ApplicationRecord
+  belongs_to :laundry, touch: true
   belongs_to :treatment
-  belongs_to :laundry
 
   has_many :line_items
 

@@ -12,11 +12,14 @@
 #  featured      :boolean          default(FALSE)
 #  items_count   :integer          default(0)
 #  items_preview :string           default([]), is an Array
+#  deleted_at    :datetime
 #
 
 class Category < ApplicationRecord
   COLOR_HEX_FORMAT = /\A#(?:[A-F0-9]{3}){1,2}\z/i
   ITEMS_IN_PREVIEW = 3
+
+  include SoftDeletable
 
   has_many :items, -> { order(name: :asc) }, dependent: :destroy
 

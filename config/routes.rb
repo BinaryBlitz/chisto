@@ -43,6 +43,8 @@ Rails.application.routes.draw do
     scope module: :admin, as: :admin do
       resources :orders, except: [:new, :create, :destroy]
       resources :ratings, only: [:index, :update, :destroy]
+      resources :promotions, except: [:edit, :update, :destroy]
+      resources :promo_codes, only: [:index, :new, :create]
 
       resources :cities do
         resources :laundries, shallow: true
@@ -79,6 +81,7 @@ Rails.application.routes.draw do
     end
 
     resources :orders, only: [:index, :show]
+    resources :promo_codes, only: [:show], param: :code
   end
 
   root 'landing#index'

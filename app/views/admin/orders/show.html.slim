@@ -13,7 +13,7 @@ dl.row
   dt.col-sm-3 Телефон
   dd.col-sm-9 = @order.contact_number
   dt.col-sm-3 Статус
-  dd.col-sm-9 = status_tag_for_order(@order)
+  dd.col-sm-9 = status_badge_for_order(@order)
   dt.col-sm-3 Стоимость заказа
   dd.col-sm-9 = number_to_currency(@order.order_items_price)
   dt.col-sm-3 Стоимость доставки
@@ -57,5 +57,5 @@ h2 История
     tbody
       - @order.statuses.order(created_at: :desc).each do |status|
         tr
-          td = tag_for_status(status)
+          td = badge_for_status(status)
           td = l(status.created_at, format: :short)
