@@ -65,4 +65,19 @@ class LaundryTest < ActiveSupport::TestCase
     @laundry.remove_logo!
     assert @laundry.invalid?
   end
+
+  test 'search when specidied number of treatments are less than laundry has' do
+    treatments_with_price = Treatment.where(id: @laundry.treatments.ids).limit(1)
+    assert_equal Laundry.search(treatments_with_price), Laundry.all
+  end
+
+  test 'search when treatments order is not the same' do
+     treatments_with_price = Treatment.where(id: @laundry.treatments.ids.reverse)
+     assert_equal Laundry.search(treatments_with_price), Laundry.all
+  end
+
+  test 'do not search whithout price' do
+    treatments_without_price = Treatment.all
+    assert_equal Laundry.search(treatments_without_price), []
+  end
 end

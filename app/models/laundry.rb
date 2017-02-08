@@ -121,6 +121,12 @@ class Laundry < ApplicationRecord
     delivery_date_business_hours&.values&.first
   end
 
+  def self.search(treatments)
+    joins(:laundry_treatments)
+      .distinct
+      .select { |laundry| (treatments.ids - laundry.treatments.ids).empty? }
+  end
+
   private
 
   def schedule

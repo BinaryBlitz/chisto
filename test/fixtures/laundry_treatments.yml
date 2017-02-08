@@ -14,3 +14,8 @@ laundry_treatment:
   treatment: treatment
   laundry: laundry
   price: 1
+
+laundry_treatment_two:
+  laundry: laundry
+  treatment: treatment_two
+  price: 1
