@@ -33,3 +33,8 @@ $custom-file-text: (
   filter: invert(100%);
   -webkit-filter: invert(100%);
 }
+
+// Items
+#items td strong {
+  cursor: help;
+}
