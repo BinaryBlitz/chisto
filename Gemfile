@@ -23,35 +23,35 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 # Front-end
-gem 'bootstrap'
 gem 'slim-rails'
+gem 'bootstrap', '~> 4.0.0.alpha6'
 
 # Utilities
-gem 'phonelib'
-gem 'email_validator'
-gem 'httparty'
-gem 'biz'
+gem 'phonelib', '~> 0.6'
+gem 'email_validator', '~> 1.6'
+gem 'httparty', '~> 0.14'
+gem 'biz', '~> 1.6'
 
 # Image processing
-gem 'carrierwave'
-gem 'mini_magick'
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick', '~> 4.6'
 
 # I18n
-gem 'rails-i18n'
+gem 'rails-i18n', '~> 5.0'
 
 # Auth
-gem 'devise', '~> 4.1'
+gem 'devise', '~> 4.2'
 gem 'devise-bootstrap-views', '~> 1.0.0.alpha1'
 
 # Payments
-gem 'tinkoff'
+gem 'tinkoff', '~> 0.1'
 
 # Error logging
-gem 'rollbar'
+gem 'rollbar', '~> 2.14'
 
 # Push notifications
-gem 'houston'
-gem 'gcm'
+gem 'houston', '~> 2.2'
+gem 'gcm', '~> 0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -71,8 +71,8 @@ group :development do
 end
 
 group :production do
-  gem 'fog-aws'
-  gem 'redis-rails'
+  gem 'fog-aws', '~> 1.2'
+  gem 'redis-rails', '~> 5.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
