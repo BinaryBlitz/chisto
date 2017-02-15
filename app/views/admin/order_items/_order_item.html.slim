@@ -7,4 +7,6 @@
     td
       ul.list-unstyled
         = render order_item.order_treatments
+        - if order_item.has_decoration?
+          li = "Декор = " + number_to_currency(order_item.decoration_price)
     td = number_to_currency(order_item.total_price)
