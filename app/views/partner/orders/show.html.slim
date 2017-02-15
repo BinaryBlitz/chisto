@@ -12,8 +12,6 @@ dl.row
   dd.col-sm-9 = status_badge_for_order(@order)
   dt.col-sm-3 Комментарий
   dd.col-sm-9 = @order.notes || 'Нет'
-  dt.col-sm-3 Дата сбора
-  dd.col-sm-9 = l(@order.created_at, format: :short)
   - if @order.collection_date
     dt.col-sm-3 Дата сбора
     dd.col-sm-9 = l(@order.collection_date, format: :short)
@@ -44,23 +42,21 @@ h2 Услуги
       tr
         th Вещь
         th Количество
-        th Площадь
-        th Декор
         th Услуги
         th Сумма
     tbody
       = render @order.order_items
       tr
-        td[colspan=4]
+        td[colspan=2]
         td Доставка
         td = number_to_currency(@order.delivery_fee)
       - if @order.promo_code.present?
         tr
-          td[colspan=4]
+          td[colspan=2]
           td Промокод
           td = number_to_currency(@order.promo_code_discount)
       tr
-        td[colspan=4]
+        td[colspan=2]
         td
           strong Итого
         td = number_to_currency(@order.total_price)

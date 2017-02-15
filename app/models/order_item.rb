@@ -33,6 +33,7 @@ class OrderItem < ApplicationRecord
   accepts_nested_attributes_for :order_treatments
 
   delegate :laundry, to: :order
+  delegate :name, :description, to: :item
 
   def total_price
     (order_treatments_price * multiplier).ceil

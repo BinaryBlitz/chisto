@@ -39,4 +39,10 @@ table#order {
   th:last-child, td:last-child {
     text-align: right;
   }
+
+  td:first-child {
+    p.text-muted {
+      cursor: help;
+    }
+  }
 }

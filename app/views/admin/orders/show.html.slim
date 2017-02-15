@@ -44,23 +44,21 @@ h2 Услуги
       tr
         th Вещь
         th Количество
-        th Площадь
-        th Декор
         th Услуги
         th Сумма
     tbody
       = render @order.order_items
       tr
-        td[colspan=4]
+        td[colspan=2]
         td Доставка
         td = number_to_currency(@order.delivery_fee)
       - if @order.promo_code.present?
         tr
-          td[colspan=4]
+          td[colspan=2]
           td Промокод
           td = number_to_currency(@order.promo_code_discount)
       tr
-        td[colspan=4]
+        td[colspan=2]
         td
           strong Итого
         td = number_to_currency(@order.total_price)
