@@ -12,7 +12,7 @@
 class Status < ApplicationRecord
   STATES = %i(processing confirmed cleaning dispatched completed canceled)
   MESSAGES = {
-    'confirmed' => 'Дата и время забора вещей согласованы. Ожидайте курьера.',
+    'confirmed' => 'Дата и время сбора вещей согласованы. Ожидайте курьера.',
     'cleaning' => 'Ваши вещи уехали в чистку. Не беспокойтесь, скоро они вернутся!',
     'dispatched' => 'Чистые и свежие вещи уже едут к вам!',
     'completed' => 'Надеемся вы остались довольны! Пожалуйста оцените вашего исполнителя.'

@@ -8,24 +8,14 @@ h1 = "Заказ №#{@order.id}"
 dl.row
   dt.col-sm-3 Дата создания
   dd.col-sm-9 = l(@order.created_at, format: :short)
-  dt.col-sm-3 Телефон
-  dd.col-sm-9 = @order.contact_number
   dt.col-sm-3 Статус
   dd.col-sm-9 = status_badge_for_order(@order)
-  dt.col-sm-3 Стоимость заказа
-  dd.col-sm-9 = number_to_currency(@order.order_items_price)
-  dt.col-sm-3 Стоимость доставки
-  dd.col-sm-9 = number_to_currency(@order.delivery_fee)
-  dt.col-sm-3 Итого
-  dd.col-sm-9 = number_to_currency(@order.total_price)
-  dt.col-sm-3 Адрес
-  dd.col-sm-9 = @order.address
-  dt.col-sm-3 Комментарии
+  dt.col-sm-3 Комментарий
   dd.col-sm-9 = @order.notes || 'Нет'
-  dt.col-sm-3 Дата забора
+  dt.col-sm-3 Дата сбора
   dd.col-sm-9 = l(@order.created_at, format: :short)
   - if @order.collection_date
-    dt.col-sm-3 Дата забора
+    dt.col-sm-3 Дата сбора
     dd.col-sm-9 = l(@order.collection_date, format: :short)
   - if @order.delivery_date
     dt.col-sm-3 Дата доставки
@@ -33,6 +23,18 @@ dl.row
   - if @order.promo_code
     dt.col-sm-3 Промокод
     dd.col-sm-9 = @order.promo_code.code
+
+h2 Клиент
+
+dl.row
+  dt.col-sm-3 Имя
+  dd.col-sm-9 = @order.user.first_name
+  dt.col-sm-3 Фамилия
+  dd.col-sm-9 = @order.user.last_name
+  dt.col-sm-3 Номер телефона
+  dd.col-sm-9 = @order.contact_number
+  dt.col-sm-3 Адрес
+  dd.col-sm-9 = @order.address
 
 h2 Услуги
 

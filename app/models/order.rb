@@ -72,7 +72,7 @@ class Order < ApplicationRecord
   end
 
   def address
-    "Улица #{street_name}, дом #{house_number}, квартира #{apartment_number}"
+    "#{street_name}, дом #{house_number}, квартира #{apartment_number}"
   end
 
   def order_items_price
