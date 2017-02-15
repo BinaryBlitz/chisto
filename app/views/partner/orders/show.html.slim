@@ -30,11 +30,14 @@ dl.row
   - if @order.delivery_date
     dt.col-sm-3 Дата доставки
     dd.col-sm-9 = l(@order.delivery_date, format: :short)
+  - if @order.promo_code
+    dt.col-sm-3 Промокод
+    dd.col-sm-9 = @order.promo_code.code
 
 h2 Услуги
 
 .table-responsive
-  table.table
+  table#order.table
     thead
       tr
         th Вещь
@@ -42,9 +45,23 @@ h2 Услуги
         th Площадь
         th Декор
         th Услуги
-        th Итого
+        th Сумма
     tbody
       = render @order.order_items
+      tr
+        td[colspan=4]
+        td Доставка
+        td = number_to_currency(@order.delivery_fee)
+      - if @order.promo_code.present?
+        tr
+          td[colspan=4]
+          td Промокод
+          td = number_to_currency(@order.promo_code_discount)
+      tr
+        td[colspan=4]
+        td
+          strong Итого
+        td = number_to_currency(@order.total_price)
 
 h2 История
 

@@ -38,3 +38,10 @@ $custom-file-text: (
 #items td strong {
   cursor: help;
 }
+
+// Orders
+table#order {
+  th:last-child, td:last-child {
+    text-align: right;
+  }
+}

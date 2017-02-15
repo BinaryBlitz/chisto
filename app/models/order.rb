@@ -79,6 +79,11 @@ class Order < ApplicationRecord
     @order_items_price ||= order_items.inject(0) { |sum, order_item| sum + order_item.total_price }
   end
 
+  # Absolute discount: -100
+  def promo_code_discount
+    total_price - order_items_price - delivery_fee
+  end
+
   private
 
   def redeem_promo_code
