@@ -1,7 +1,8 @@
 tr
   td = image_tag item.icon.thumb.url, class: 'item-icon'
   td
-    strong = item.name
+    strong title=item.description
+      = item.name
   - if laundry_item = current_laundry.laundry_items.find_by(item: item)
     td = laundry_item.decoration_multiplier
     td

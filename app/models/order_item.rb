@@ -33,12 +33,24 @@ class OrderItem < ApplicationRecord
   accepts_nested_attributes_for :order_treatments
 
   delegate :laundry, to: :order
+  delegate :name, :description, to: :item
 
   def total_price
-    (order_treatments_price * quantity * (area || 1) * multiplier).ceil
+    (order_treatments_price * multiplier).ceil
+  end
+
+  def decoration_price
+    total_price - order_treatments_price
   end
 
   private
+
+  def order_treatments_price
+    @order_treatments_price ||= begin
+      price = order_treatments.inject(0) { |sum, order_treatment| sum + order_treatment.price }
+      price * quantity * (area || 1)
+    end
+  end
 
   def set_laundry_item
     return unless laundry.present? && item.present?
@@ -50,10 +62,6 @@ class OrderItem < ApplicationRecord
     return unless has_decoration? && order.present? && laundry_item.present?
 
     self.multiplier = laundry_item&.decoration_multiplier || 1.0
-  end
-
-  def order_treatments_price
-    order_treatments.inject(0) { |sum, order_treatment| sum + order_treatment.price }
   end
 
   def item_uses_area

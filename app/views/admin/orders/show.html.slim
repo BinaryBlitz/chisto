@@ -10,41 +10,58 @@ dl.row
   dd.col-sm-9 = link_to @order.laundry.name, [:admin, @order.laundry]
   dt.col-sm-3 Дата создания
   dd.col-sm-9 = l(@order.created_at, format: :short)
-  dt.col-sm-3 Телефон
-  dd.col-sm-9 = @order.contact_number
   dt.col-sm-3 Статус
   dd.col-sm-9 = status_badge_for_order(@order)
-  dt.col-sm-3 Стоимость заказа
-  dd.col-sm-9 = number_to_currency(@order.order_items_price)
-  dt.col-sm-3 Стоимость доставки
-  dd.col-sm-9 = number_to_currency(@order.delivery_fee)
-  dt.col-sm-3 Итого
-  dd.col-sm-9 = number_to_currency(@order.total_price)
-  dt.col-sm-3 Адрес
-  dd.col-sm-9 = @order.address
-  dt.col-sm-3 Комментарии
+  dt.col-sm-3 Комментарий
   dd.col-sm-9 = @order.notes || 'Нет'
   - if @order.collection_date
-    dt.col-sm-3 Дата забора
+    dt.col-sm-3 Дата сбора
     dd.col-sm-9 = l(@order.collection_date, format: :short)
   - if @order.delivery_date
     dt.col-sm-3 Дата доставки
     dd.col-sm-9 = l(@order.delivery_date, format: :short)
+  - if @order.promo_code
+    dt.col-sm-3 Промокод
+    dd.col-sm-9 = @order.promo_code.code
+
+h2 Клиент
+
+dl.row
+  dt.col-sm-3 Имя
+  dd.col-sm-9 = @order.user.first_name
+  dt.col-sm-3 Фамилия
+  dd.col-sm-9 = @order.user.last_name
+  dt.col-sm-3 Номер телефона
+  dd.col-sm-9 = @order.contact_number
+  dt.col-sm-3 Адрес
+  dd.col-sm-9 = @order.address
 
 h2 Услуги
 
 .table-responsive
-  table.table
+  table#order.table
     thead
       tr
         th Вещь
         th Количество
-        th Площадь
-        th Декор
         th Услуги
-        th Итого
+        th Сумма
     tbody
       = render @order.order_items
+      tr
+        td[colspan=2]
+        td Доставка
+        td = number_to_currency(@order.delivery_fee)
+      - if @order.promo_code.present?
+        tr
+          td[colspan=2]
+          td Промокод
+          td = number_to_currency(@order.promo_code_discount)
+      tr
+        td[colspan=2]
+        td
+          strong Итого
+        td = number_to_currency(@order.total_price)
 
 h2 История
 

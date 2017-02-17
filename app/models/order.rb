@@ -72,11 +72,16 @@ class Order < ApplicationRecord
   end
 
   def address
-    "Улица #{street_name}, дом #{house_number}, квартира #{apartment_number}"
+    "#{street_name}, дом #{house_number}, квартира #{apartment_number}"
   end
 
   def order_items_price
     @order_items_price ||= order_items.inject(0) { |sum, order_item| sum + order_item.total_price }
+  end
+
+  # Absolute discount: -100
+  def promo_code_discount
+    total_price - order_items_price - delivery_fee
   end
 
   private
