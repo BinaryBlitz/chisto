@@ -35,8 +35,10 @@ $custom-file-text: (
 }
 
 // Items
-#items td strong {
-  cursor: help;
+#items {
+  td p.text-muted {
+    cursor: help;
+  }
 }
 
 // Orders
@@ -45,9 +47,7 @@ table#order {
     text-align: right;
   }
 
-  td:first-child {
-    p.text-muted {
-      cursor: help;
-    }
+  td p.text-muted {
+    cursor: help;
   }
 }
