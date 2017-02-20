@@ -20,7 +20,8 @@ ru:
         name: Название
         order_processing_time: Время выполнения заказа
         password_confirmation: "Подтверждение пароля"
-        password: "Пароль"
+        password: Пароль
+        phone_number: "Номер телефона для уведомлений"
         remember_me: "Запомнить меня"
         reset_password_token: "Ссылка сброса пароля"
         unlock_token: "Токен разблокировки"

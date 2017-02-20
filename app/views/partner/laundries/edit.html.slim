@@ -34,6 +34,10 @@ h1 Настройки
   h2 Заказ и доставка
   
   .form-group
+    = f.label :phone_number
+    = f.telephone_field :phone_number, class: 'form-control'
+  
+  .form-group
     = f.label :delivery_fee
     .input-group
       .input-group-addon ₽
