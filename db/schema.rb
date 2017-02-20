@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170128160606) do
+ActiveRecord::Schema.define(version: 20170220174655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20170128160606) do
     t.integer  "minimum_order_price",     default: 0
     t.integer  "free_delivery_from",      default: 0
     t.integer  "delivery_fee",            default: 0
+    t.string   "phone_number"
     t.index ["city_id"], name: "index_laundries_on_city_id", using: :btree
     t.index ["confirmation_token"], name: "index_laundries_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_laundries_on_email", unique: true, using: :btree
