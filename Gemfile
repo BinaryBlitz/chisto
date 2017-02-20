@@ -73,6 +73,7 @@ end
 group :production do
   gem 'fog-aws', '~> 1.2'
   gem 'redis-rails', '~> 5.0'
+  gem 'sidekiq', '~> 4.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
