@@ -13,6 +13,7 @@ class NewOrderNotificationJob < ApplicationJob
   private
 
   def order_url
-    Rails.application.routes.url_helpers.partner_order_url(@order, host: 'chis.to')
+    url_options = { host: 'chis.to', protocol: 'https' }
+    Rails.application.routes.url_helpers.partner_order_url(@order, url_options)
   end
 end
