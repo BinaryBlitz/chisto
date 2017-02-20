@@ -1,0 +1,57 @@
+h1 = "Заказ №#{@order.id}"
+
+dl.row
+  dt.col-sm-3 Дата создания
+  dd.col-sm-9 = l(@order.created_at, format: :long)
+  dt.col-sm-3 Статус
+  dd.col-sm-9 = Order.human_attribute_name("status.#{@order.status}")
+  dt.col-sm-3 Комментарий
+  dd.col-sm-9 = @order.notes || 'Нет'
+  - if @order.collection_date
+    dt.col-sm-3 Дата сбора
+    dd.col-sm-9 = l(@order.collection_date, format: :short)
+  - if @order.delivery_date
+    dt.col-sm-3 Дата доставки
+    dd.col-sm-9 = l(@order.delivery_date, format: :short)
+  - if @order.promo_code
+    dt.col-sm-3 Промокод
+    dd.col-sm-9 = @order.promo_code.code
+
+h2 Клиент
+
+dl.row
+  dt.col-sm-3 Имя
+  dd.col-sm-9 = @order.user.first_name
+  dt.col-sm-3 Фамилия
+  dd.col-sm-9 = @order.user.last_name
+  dt.col-sm-3 Номер телефона
+  dd.col-sm-9 = @order.contact_number
+  dt.col-sm-3 Адрес
+  dd.col-sm-9 = @order.address
+
+h2 Услуги
+
+.table-responsive
+  table#order.table
+    thead
+      tr
+        th Вещь
+        th Количество
+        th Услуги
+        th Сумма
+    tbody
+      = render partial: 'order_item', collection: @order.order_items
+      tr
+        td[colspan=2]
+        td Доставка
+        td = number_to_currency(@order.delivery_fee)
+      - if @order.promo_code.present?
+        tr
+          td[colspan=2]
+          td Промокод
+          td = number_to_currency(@order.promo_code_discount)
+      tr
+        td[colspan=2]
+        td
+          strong Итого
+        td = number_to_currency(@order.total_price)

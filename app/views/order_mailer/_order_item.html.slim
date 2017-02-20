@@ -1,0 +1,11 @@
+tr
+  td
+    = order_item.name
+    p.text-muted[title=order_item.description] = order_item.description.truncate(50)
+  td = "#{order_item.quantity} шт." + (order_item.area? ? " (#{order_item.area} м²)" : '')
+  td
+    ul.list-unstyled
+      = render partial: 'order_treatment', collection: order_item.order_treatments
+      - if order_item.has_decoration?
+        li = "Декор = " + number_to_currency(order_item.decoration_price)
+  td = number_to_currency(order_item.total_price)
