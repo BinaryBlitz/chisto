@@ -129,10 +129,10 @@ class Order < ApplicationRecord
     errors.add(:promo_code, 'has expired') if promo_code.expired?
   end
 
-  # TODO: add SMS notifications
   # Email notifications
   def notify_partner
     OrderMailer.new_order_email(self).deliver_later
+    NewOrderNotificationJob.perform_later(self) if laundry.phone_number.present?
   end
 
   def normalize_contact_number
