@@ -53,8 +53,8 @@ Rails.application.configure do
   config.cache_store = :redis_store, ENV['REDIS_URL']
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "laundry_#{Rails.env}"
+  config.active_job.queue_adapter = :sidekiq
+  # config.active_job.queue_name_prefix = "chisto_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -83,4 +83,14 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: 'smtp.mailgun.org',
+    user_name: Rails.application.secrets.mailgun_smtp_login,
+    password: Rails.application.secrets.mailgun_smtp_password,
+    domain: Rails.application.secrets.mailgun_domain,
+    authentication: 'plain'
+  }
 end
