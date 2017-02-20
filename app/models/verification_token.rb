@@ -19,7 +19,7 @@ class VerificationToken < ApplicationRecord
   attr_accessor :entered_code
 
   before_create :generate_code
-  after_create :send_verification_code
+  after_create :enqueue_verification_token_dispatch
 
   validates :phone_number, phone: true
 
@@ -57,6 +57,10 @@ class VerificationToken < ApplicationRecord
   end
 
   private
+
+  def enqueue_verification_token_dispatch
+    VerificationTokenJob.perform_later(self)
+  end
 
   def generate_code
     self.code = Array.new(CODE_LENGTH) { ALPHABET.sample }.join
