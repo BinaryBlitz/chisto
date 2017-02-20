@@ -1,4 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'info@chis.to'
   layout 'mailer'
+
+  I18n.locale = :ru
 end
