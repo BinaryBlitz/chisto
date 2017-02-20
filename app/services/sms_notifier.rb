@@ -1,4 +1,5 @@
 class SMSNotifier
+  SMS_VERIFICATION_URL = 'http://sms.ru/sms/send'
   SUCCESS_CODE = '100'
 
   def initialize(phone_number, content)
@@ -9,7 +10,7 @@ class SMSNotifier
   def notify
     return true if @phone_number == Rails.application.secrets.demo_phone_number
 
-    response = HTTParty.post(SMS_VERIFICATION_URL, body: sms_verification_params).parsed_response
+    response = HTTParty.post(SMS_VERIFICATION_URL, body: sms_params).parsed_response
 
     if response.lines.first.try(:chomp) == SUCCESS_CODE
       true

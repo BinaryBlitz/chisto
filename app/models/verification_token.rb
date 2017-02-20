@@ -12,7 +12,6 @@
 #
 
 class VerificationToken < ApplicationRecord
-  SMS_VERIFICATION_URL = 'http://sms.ru/sms/send'
   ALPHABET = ('0'..'9').to_a
   CODE_LENGTH = 5
 
