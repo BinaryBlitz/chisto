@@ -1,4 +1,6 @@
-h1 = "Заказ №#{@order.id}"
+h1
+  = link_to [:partner, @order], target: '_blank' do
+    = "Заказ №#{@order.id}"
 
 dl.row
   dt.col-sm-3 Дата создания
