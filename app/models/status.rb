@@ -22,14 +22,18 @@ class Status < ApplicationRecord
 
   enum state: STATES
 
-  after_create :notify
+  after_create :enqueue_notification
 
   delegate :user, to: :order
-
-  private
 
   def notify
     message = MESSAGES[state]
     Notifier.new(user, message, order_id: order_id)
+  end
+
+  private
+
+  def enqueue_notification
+    StatusNotificationJob.perform_later(self)
   end
 end

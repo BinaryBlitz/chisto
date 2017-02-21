@@ -12,14 +12,13 @@
 #
 
 class VerificationToken < ApplicationRecord
-  SMS_VERIFICATION_URL = 'http://sms.ru/sms/send'
   ALPHABET = ('0'..'9').to_a
   CODE_LENGTH = 5
 
   attr_accessor :entered_code
 
   before_create :generate_code
-  after_create :send_verification_code
+  after_create :enqueue_verification_token_dispatch
 
   validates :phone_number, phone: true
 
@@ -39,36 +38,18 @@ class VerificationToken < ApplicationRecord
     User.find_by(phone_number: phone_number)
   end
 
-  def send_verification_code
-    return true if phone_number == Rails.application.secrets.demo_phone_number
-
-    response = HTTParty.post(SMS_VERIFICATION_URL, body: sms_verification_params).parsed_response
-
-    if response.lines.first.try(:chomp) == '100'
-      true
-    else
-      logger.info "#{Time.zone.now}: SMS verification for #{phone_number} failed.\n#{response}"
-      false
-    end
-  end
-
   def as_json(_)
     { phone_number: phone_number, token: token }
   end
 
   private
 
-  def generate_code
-    self.code = Array.new(CODE_LENGTH) { ALPHABET.sample }.join
+  def enqueue_verification_token_dispatch
+    VerificationTokenJob.perform_later(self)
   end
 
-  def sms_verification_params
-    {
-      api_id: Rails.application.secrets.sms_ru_api_id,
-      text: "Код верификации: #{code}",
-      from: Rails.application.secrets.sms_ru_sender,
-      to: phone_number
-    }
+  def generate_code
+    self.code = Array.new(CODE_LENGTH) { ALPHABET.sample }.join
   end
 
   def demo?(code)

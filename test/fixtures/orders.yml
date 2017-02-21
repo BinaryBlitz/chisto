@@ -20,6 +20,7 @@
 #  collection_date  :datetime
 #  delivery_date    :datetime
 #  payment_method   :integer          default("card")
+#  promo_code_id    :integer
 #
 
 order:

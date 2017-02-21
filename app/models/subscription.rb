@@ -12,5 +12,5 @@
 class Subscription < ApplicationRecord
   include Phonable
 
-  validates :content, presence: true
+  validates :content, :phone_number, presence: true
 end

@@ -31,7 +31,7 @@ class Partner::LaundriesController < Partner::PartnerController
       .permit(
         :name, :description, :city_id,
         :logo, :background_image,
-        :email, :password,
+        :email, :password, :phone_number,
         :delivery_fee, :free_delivery_from,
         :minimum_order_price, :minimum_collection_time, :order_processing_time,
         schedules_attributes: [:id, :day_of_the_week, :opens_at, :closes_at, :_destroy]

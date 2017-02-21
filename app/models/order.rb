@@ -24,6 +24,7 @@
 #
 
 class Order < ApplicationRecord
+  # Associations
   belongs_to :user
   belongs_to :laundry
   belongs_to :promo_code, optional: true
@@ -33,25 +34,33 @@ class Order < ApplicationRecord
   has_many :order_treatments, through: :order_items
   has_many :statuses, dependent: :destroy
 
+  # Enums
   enum status: %i(processing confirmed cleaning dispatched completed canceled)
   enum payment_method: %i(card cash apple_pay)
 
+  # Validations
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true
   validates :order_items, presence: true
   validates :email, email: true
+  validates :contact_number, phone: true
   validates :promo_code, presence: true, if: -> { promo_code_id.present? }
   validate :promo_code_is_valid, on: :create, if: -> { promo_code.present? }
 
+  # Callbacks
+  before_validation :normalize_contact_number
   before_create :set_delivery_fee
   before_create :set_total_price
   before_save :build_status
 
   after_create :redeem_promo_code, if: :cash?
+  after_create :notify_partner, if: :cash?
+
   after_save -> { user.update_counter_cache }
   after_destroy -> { user.update_counter_cache }
 
   accepts_nested_attributes_for :order_items
 
+  # Scopes
   scope :paid, -> { where(paid: true) }
   # TODO: add tests
   scope :visible, -> { where.not(payment_method: :card).or(card.paid) }
@@ -68,6 +77,7 @@ class Order < ApplicationRecord
     ActiveRecord::Base.transaction do
       update_column(:paid, true)
       redeem_promo_code
+      notify_partner
     end
   end
 
@@ -117,5 +127,16 @@ class Order < ApplicationRecord
 
     errors.add(:promo_code, 'is already redeemed') if promo_code.redeemed?
     errors.add(:promo_code, 'has expired') if promo_code.expired?
+  end
+
+  # Email notifications
+  def notify_partner
+    OrderMailer.new_order_email(self).deliver_later
+    NewOrderNotificationJob.perform_later(self) if laundry.phone_number.present?
+  end
+
+  def normalize_contact_number
+    return unless contact_number
+    self.contact_number = Phonelib.parse(contact_number).e164
   end
 end

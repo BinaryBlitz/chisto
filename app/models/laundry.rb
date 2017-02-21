@@ -32,9 +32,12 @@
 #  minimum_order_price     :integer          default(0)
 #  free_delivery_from      :integer          default(0)
 #  delivery_fee            :integer          default(0)
+#  phone_number            :string
 #
 
 class Laundry < ApplicationRecord
+  include Phonable
+
   belongs_to :city
 
   has_many :orders, dependent: :destroy

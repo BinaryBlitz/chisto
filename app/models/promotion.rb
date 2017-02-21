@@ -16,6 +16,7 @@
 class Promotion < ApplicationRecord
   ALPHABET = ('0'..'9').to_a + ('A'..'Z').to_a
   CODE_LENGTH = 8
+  MAX_PROMO_CODES = 1000
 
   attr_accessor :discount
 
@@ -24,7 +25,7 @@ class Promotion < ApplicationRecord
   has_many :promo_codes, dependent: :destroy
 
   validates :name, presence: true
-  validates :promo_codes_count, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
+  validates :promo_codes_count, numericality: { greater_than: 0, less_than_or_equal_to: MAX_PROMO_CODES }
   validate :dates_are_valid
 
   after_create :generate_promo_codes

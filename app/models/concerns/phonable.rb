@@ -1,10 +1,11 @@
-# Phone number normalization and validation
+# Phone number normalization and format validation
+# Does not validate presence of the phone number
 module Phonable
   extend ActiveSupport::Concern
 
   included do
     before_validation :normalize_phone_number
-    validates :phone_number, phone: true
+    validates :phone_number, phone: true, allow_nil: true
   end
 
   private
