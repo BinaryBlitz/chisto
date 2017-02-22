@@ -79,6 +79,7 @@ Rails.application.routes.draw do
         resources :treatments, only: [:index]
       end
     end
+    resources :items, only: [:index]
 
     resources :orders, only: [:index, :show]
     resources :promo_codes, only: [:show], param: :code

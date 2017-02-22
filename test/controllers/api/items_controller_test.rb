@@ -7,6 +7,11 @@ class API::ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
+    get api_items_path
+    assert_response :success
+  end
+
+  test 'should get category index' do
     get api_category_items_path(@category)
     assert_response :success
   end
