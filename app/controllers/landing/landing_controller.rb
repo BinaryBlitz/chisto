@@ -3,9 +3,17 @@ class Landing::LandingController < ApplicationController
 
   layout 'landing'
 
-  private
+  protected
 
   def set_locale
-    I18n.locale = :ru
+    I18n.locale = params[:locale] || :ru
+  end
+
+  def default_url_options
+    if I18n.locale == I18n.default_locale
+      {}
+    else
+      { locale: I18n.locale }
+    end
   end
 end
