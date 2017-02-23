@@ -1,8 +1,8 @@
 <%= provide(:title, 'Для партнёров') %>
 
 <main id="partner" class="container">
-  <h2>Вы представитель химчистки?</h2>
-  <h3>Напишите нам, и мы свяжемся с вами для сотрудничества</h3>
+  <h2><%= t('.header') %></h2>
+  <h3><%= t('.subtitle') %></h3>
 
   <div id="form">
     <%= form_for [:landing, @partner_application], html: { class: 'row' } do |f| %>
