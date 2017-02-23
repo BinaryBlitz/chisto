@@ -1,0 +1,17 @@
+en:
+  activerecord:
+    attributes:
+      partner_application:
+        representative_name: Name of the representative
+        laundry_name: Laundry name
+        city: City
+        phone_number: Phone number
+        email: Email
+        content: Extra information
+  helpers:
+    placeholder:
+      partner_application:
+        representative_name: John Doe
+        laundry_name: Name
+        city: Moscow
+        content: Extra information

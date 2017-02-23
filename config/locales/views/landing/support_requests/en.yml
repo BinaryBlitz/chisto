@@ -3,3 +3,4 @@ en:
     support_requests:
       new:
         header: "Contact Information"
+        subtitle: "Contact Us"

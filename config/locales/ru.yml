@@ -40,13 +40,6 @@ ru:
         dispatched: Доставка
         completed: Выполнен
         canceled: Отменён
-      partner_application:
-        representative_name: Имя
-        laundry_name: Название химчистки
-        city: Город
-        phone_number: Телефон
-        email: Email
-        content: Комментарий
       promo_code:
         code: Код
         discount: Скидка в %
@@ -77,10 +70,6 @@ ru:
         dispatched: Доставка
         completed: Выполнен
         canceled: Отменён
-      support_request:
-        name: Имя
-        email: Email
-        content: Комментарий
   number:
     currency:
       format:
