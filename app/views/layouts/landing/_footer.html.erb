@@ -2,18 +2,18 @@
   <div class="container">
     <div class="row">
       <div id="info" class="col-sm-6 col-md-3">
-        <h5>ООО «Бинари Блиц»</h5>
+        <h5><%= t('.organization') %></h5>
 
         <ul class="list-unstyled">
-          <li>ИНН 18431941919</li>
-          <li>ОГРН 41854195491519</li>
+          <li><%= t('.inn') %> 18431941919</li>
+          <li><%= t('.ogrn') %> 41854195491519</li>
         </ul>
 
-        Москва, ул. Большая Никитская, д. 22
+        <%= t('.address') %>
       </div>
 
       <div id="footer-contact" class="col-sm-6 col-md-3">
-        <h5>Как с нами связаться?</h5>
+        <h5><%= t('.contact_us') %></h5>
 
         <ul class="list-unstyled">
           <li class="phone-number">+7 495 766-78-49</li>
@@ -41,7 +41,7 @@
       </div>
 
       <div id="payments" class="col-sm-6 col-md-3">
-        <h5>Платежные системы</h5>
+        <h5><%= t('.payment_methods') %></h5>
 
         <ul id="processing" class="list-inline">
           <li class="list-inline-item"><%= image_tag 'icon-visa-footer.png', alt: 'VISA', width: '55' %></li>
@@ -54,7 +54,7 @@
       </div>
 
       <div id="download" class="col-sm-6 col-md-3">
-        <h5>Скачайте приложение</h5>
+        <h5><%= t('.download_the_app') %></h5>
 
         <ul class="list-unstyled">
           <li>
@@ -76,8 +76,12 @@
     <span>&copy; 2016 «Chisto»</span>
 
     <ul class="list-inline float-sm-right">
-      <li class="list-inline-item"><a href="legal/privacy-policy.pdf" target="_blank">Положение об обработке персональных данных</a></li>
-      <li class="list-inline-item"><a href="legal/terms-of-service.pdf" target="_blank">Пользовательское соглашение</a></li>
+      <li class="list-inline-item">
+        <a href="legal/privacy-policy.pdf" target="_blank"><%= t('.privacy_policy') %></a>
+      </li>
+      <li class="list-inline-item">
+        <a href="legal/terms-of-service.pdf" target="_blank"><%= t('.terms_of_use') %></a>
+      </li>
     </ul>
   </div>
 </footer>

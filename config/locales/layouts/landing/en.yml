@@ -1,0 +1,18 @@
+en:
+  layouts:
+    landing:
+      header:
+        about: About
+        partner: Affiliate
+        contact: Contact
+        russian: По-русски
+      footer:
+        organization: "Binary Blitz LLC"
+        inn: INN
+        ogrn: OGRN
+        address: "Bolshaya Nikitskaya ul., 22/2, Moscow, Russia"
+        contact_us: "Contact Us"
+        payment_methods: "Payment Methods"
+        download_the_app: "Download the App"
+        privacy_policy: "Privacy Policy"
+        terms_of_use: "Terms of use"

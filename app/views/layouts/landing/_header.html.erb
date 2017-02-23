@@ -5,9 +5,15 @@
 
   <nav class="float-sm-right">
     <ul class="list-inline">
-      <li class="list-inline-item"><%= link_to 'О сервисе', about_path %></li>
-      <li class="list-inline-item"><%= link_to 'Для партнеров', partner_path %></li>
-      <li class="list-inline-item"><%= link_to 'Контакты', contact_path %></li>
+      <li class="list-inline-item"><%= link_to t('.about'), about_path %></li>
+      <li class="list-inline-item"><%= link_to t('.partner'), partner_path %></li>
+      <li class="list-inline-item"><%= link_to t('.contact'), contact_path %></li>
+
+      <% if I18n.locale == I18n.default_locale %>
+        <li class="list-inline-item"><%= link_to t('.english'), locale: :en %></li>
+      <% else %>
+        <li class="list-inline-item"><%= link_to t('.russian'), locale: nil %></li>
+      <% end %>
     </ul>
   </nav>
 </header>
