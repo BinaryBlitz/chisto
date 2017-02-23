@@ -81,14 +81,6 @@ ru:
         name: Имя
         email: Email
         content: Комментарий
-  helpers:
-    submit:
-      create: Создать
-      update: Сохранить
-      partner_application:
-        create: Отправить
-      support_request:
-        create: Отправить
   number:
     currency:
       format:
