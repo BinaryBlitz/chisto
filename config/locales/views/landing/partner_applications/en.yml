@@ -2,5 +2,6 @@ en:
   landing:
     partner_applications:
       new:
+        title: "Affiliate"
         header: "Want to work with us?"
         subtitle: "Write to us and we will contact you"

@@ -2,5 +2,6 @@ en:
   landing:
     support_requests:
       new:
+        title: "Contact Us"
         header: "Contact Information"
         subtitle: "Contact Us"

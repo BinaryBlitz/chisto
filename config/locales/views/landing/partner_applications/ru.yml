@@ -2,5 +2,6 @@ ru:
   landing:
     partner_applications:
       new:
+        title: "Партнёрам"
         header: "Вы представитель химчистки?"
         subtitle: "Напишите нам, и мы свяжемся с вами для сотрудничества"
