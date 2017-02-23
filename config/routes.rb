@@ -88,7 +88,6 @@ Rails.application.routes.draw do
   root 'landing/pages#index'
 
   scope '(:locale)', locale: /en|ru/ do
-    get '/:locale', to: 'landing/pages#index'
     get 'about', to: 'landing/pages#about'
     get 'partner', to: 'landing/partner_applications#new'
     get 'contact', to: 'landing/support_requests#new'
