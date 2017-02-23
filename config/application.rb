@@ -19,8 +19,10 @@ module Chisto
     # TODO: remove in 5.1
     config.active_record.time_zone_aware_types = [:datetime, :time]
 
+    config.i18n.default_locale = :ru
     config.time_zone = 'Europe/Moscow'
     config.action_mailer.default_url_options = { host: 'chis.to' }
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     ActiveSupport::JSON::Encoding.time_precision = 0
   end
