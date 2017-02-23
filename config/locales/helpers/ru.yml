@@ -1,0 +1,9 @@
+ru:
+  helpers:
+    submit:
+      create: Создать
+      update: Сохранить
+      partner_application:
+        create: Отправить
+      support_request:
+        create: Отправить
