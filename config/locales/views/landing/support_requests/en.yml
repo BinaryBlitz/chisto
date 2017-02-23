@@ -1,0 +1,5 @@
+en:
+  landing:
+    support_requests:
+      new:
+        header: "Contact Information"

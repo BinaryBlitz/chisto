@@ -1,0 +1,5 @@
+ru:
+  landing:
+    support_requests:
+      new:
+        header: "Контактная информация"
