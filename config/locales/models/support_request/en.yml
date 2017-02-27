@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    attributes:
+      support_request:
+        name: Name
+        email: Email
+        content: Extra information
+  helpers:
+    placeholder:
+      support_request:
+        name: John Doe
+        content: Extra information

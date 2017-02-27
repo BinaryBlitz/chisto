@@ -1,0 +1,7 @@
+ru:
+  landing:
+    support_requests:
+      new:
+        title: "Контакты"
+        header: "Контактная информация"
+        subtitle: "Напишите нам"

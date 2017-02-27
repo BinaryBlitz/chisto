@@ -1,0 +1,18 @@
+ru:
+  layouts:
+    landing:
+      header:
+        about: О сервисе
+        partner: Партнёрам
+        contact: Контакты
+        english: In English
+      footer:
+        organization: "ООО «Бинари Блиц»"
+        inn: ИНН
+        ogrn: ОГРН
+        address: "Москва, ул. Большая Никитская, д. 22/2"
+        contact_us: "Как с нами связаться?"
+        payment_methods: "Платежные системы"
+        download_the_app: "Скачать приложение"
+        privacy_policy: "Положение об обработке персональных данных"
+        terms_of_use: "Пользовательское соглашение"

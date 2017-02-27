@@ -1,8 +1,8 @@
-<%= provide(:title, 'Для партнёров') %>
+<%= provide(:title, t('.title')) %>
 
 <main id="partner" class="container">
-  <h2>Вы представитель химчистки?</h2>
-  <h3>Напишите нам, и мы свяжемся с вами для сотрудничества</h3>
+  <h2><%= t('.header') %></h2>
+  <h3><%= t('.subtitle') %></h3>
 
   <div id="form">
     <%= form_for [:landing, @partner_application], html: { class: 'row' } do |f| %>
@@ -11,15 +11,15 @@
       <div class="col-md-6">
         <div class="form-group">
           <%= f.label :representative_name %>
-          <%= f.text_field :representative_name, placeholder: 'Евгений Харитонов', class: 'form-control' %>
+          <%= f.text_field :representative_name, placeholder: true, class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :laundry_name %>
-          <%= f.text_field :laundry_name, placeholder: 'Название', class: 'form-control' %>
+          <%= f.text_field :laundry_name, placeholder: true, class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :city %>
-          <%= f.text_field :city, placeholder: 'Москва', class: 'form-control' %>
+          <%= f.text_field :city, placeholder: true, class: 'form-control' %>
         </div>
       </div>
 
@@ -34,7 +34,7 @@
         </div>
         <div class="form-group">
           <%= f.label :content %>
-          <%= f.text_area :content, placeholder: 'Ваш комментарий', class: 'form-control' %>
+          <%= f.text_area :content, placeholder: true, class: 'form-control' %>
         </div>
       </div>
 

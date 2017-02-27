@@ -1,35 +1,35 @@
-<%= provide(:title, 'Контакты') %>
+<%= provide(:title, t('.title')) %>
 
 <main id="contact" class="container">
   <div class="row">
     <div id="contact-info" class="offset-md-3 col-md-6">
-      <h1>Контактная информация</h1>
+      <h1><%= t('.header') %></h1>
 
       <ul class="list-unstyled">
-        <li><%= image_tag 'icon-phone.png', alt: 'Phone', width: '42' %>+7 495 766-78-49</li>
+        <li><%= image_tag 'icon-phone.png', alt: 'Phone', width: '42' %>+7 495 005-43-28</li>
         <li><%= image_tag 'icon-mail.png', alt: 'Email', width: '42' %>info@chis.to</li>
       </ul>
     </div>
 
     <div id="contact-form" class="offset-md-3 col-md-6">
-      <h2>Напишите нам</h2>
+      <h2><%= t('.subtitle') %></h2>
 
       <%= form_for [:landing, @support_request] do |f| %>
         <%= render 'shared/error_messages', object: @support_request %>
 
         <div class="form-group">
           <%= f.label :name %>
-          <%= f.text_field :name, placeholder: 'Евгений Харитонов', class: 'form-control' %>
+          <%= f.text_field :name, placeholder: true, class: 'form-control' %>
         </div>
 
         <div class="form-group">
           <%= f.label :email %>
-          <%= f.email_field :email, placeholder: 'name@example.com', class: 'form-control' %>
+          <%= f.email_field :email, placeholder: true, class: 'form-control' %>
         </div>
 
         <div class="form-group">
           <%= f.label :content %>
-          <%= f.text_area :content, placeholder: 'Ваш комментарий', class: 'form-control' %>
+          <%= f.text_area :content, placeholder: true, class: 'form-control' %>
         </div>
 
         <div id="submit-button" class="form-group">

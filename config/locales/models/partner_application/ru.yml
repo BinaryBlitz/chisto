@@ -1,0 +1,17 @@
+ru:
+  activerecord:
+    attributes:
+      partner_application:
+        representative_name: Имя
+        laundry_name: Название химчистки
+        city: Город
+        phone_number: Телефон
+        email: Email
+        content: Комментарий
+  helpers:
+    placeholder:
+      partner_application:
+        representative_name: Евгений Харитонов
+        laundry_name: Название
+        city: Москва
+        content: Ваш комментарий

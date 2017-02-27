@@ -1,0 +1,12 @@
+ru:
+  activerecord:
+    attributes:
+      support_request:
+        name: Имя
+        email: Email
+        content: Комментарий
+  helpers:
+    placeholder:
+      support_request:
+        name: Евгений Харитонов
+        content: Ваш комментарий

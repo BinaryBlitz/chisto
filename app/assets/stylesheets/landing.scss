@@ -29,6 +29,15 @@ $brand-primary: #48c2f8;
 
 body {
   background-color: $background-color;
+
+  // Sticky footer
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  > .container {
+    flex: 1;
+  }
 }
 
 header {

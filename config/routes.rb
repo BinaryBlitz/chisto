@@ -79,19 +79,22 @@ Rails.application.routes.draw do
         resources :treatments, only: [:index]
       end
     end
+    resources :items, only: [:index]
 
     resources :orders, only: [:index, :show]
     resources :promo_codes, only: [:show], param: :code
   end
 
-  root 'landing#index'
+  root 'landing/pages#index'
 
-  get 'about', to: 'landing#about'
-  get 'partner', to: 'landing/partner_applications#new'
-  get 'contact', to: 'landing/support_requests#new'
+  scope '(:locale)', locale: /en|ru/ do
+    get 'about', to: 'landing/pages#about'
+    get 'partner', to: 'landing/partner_applications#new'
+    get 'contact', to: 'landing/support_requests#new'
 
-  namespace :landing do
-    resources :partner_applications, only: [:create]
-    resources :support_requests, only: [:create]
+    namespace :landing do
+      resources :partner_applications, only: [:create]
+      resources :support_requests, only: [:create]
+    end
   end
 end
