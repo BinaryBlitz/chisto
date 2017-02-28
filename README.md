@@ -18,7 +18,9 @@ Chisto consists of the following components:
 - **Partner area** (`https://partner.chisto.xyz`). For use by partners to manage their services. Uses Devise for authentication. Files: `app/controllers/partner/*`
 - **Landing** (`https://chisto.xyz`). Landing page with contact forms. Files: `app/controllers/landing/*`
 
-## Demo accounts
+## Demo
+
+URL: [staging](https://chisto.xyz), [production](https://chis.to)
 
 ### API
 
