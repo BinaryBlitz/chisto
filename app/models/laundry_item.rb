@@ -8,6 +8,7 @@
 #  decoration_multiplier :float            default(1.0)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  long_treatment        :boolean          default(FALSE)
 #
 
 class LaundryItem < ApplicationRecord
