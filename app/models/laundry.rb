@@ -103,11 +103,12 @@ class Laundry < ApplicationRecord
     collection_date_business_hours&.values&.first
   end
 
-  def delivery_date
+  def delivery_date(long_treatment = false)
     @delivery_date ||= begin
       configure_business_hours
+      processing_time = long_treatment && long_order_processing_time || order_processing_time
 
-      Biz.time(order_processing_time + minimum_collection_time, :hours)
+      Biz.time(processing_time + minimum_collection_time, :hours)
         .after(Time.zone.now)
         .in_time_zone
         .to_date
