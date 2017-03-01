@@ -67,6 +67,12 @@ h1 Настройки
       .input-group-addon ч.
       = f.number_field :order_processing_time, class: 'form-control'
   
+  .form-group
+    = f.label :long_order_processing_time
+    .input-group
+      .input-group-addon ч.
+      = f.number_field :long_order_processing_time, class: 'form-control'
+  
   h2 График работы
   
   = f.fields_for :schedules do |ff|

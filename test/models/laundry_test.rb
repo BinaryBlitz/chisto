@@ -61,6 +61,11 @@ class LaundryTest < ActiveSupport::TestCase
     assert @laundry.invalid?
   end
 
+  test 'long order processing time is positive' do
+    @laundry.long_order_processing_time = 0
+    assert @laundry.invalid?
+  end
+
   test 'invalid without image and logo' do
     @laundry.remove_background_image!
     @laundry.remove_logo!
