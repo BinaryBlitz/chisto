@@ -48,7 +48,7 @@ class Partner::LaundryItemsController < Partner::PartnerController
   def laundry_item_params
     params
       .require(:laundry_item)
-      .permit(:decoration_multiplier)
+      .permit(:decoration_multiplier, :long_treatment)
       .merge(laundry: current_laundry)
   end
 end

@@ -3,5 +3,11 @@
     = f.label :decoration_multiplier
     = f.number_field :decoration_multiplier, step: :any, class: 'form-control'
   
+  .form-check
+    = f.label :long_treatment, class: 'form-check-label' do
+      = f.check_box :long_treatment, class: 'form-check-input'
+      | &nbsp;
+      = Laundry.human_attribute_name('long_treatment')
+  
   .form-group
     = f.submit class: 'btn btn-primary'
