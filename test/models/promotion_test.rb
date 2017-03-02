@@ -9,6 +9,8 @@
 #  promo_codes_count :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  valid_from        :datetime
+#  valid_until       :datetime
 #
 
 require 'test_helper'

@@ -13,6 +13,12 @@
       | &nbsp;
       = Item.human_attribute_name('use_area')    
 
+  .form-check
+    = f.label :long_treatment, class: 'form-check-label' do
+      = f.check_box :long_treatment, class: 'form-check-input'
+      | &nbsp;
+      = Laundry.human_attribute_name('long_treatment')
+
   .form-group
     = f.label :icon
     = f.file_field :icon, class: 'form-control-file'

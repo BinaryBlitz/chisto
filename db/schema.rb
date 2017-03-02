@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301155636) do
+ActiveRecord::Schema.define(version: 20170302174926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,13 +58,14 @@ ActiveRecord::Schema.define(version: 20170301155636) do
 
   create_table "items", force: :cascade do |t|
     t.integer  "category_id"
-    t.string   "name",                        null: false
+    t.string   "name",                           null: false
     t.string   "icon"
     t.text     "description"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "use_area",    default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "use_area",       default: false
     t.datetime "deleted_at"
+    t.boolean  "long_treatment", default: false
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["deleted_at"], name: "index_items_on_deleted_at", using: :btree
   end
@@ -111,9 +112,8 @@ ActiveRecord::Schema.define(version: 20170301155636) do
     t.integer  "laundry_id"
     t.integer  "item_id"
     t.float    "decoration_multiplier", default: 1.0
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.boolean  "long_treatment",        default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["item_id"], name: "index_laundry_items_on_item_id", using: :btree
     t.index ["laundry_id"], name: "index_laundry_items_on_laundry_id", using: :btree
   end

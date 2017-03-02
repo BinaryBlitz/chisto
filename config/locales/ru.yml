@@ -5,6 +5,7 @@ ru:
     attributes:
       item:
         use_area: Использовать площадь
+        long_treatment: Долгая чистка
       laundry:
         background_image: Фоновое изображение
         category: Категория
@@ -16,7 +17,6 @@ ru:
         free_delivery_from: Бесплатная доставка при заказе на сумму
         logo: Логотип
         long_order_processing_time: Время выполнения заказа для долгих вещей
-        long_treatment: Долгая чистка
         minimum_collection_time: Время сбора вещей
         minimum_order_price: Минимальная сумма заказа
         name: Название
