@@ -53,7 +53,7 @@ class Order < ApplicationRecord
   before_save :build_status
 
   after_create :redeem_promo_code, if: :cash?
-  after_create :notify_partner, if: :cash?
+  after_create :notify, if: :cash?
 
   after_save -> { user.update_counter_cache }
   after_destroy -> { user.update_counter_cache }
@@ -77,7 +77,7 @@ class Order < ApplicationRecord
     ActiveRecord::Base.transaction do
       update_column(:paid, true)
       redeem_promo_code
-      notify_partner
+      notify
     end
   end
 
@@ -129,9 +129,11 @@ class Order < ApplicationRecord
     errors.add(:promo_code, 'has expired') if promo_code.expired?
   end
 
-  # Email notifications
-  def notify_partner
-    OrderMailer.new_order_email(self).deliver_later
+  def notify
+    # Send emails
+    OrderMailer.partner_order_email(self).deliver_later
+    OrderMailer.admin_order_email(self).deliver_later
+    # Notify partner with an SMS
     NewOrderNotificationJob.perform_later(self) if laundry.phone_number.present?
   end
 
