@@ -3,9 +3,8 @@ json.array! @laundries do |laundry|
   json.cache! [laundry, 'full_laundry'], expires_in: 30.minutes do
     json.partial! 'api/laundries/laundry', laundry: laundry
 
-    json.extract! laundry,
-                  :collection_date, :collection_date_opens_at, :collection_date_closes_at,
-                  :delivery_date, :delivery_date_opens_at, :delivery_date_closes_at
+    json.extract! laundry, :collection_from, :collection_to
+    json.extract! laundry, :delivery_from, :delivery_to
 
     json.cache! laundry.laundry_items do
       json.laundry_items laundry.laundry_items do |laundry_item|

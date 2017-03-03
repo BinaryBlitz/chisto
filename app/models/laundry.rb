@@ -84,23 +84,45 @@ class Laundry < ApplicationRecord
     update_attribute(:ratings_count, ratings.verified.count)
   end
 
-  def collection_date
-    @collection_date ||= begin
-      configure_business_hours
-      Biz.time(minimum_collection_time, :hours).after(Time.zone.now).in_time_zone.to_date
-    end
+  def collection_from
+    time = collection_date_business_hours&.keys&.first
+    laundry_working_hours(collection_date, time)
+  end
+
+  def collection_to
+    time = collection_date_business_hours&.values&.first
+    laundry_working_hours(collection_date, time)
+  end
+
+  def delivery_from
+    time = delivery_date_business_hours&.keys&.first
+    laundry_working_hours(delivery_date, time)
+  end
+
+  def delivery_to
+    time = delivery_date_business_hours&.values&.first
+    laundry_working_hours(delivery_date, time)
+  end
+
+  private
+
+  def laundry_working_hours(date, time)
+    Time.zone.parse("#{date.strftime('%F')} #{time}")
   end
 
   def collection_date_business_hours
     @collection_date_business_hours ||= business_hours_on(collection_date)
   end
 
-  def collection_date_opens_at
-    collection_date_business_hours&.keys&.first
+  def delivery_date_business_hours
+    @delivery_date_business_hours ||= business_hours_on(delivery_date)
   end
 
-  def collection_date_closes_at
-    collection_date_business_hours&.values&.first
+  def collection_date
+    @collection_date ||= begin
+      configure_business_hours
+      Biz.time(minimum_collection_time, :hours).after(Time.zone.now).in_time_zone.to_date
+    end
   end
 
   def delivery_date(long_treatment = false)
@@ -114,20 +136,6 @@ class Laundry < ApplicationRecord
         .to_date
     end
   end
-
-  def delivery_date_business_hours
-    @delivery_date_business_hours ||= business_hours_on(delivery_date)
-  end
-
-  def delivery_date_opens_at
-    delivery_date_business_hours&.keys&.first
-  end
-
-  def delivery_date_closes_at
-    delivery_date_business_hours&.values&.first
-  end
-
-  private
 
   def schedule
     @schedule ||= schedules.map(&:to_hash).inject({}, &:merge)
