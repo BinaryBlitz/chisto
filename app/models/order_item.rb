@@ -35,6 +35,10 @@ class OrderItem < ApplicationRecord
   delegate :laundry, to: :order
   delegate :name, :description, to: :item
 
+  def item
+    Item.unscoped { super }
+  end
+
   def total_price
     (order_treatments_price * multiplier).ceil
   end

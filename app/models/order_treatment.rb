@@ -24,6 +24,10 @@ class OrderTreatment < ApplicationRecord
   delegate :laundry, to: :laundry_treatment
   delegate :order, to: :order_item
 
+  def treatment
+    Treatment.unscoped { super }
+  end
+
   private
 
   def set_treatment
