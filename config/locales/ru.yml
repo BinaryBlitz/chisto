@@ -33,8 +33,17 @@ ru:
         price: Цена
       order:
         collection_date: Дата сбора
+        created_at: Дата создания
         delivery_date: Дата доставки
+        laundry_name: Химчистка
+        notes: Комментарий
+        payment_method: Способ оплаты
+        promo_code: Промокод
         status: Статус
+      order/payment_method:
+        card: Банковская карта
+        cash: Наличные
+        apple_pay: Apple Pay
       order/status:
         processing: На рассмотрении
         confirmed: Согласован
