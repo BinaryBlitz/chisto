@@ -94,12 +94,12 @@ class Laundry < ApplicationRecord
     laundry_working_hours(collection_date, time)
   end
 
-  def delivery_from
+  def delivery_from(long_treatment = false)
     time = delivery_date_business_hours&.keys&.first
     laundry_working_hours(delivery_date, time)
   end
 
-  def delivery_to
+  def delivery_to(long_treatment = false)
     time = delivery_date_business_hours&.values&.first
     laundry_working_hours(delivery_date, time)
   end

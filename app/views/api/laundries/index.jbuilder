@@ -1,10 +1,7 @@
 json.array! @laundries do |laundry|
   # TODO: move to partial and use multi-fetch caching
-  json.cache! [laundry, 'full_laundry'], expires_in: 30.minutes do
+  json.cache! [laundry, 'full_laundry'] do
     json.partial! 'api/laundries/laundry', laundry: laundry
-
-    json.extract! laundry, :collection_from, :collection_to
-    json.extract! laundry, :delivery_from, :delivery_to
 
     json.cache! laundry.laundry_items do
       json.laundry_items laundry.laundry_items do |laundry_item|
@@ -19,5 +16,11 @@ json.array! @laundries do |laundry|
                       laundry_treatment: laundry_treatment
       end
     end
+  end
+
+  json.cache! [laundry, 'schedule'] + (@long_treatment ? ['long'] : []), expires_in: 30.minutes do
+    json.extract! laundry, :collection_from, :collection_to
+    json.delivery_from laundry.delivery_from(@long_treatment)
+    json.delivery_to laundry.delivery_to(@long_treatment)
   end
 end
