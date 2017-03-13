@@ -27,7 +27,7 @@ dl.row
   dt.col-sm-3 Фамилия
   dd.col-sm-9 = @order.user.last_name
   dt.col-sm-3 Номер телефона
-  dd.col-sm-9 = @order.contact_number
+  dd.col-sm-9 = format_phone_number(@order.contact_number)
   dt.col-sm-3 Адрес
   dd.col-sm-9 = @order.address
 

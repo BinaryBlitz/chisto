@@ -2,6 +2,6 @@
   tr
     td = link_to order.id, [:partner, order]
     td = link_to l(order.created_at, format: :long), [:partner, order]
-    td = order.contact_number
+    td = format_phone_number(order.contact_number)
     td = status_badge_for_order(order)
     td = number_to_currency(order.total_price)
