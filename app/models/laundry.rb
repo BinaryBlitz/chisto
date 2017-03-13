@@ -95,13 +95,13 @@ class Laundry < ApplicationRecord
   end
 
   def delivery_from(long_treatment = false)
-    time = delivery_date_business_hours&.keys&.first
-    laundry_working_hours(delivery_date, time)
+    time = delivery_date_business_hours(long_treatment)&.keys&.first
+    laundry_working_hours(delivery_date(long_treatment), time)
   end
 
   def delivery_to(long_treatment = false)
-    time = delivery_date_business_hours&.values&.first
-    laundry_working_hours(delivery_date, time)
+    time = delivery_date_business_hours(long_treatment)&.values&.first
+    laundry_working_hours(delivery_date(long_treatment), time)
   end
 
   private
@@ -114,8 +114,8 @@ class Laundry < ApplicationRecord
     @collection_date_business_hours ||= business_hours_on(collection_date)
   end
 
-  def delivery_date_business_hours
-    @delivery_date_business_hours ||= business_hours_on(delivery_date)
+  def delivery_date_business_hours(long_treatment = false)
+    @delivery_date_business_hours ||= business_hours_on(delivery_date(long_treatment))
   end
 
   def collection_date

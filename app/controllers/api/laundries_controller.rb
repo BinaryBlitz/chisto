@@ -22,6 +22,6 @@ class API::LaundriesController < API::APIController
   end
 
   def set_long_treatment
-    @long_treatment = (ActiveRecord::Type::Boolean.new.deserialize(params[:long_treatment]))
+    @long_treatment = (ActiveRecord::Type::Boolean.new.deserialize(params[:long_treatment]) == true)
   end
 end
