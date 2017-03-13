@@ -7,17 +7,17 @@ h1 = "Заказ №#{@order.id}"
 
 dl.row
   dt.col-sm-3 Дата создания
-  dd.col-sm-9 = l(@order.created_at, format: :short)
+  dd.col-sm-9 = l(@order.created_at, format: :long)
   dt.col-sm-3 Статус
   dd.col-sm-9 = status_badge_for_order(@order)
   dt.col-sm-3 Комментарий
   dd.col-sm-9 = @order.notes || 'Нет'
   - if @order.collection_date
     dt.col-sm-3 Дата сбора
-    dd.col-sm-9 = l(@order.collection_date, format: :short)
+    dd.col-sm-9 = l(@order.collection_date, format: :long)
   - if @order.delivery_date
     dt.col-sm-3 Дата доставки
-    dd.col-sm-9 = l(@order.delivery_date, format: :short)
+    dd.col-sm-9 = l(@order.delivery_date, format: :long)
   - if @order.promo_code
     dt.col-sm-3 Промокод
     dd.col-sm-9 = @order.promo_code.code
@@ -73,4 +73,4 @@ h2 История
       - @order.statuses.order(created_at: :desc).each do |status|
         tr
           td = badge_for_status(status)
-          td = l(status.created_at, format: :short)
+          td = l(status.created_at, format: :long)

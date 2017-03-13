@@ -6,7 +6,7 @@
         | &nbsp;
     td = rating.content
     td = link_to rating.laundry.name, [:admin, rating.laundry]
-    td = l(rating.created_at, format: :short)
+    td = l(rating.created_at, format: :long)
     td
       = button_to 'Одобрить',
                   [:admin, rating], method: :patch,

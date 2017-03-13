@@ -1,5 +1,5 @@
 tr
   td = promo_code.code
   td = "#{promo_code.discount}%"
-  td = l(promo_code.valid_from, format: :short) if promo_code.valid_from
-  td = l(promo_code.valid_until, format: :short) if promo_code.valid_until
+  td = l(promo_code.valid_from, format: :long) if promo_code.valid_from
+  td = l(promo_code.valid_until, format: :long) if promo_code.valid_until
