@@ -13,7 +13,11 @@ dl.row
   dt.col-sm-3 = Order.human_attribute_name(:status)
   dd.col-sm-9 = status_badge_for_order(@order)
   dt.col-sm-3 = Order.human_attribute_name(:payment_method)
-  dd.col-sm-9 = Order.human_attribute_name("payment_method.#{@order.payment_method}")
+  dd.col-sm-9
+    span.badge.badge-primary  = Order.human_attribute_name("payment_method.#{@order.payment_method}")
+    | &nbsp;
+    - if @order.paid?
+      span.badge.badge-success.align-middle Оплачен
   dt.col-sm-3 = Order.human_attribute_name(:notes)
   dd.col-sm-9 = @order.notes || 'Нет'
   - if @order.collection_date
