@@ -32,6 +32,8 @@ class OrderTest < ActiveSupport::TestCase
 
     @new_order = @order.dup
     @new_order.order_items = [order_items(:order_item)]
+
+    @first_time_promo_code = promo_codes(:first_time_promo_code)
   end
 
   test 'valid' do
@@ -75,5 +77,21 @@ class OrderTest < ActiveSupport::TestCase
   test 'promo_code_id is validated' do
     @order.promo_code_id = PromoCode.last.id + 1
     assert @order.invalid?
+  end
+
+  test 'should not create order if first time promo code was used' do
+    @new_order.promo_code = @first_time_promo_code
+    @new_order.user.update!(first_time_promo_code_used: true)
+
+    assert @new_order.invalid?
+  end
+
+  test 'first time promo code is only used once' do
+    refute @order.user.first_time_promo_code_used?
+
+    @order.update!(promo_code: @first_time_promo_code)
+    @order.paid!
+
+    assert @order.user.first_time_promo_code_used?
   end
 end

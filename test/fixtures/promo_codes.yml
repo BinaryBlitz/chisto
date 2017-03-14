@@ -35,8 +35,19 @@ reusable_promo_code:
   valid_from: <%= 1.month.ago %>
   valid_until: <%= 1.month.from_now %>
 
-redeemed_promo_code:
+first_time_promo_code:
   code: PROMO3
+  promotion: promotion
+  laundry: laundry
+  discount: 10
+  reusable: true
+  redeemed: false
+  first_time_only: true
+  valid_from: <%= 1.month.ago %>
+  valid_until: <%= 1.month.from_now %>
+
+redeemed_promo_code:
+  code: PROMO4
   promotion: promotion
   laundry: laundry
   discount: 10

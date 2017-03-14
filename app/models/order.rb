@@ -43,6 +43,7 @@ class Order < ApplicationRecord
   validates :order_items, presence: true
   validates :email, email: true
   validates :contact_number, phone: true
+  # TODO: add foreign key
   validates :promo_code, presence: true, if: -> { promo_code_id.present? }
   validate :promo_code_is_valid, on: :create, if: -> { promo_code.present? }
 
@@ -100,6 +101,7 @@ class Order < ApplicationRecord
     return unless promo_code.present?
 
     promo_code.redeem!
+    user.update_attribute(:first_time_promo_code_used, true) if promo_code.first_time_only?
   end
 
   def set_delivery_fee
@@ -123,17 +125,22 @@ class Order < ApplicationRecord
   end
 
   def promo_code_is_valid
-    return if promo_code.reusable?
-
-    errors.add(:promo_code, 'is already redeemed') if promo_code.redeemed?
     errors.add(:promo_code, 'has expired') if promo_code.expired?
+
+    if !promo_code.reusable && promo_code.redeemed?
+      errors.add(:promo_code, 'is already redeemed')
+    end
+
+    if promo_code.first_time_only? && user&.first_time_promo_code_used?
+      errors.add(:promo_code, 'can only be activated once')
+    end
   end
 
   def notify
     # Send emails
     OrderMailer.partner_order_email(self).deliver_later
     OrderMailer.admin_order_email(self).deliver_later
-    # Notify partner with an SMS
+    # Notify the partner with an SMS
     NewOrderNotificationJob.perform_later(self) if laundry.phone_number.present?
   end
 

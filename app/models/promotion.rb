@@ -18,7 +18,7 @@ class Promotion < ApplicationRecord
   CODE_LENGTH = 8
   MAX_PROMO_CODES = 1000
 
-  attr_accessor :discount
+  attr_accessor :discount, :first_time_only
 
   belongs_to :laundry, optional: true
 
@@ -26,6 +26,7 @@ class Promotion < ApplicationRecord
 
   validates :name, presence: true
   validates :promo_codes_count, numericality: { greater_than: 0, less_than_or_equal_to: MAX_PROMO_CODES }
+  validates :discount, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 20 }
   validate :dates_are_valid
 
   after_create :generate_promo_codes
@@ -33,7 +34,7 @@ class Promotion < ApplicationRecord
   private
 
   def generate_promo_codes
-    promo_codes.create((0..promo_codes_count).map { random_promo_code })
+    promo_codes.create((0..(promo_codes_count-1)).map { random_promo_code })
   end
 
   def random_promo_code
@@ -42,7 +43,8 @@ class Promotion < ApplicationRecord
       discount: discount,
       valid_from: valid_from,
       valid_until: valid_until,
-      laundry: laundry
+      laundry: laundry,
+      first_time_only: first_time_only || false
     }
   end
 

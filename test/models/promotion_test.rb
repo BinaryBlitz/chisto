@@ -18,6 +18,7 @@ require 'test_helper'
 class PromotionTest < ActiveSupport::TestCase
   setup do
     @promotion = promotions(:promotion)
+    @promotion.discount = 15
   end
 
   test 'valid' do
