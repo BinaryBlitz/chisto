@@ -82,6 +82,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index]
 
     resources :orders, only: [:index, :show]
+    resources :ratings, only: [:update]
     resources :promo_codes, only: [:show], param: :code
   end
 
