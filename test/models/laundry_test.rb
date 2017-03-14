@@ -72,4 +72,9 @@ class LaundryTest < ActiveSupport::TestCase
     @laundry.remove_logo!
     assert @laundry.invalid?
   end
+
+  test 'invalid with long description' do
+    @laundry.description = 'a' * 51
+    assert @laundry.invalid?
+  end
 end

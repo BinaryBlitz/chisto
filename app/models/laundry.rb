@@ -51,6 +51,7 @@ class Laundry < ApplicationRecord
 
   validates :name, :description, presence: true
   validates :city, presence: true
+  validates :description, length: { maximum: 50 }
 
   validates :minimum_collection_time,
             :order_processing_time,
