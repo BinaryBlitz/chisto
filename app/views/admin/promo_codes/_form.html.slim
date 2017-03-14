@@ -22,6 +22,12 @@
       = f.check_box :reusable, class: 'form-check-input'
       | &nbsp;
       = PromoCode.human_attribute_name('reusable')
+    
+  .form-check
+    = f.label :first_time_only, class: 'form-check-label' do
+      = f.check_box :first_time_only, class: 'form-check-input'
+      | &nbsp;
+      = PromoCode.human_attribute_name('first_time_only')
   
   .form-group
     = f.submit class: 'btn btn-primary'

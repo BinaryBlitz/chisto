@@ -54,6 +54,7 @@ ru:
       promo_code:
         code: Код
         discount: Скидка в %
+        first_time_only: Только на первый заказ
         reusable: Многоразовый
         valid_from: Дата начала
         valid_until: Дата окончания

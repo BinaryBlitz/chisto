@@ -1,4 +1,6 @@
 = form_for [:admin, @promotion] do |f|
+  = render 'shared/error_messages', object: @promotion
+
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control'
@@ -22,6 +24,12 @@
   .form-group
     = f.label :discount
     = f.number_field :discount, class: 'form-control'
+
+  .form-check
+    = f.label :first_time_only, class: 'form-check-label' do
+      = f.check_box :first_time_only, class: 'form-check-input'
+      | &nbsp;
+      = PromoCode.human_attribute_name('first_time_only')
   
   .form-group
     = f.submit class: 'btn btn-primary'
