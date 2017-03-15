@@ -25,8 +25,11 @@ class Promotion < ApplicationRecord
   has_many :promo_codes, dependent: :destroy
 
   validates :name, presence: true
-  validates :promo_codes_count, numericality: { greater_than: 0, less_than_or_equal_to: MAX_PROMO_CODES }
-  validates :discount, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 20 }
+  validates :promo_codes_count,
+            numericality: { greater_than: 0, less_than_or_equal_to: MAX_PROMO_CODES }
+  validates :discount,
+            presence: true,
+            numericality: { greater_than: 0, less_than_or_equal_to: 20 }
   validate :dates_are_valid
 
   after_create :generate_promo_codes
@@ -34,7 +37,7 @@ class Promotion < ApplicationRecord
   private
 
   def generate_promo_codes
-    promo_codes.create((0..(promo_codes_count-1)).map { random_promo_code })
+    promo_codes.create((0..(promo_codes_count - 1)).map { random_promo_code })
   end
 
   def random_promo_code
