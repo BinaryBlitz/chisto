@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '~> 2.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -56,6 +56,7 @@ gem 'gcm', '~> 0.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # Schema annotations for models, tests, etc.
   gem 'annotate'
 end
 
@@ -71,8 +72,11 @@ group :development do
 end
 
 group :production do
+  # AWS adapter for CarrierWave
   gem 'fog-aws', '~> 1.2'
+  # Use Redis for caching and background jobs
   gem 'redis-rails', '~> 5.0'
+  # ActiveJob adapter
   gem 'sidekiq', '~> 4.2'
 end
 

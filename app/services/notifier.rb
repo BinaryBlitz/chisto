@@ -17,7 +17,7 @@ class Notifier
     Rails.logger.debug "#{Time.zone.now} Notifying #{@user.id} with message: #{@message}"
 
     case @platform
-      when 'ios' then push_ios_notification
+    when 'ios' then push_ios_notification
     when 'android' then push_android_notification
     end
   end

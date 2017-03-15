@@ -2,17 +2,18 @@
 #
 # Table name: promo_codes
 #
-#  id           :integer          not null, primary key
-#  code         :string           not null
-#  promotion_id :integer
-#  laundry_id   :integer
-#  discount     :integer          not null
-#  reusable     :boolean          default(FALSE)
-#  redeemed     :boolean          default(FALSE)
-#  valid_from   :datetime
-#  valid_until  :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id              :integer          not null, primary key
+#  code            :string           not null
+#  promotion_id    :integer
+#  laundry_id      :integer
+#  discount        :integer          not null
+#  reusable        :boolean          default(FALSE)
+#  redeemed        :boolean          default(FALSE)
+#  valid_from      :datetime
+#  valid_until     :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  first_time_only :boolean          default(FALSE)
 #
 
 class PromoCode < ApplicationRecord

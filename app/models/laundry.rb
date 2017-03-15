@@ -2,37 +2,38 @@
 #
 # Table name: laundries
 #
-#  id                      :integer          not null, primary key
-#  name                    :string           not null
-#  description             :string           not null
-#  logo                    :string
-#  background_image        :string
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  city_id                 :integer
-#  minimum_collection_time :integer
-#  order_processing_time   :integer
-#  email                   :string           default(""), not null
-#  encrypted_password      :string           default(""), not null
-#  reset_password_token    :string
-#  reset_password_sent_at  :datetime
-#  remember_created_at     :datetime
-#  sign_in_count           :integer          default(0), not null
-#  current_sign_in_at      :datetime
-#  last_sign_in_at         :datetime
-#  current_sign_in_ip      :inet
-#  last_sign_in_ip         :inet
-#  confirmation_token      :string
-#  confirmed_at            :datetime
-#  confirmation_sent_at    :datetime
-#  unconfirmed_email       :string
-#  rating                  :float            default(0.0)
-#  ratings_count           :integer          default(0)
-#  enabled                 :boolean          default(FALSE)
-#  minimum_order_price     :integer          default(0)
-#  free_delivery_from      :integer          default(0)
-#  delivery_fee            :integer          default(0)
-#  phone_number            :string
+#  id                         :integer          not null, primary key
+#  name                       :string           not null
+#  description                :string           not null
+#  logo                       :string
+#  background_image           :string
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  city_id                    :integer
+#  minimum_collection_time    :integer
+#  order_processing_time      :integer
+#  email                      :string           default(""), not null
+#  encrypted_password         :string           default(""), not null
+#  reset_password_token       :string
+#  reset_password_sent_at     :datetime
+#  remember_created_at        :datetime
+#  sign_in_count              :integer          default(0), not null
+#  current_sign_in_at         :datetime
+#  last_sign_in_at            :datetime
+#  current_sign_in_ip         :inet
+#  last_sign_in_ip            :inet
+#  confirmation_token         :string
+#  confirmed_at               :datetime
+#  confirmation_sent_at       :datetime
+#  unconfirmed_email          :string
+#  rating                     :float            default(0.0)
+#  ratings_count              :integer          default(0)
+#  enabled                    :boolean          default(FALSE)
+#  minimum_order_price        :integer          default(0)
+#  free_delivery_from         :integer          default(0)
+#  delivery_fee               :integer          default(0)
+#  phone_number               :string
+#  long_order_processing_time :integer
 #
 
 class Laundry < ApplicationRecord
@@ -50,9 +51,11 @@ class Laundry < ApplicationRecord
 
   validates :name, :description, presence: true
   validates :city, presence: true
+  validates :description, length: { maximum: 50 }
 
   validates :minimum_collection_time,
             :order_processing_time,
+            :long_order_processing_time,
             numericality: { greater_than: 0 }, allow_nil: true
 
   validates :minimum_order_price,
@@ -82,6 +85,40 @@ class Laundry < ApplicationRecord
     update_attribute(:ratings_count, ratings.verified.count)
   end
 
+  def collection_from
+    time = collection_date_business_hours&.keys&.first
+    laundry_working_hours(collection_date, time)
+  end
+
+  def collection_to
+    time = collection_date_business_hours&.values&.first
+    laundry_working_hours(collection_date, time)
+  end
+
+  def delivery_from(long_treatment = false)
+    time = delivery_date_business_hours(long_treatment)&.keys&.first
+    laundry_working_hours(delivery_date(long_treatment), time)
+  end
+
+  def delivery_to(long_treatment = false)
+    time = delivery_date_business_hours(long_treatment)&.values&.first
+    laundry_working_hours(delivery_date(long_treatment), time)
+  end
+
+  private
+
+  def laundry_working_hours(date, time)
+    Time.zone.parse("#{date.strftime('%F')} #{time}")
+  end
+
+  def collection_date_business_hours
+    @collection_date_business_hours ||= business_hours_on(collection_date)
+  end
+
+  def delivery_date_business_hours(long_treatment = false)
+    @delivery_date_business_hours ||= business_hours_on(delivery_date(long_treatment))
+  end
+
   def collection_date
     @collection_date ||= begin
       configure_business_hours
@@ -89,42 +126,17 @@ class Laundry < ApplicationRecord
     end
   end
 
-  def collection_date_business_hours
-    @collection_date_business_hours ||= business_hours_on(collection_date)
-  end
-
-  def collection_date_opens_at
-    collection_date_business_hours&.keys&.first
-  end
-
-  def collection_date_closes_at
-    collection_date_business_hours&.values&.first
-  end
-
-  def delivery_date
+  def delivery_date(long_treatment = false)
     @delivery_date ||= begin
       configure_business_hours
+      processing_time = long_treatment && long_order_processing_time || order_processing_time
 
-      Biz.time(order_processing_time + minimum_collection_time, :hours)
+      Biz.time(processing_time + minimum_collection_time, :hours)
         .after(Time.zone.now)
         .in_time_zone
         .to_date
     end
   end
-
-  def delivery_date_business_hours
-    @delivery_date_business_hours ||= business_hours_on(delivery_date)
-  end
-
-  def delivery_date_opens_at
-    delivery_date_business_hours&.keys&.first
-  end
-
-  def delivery_date_closes_at
-    delivery_date_business_hours&.values&.first
-  end
-
-  private
 
   def schedule
     @schedule ||= schedules.map(&:to_hash).inject({}, &:merge)

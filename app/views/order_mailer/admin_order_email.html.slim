@@ -11,10 +11,10 @@ dl.row
   dd.col-sm-9 = @order.notes || 'Нет'
   - if @order.collection_date
     dt.col-sm-3 Дата сбора
-    dd.col-sm-9 = l(@order.collection_date, format: :short)
+    dd.col-sm-9 = l(@order.collection_date, format: :long)
   - if @order.delivery_date
     dt.col-sm-3 Дата доставки
-    dd.col-sm-9 = l(@order.delivery_date, format: :short)
+    dd.col-sm-9 = l(@order.delivery_date, format: :long)
   - if @order.promo_code
     dt.col-sm-3 Промокод
     dd.col-sm-9 = @order.promo_code.code
@@ -27,7 +27,7 @@ dl.row
   dt.col-sm-3 Фамилия
   dd.col-sm-9 = @order.user.last_name
   dt.col-sm-3 Номер телефона
-  dd.col-sm-9 = @order.contact_number
+  dd.col-sm-9 = format_phone_number(@order.contact_number)
   dt.col-sm-3 Адрес
   dd.col-sm-9 = @order.address
 

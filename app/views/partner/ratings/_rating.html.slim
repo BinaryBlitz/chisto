@@ -9,4 +9,4 @@
       - rating.user.orders.where(laundry: rating.laundry).pluck(:id).each do |order_id|
         div
           = link_to "Заказ №#{order_id}", partner_order_path(order_id)
-    td = l(rating.created_at, format: :short)
+    td = l(rating.created_at, format: :long)

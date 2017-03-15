@@ -5,6 +5,7 @@ class Admin::PromotionsControllerTest < ActionDispatch::IntegrationTest
     host! 'admin.domain.com'
     sign_in_admin
     @promotion = promotions(:promotion)
+    @promotion.discount = 15
   end
 
   test 'should get index' do
@@ -14,7 +15,9 @@ class Admin::PromotionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create promotion' do
     assert_difference 'Promotion.count' do
-      post admin_promotions_url(@promotion), params: { promotion: @promotion.attributes }
+      post admin_promotions_url(@promotion), params: {
+        promotion: @promotion.attributes.merge(discount: 15)
+      }
     end
   end
 end

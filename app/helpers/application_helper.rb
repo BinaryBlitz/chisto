@@ -8,4 +8,8 @@ module ApplicationHelper
       page_title + ' – ' + base_title
     end
   end
+
+  def format_phone_number(phone_number)
+    Phonelib.parse(phone_number).international || phone_number
+  end
 end

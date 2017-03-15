@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220174655) do
+ActiveRecord::Schema.define(version: 20170314104920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,33 +58,34 @@ ActiveRecord::Schema.define(version: 20170220174655) do
 
   create_table "items", force: :cascade do |t|
     t.integer  "category_id"
-    t.string   "name",                        null: false
+    t.string   "name",                           null: false
     t.string   "icon"
     t.text     "description"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "use_area",    default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "use_area",       default: false
     t.datetime "deleted_at"
+    t.boolean  "long_treatment", default: false
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["deleted_at"], name: "index_items_on_deleted_at", using: :btree
   end
 
   create_table "laundries", force: :cascade do |t|
-    t.string   "name",                                    null: false
-    t.string   "description",                             null: false
+    t.string   "name",                                       null: false
+    t.string   "description",                                null: false
     t.string   "logo"
     t.string   "background_image"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "city_id"
     t.integer  "minimum_collection_time"
     t.integer  "order_processing_time"
-    t.string   "email",                   default: "",    null: false
-    t.string   "encrypted_password",      default: "",    null: false
+    t.string   "email",                      default: "",    null: false
+    t.string   "encrypted_password",         default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",           default: 0,     null: false
+    t.integer  "sign_in_count",              default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -93,13 +94,14 @@ ActiveRecord::Schema.define(version: 20170220174655) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.float    "rating",                  default: 0.0
-    t.integer  "ratings_count",           default: 0
-    t.boolean  "enabled",                 default: false
-    t.integer  "minimum_order_price",     default: 0
-    t.integer  "free_delivery_from",      default: 0
-    t.integer  "delivery_fee",            default: 0
+    t.float    "rating",                     default: 0.0
+    t.integer  "ratings_count",              default: 0
+    t.boolean  "enabled",                    default: false
+    t.integer  "minimum_order_price",        default: 0
+    t.integer  "free_delivery_from",         default: 0
+    t.integer  "delivery_fee",               default: 0
     t.string   "phone_number"
+    t.integer  "long_order_processing_time"
     t.index ["city_id"], name: "index_laundries_on_city_id", using: :btree
     t.index ["confirmation_token"], name: "index_laundries_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_laundries_on_email", unique: true, using: :btree
@@ -199,16 +201,17 @@ ActiveRecord::Schema.define(version: 20170220174655) do
   end
 
   create_table "promo_codes", force: :cascade do |t|
-    t.string   "code",                         null: false
+    t.string   "code",                            null: false
     t.integer  "promotion_id"
     t.integer  "laundry_id"
-    t.integer  "discount",                     null: false
-    t.boolean  "reusable",     default: false
-    t.boolean  "redeemed",     default: false
+    t.integer  "discount",                        null: false
+    t.boolean  "reusable",        default: false
+    t.boolean  "redeemed",        default: false
     t.datetime "valid_from"
     t.datetime "valid_until"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "first_time_only", default: false
     t.index ["code"], name: "index_promo_codes_on_code", unique: true, using: :btree
     t.index ["laundry_id"], name: "index_promo_codes_on_laundry_id", using: :btree
     t.index ["promotion_id"], name: "index_promo_codes_on_promotion_id", using: :btree
@@ -283,23 +286,24 @@ ActiveRecord::Schema.define(version: 20170220174655) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",                   null: false
-    t.string   "last_name",                    null: false
-    t.string   "phone_number",                 null: false
+    t.string   "first_name",                                 null: false
+    t.string   "last_name",                                  null: false
+    t.string   "phone_number",                               null: false
     t.string   "email"
     t.date     "birthdate"
     t.string   "api_token"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "city_id"
     t.string   "street_name"
     t.string   "house_number"
     t.string   "apartment_number"
     t.text     "notes"
     t.string   "contact_number"
-    t.integer  "orders_count",     default: 0
+    t.integer  "orders_count",               default: 0
     t.string   "device_token"
-    t.integer  "platform",         default: 0
+    t.integer  "platform",                   default: 0
+    t.boolean  "first_time_promo_code_used", default: false
     t.index ["api_token"], name: "index_users_on_api_token", unique: true, using: :btree
     t.index ["city_id"], name: "index_users_on_city_id", using: :btree
   end

@@ -3,10 +3,10 @@ h1 Промоакция: #{@promotion.name}
 dl.row
   - if @promotion.valid_from
     dt.col-sm-3 Дата начала
-    dd.col-sm-9 = l(@promotion.valid_from, format: :short)
+    dd.col-sm-9 = l(@promotion.valid_from, format: :long)
   - if @promotion.valid_until
     dt.col-sm-3 Дата окончания
-    dd.col-sm-9 = l(@promotion.valid_until, format: :short)
+    dd.col-sm-9 = l(@promotion.valid_until, format: :long)
 
 p = @promotion.description
 

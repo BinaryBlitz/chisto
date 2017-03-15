@@ -18,4 +18,8 @@ class LaundryTreatment < ApplicationRecord
 
   validates :price, numericality: { greater_than: 0 }
   validates :treatment, uniqueness: { scope: :laundry }
+
+  def treatment
+    Treatment.unscoped { super }
+  end
 end

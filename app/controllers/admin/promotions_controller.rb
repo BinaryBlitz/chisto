@@ -31,6 +31,9 @@ class Admin::PromotionsController < Admin::AdminController
   def promotion_params
     params
       .require(:promotion)
-      .permit(:name, :description, :promo_codes_count, :valid_from, :valid_until, :discount)
+      .permit(
+        :name, :description, :promo_codes_count,
+        :valid_from, :valid_until, :discount, :first_time_only
+      )
   end
 end
