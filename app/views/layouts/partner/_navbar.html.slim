@@ -1,0 +1,19 @@
+nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
+  .container
+    button.navbar-toggler.navbar-toggler-right[type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
+      span.navbar-toggler-icon
+    = link_to 'Chisto', partner_root_path, class: 'navbar-brand'
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        - if laundry_signed_in?
+          li.nav-item = link_to 'Заказы', partner_orders_path, class: 'nav-link'
+          li.nav-item = link_to 'Цены', partner_categories_path, class: 'nav-link'
+          li.nav-item = link_to 'Отзывы', partner_ratings_path, class: 'nav-link'
+      ul.navbar-nav.ml-auto
+        - if laundry_signed_in?
+          li.nav-item = link_to 'Настройки', edit_laundry_profile_path, class: 'nav-link'
+          li.nav-item = link_to 'Аккаунт', edit_laundry_registration_path, class: 'nav-link'
+          li.nav-item = link_to 'Выйти', destroy_laundry_session_path, method: :delete, class:'nav-link'
+        - else
+          li.nav-item
+            = link_to 'Войти', new_laundry_session_path, class:'nav-link'
