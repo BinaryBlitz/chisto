@@ -1,6 +1,8 @@
 class OrderMailer < ApplicationMailer
   ORDERS_MAILBOX = 'orders@chis.to'
 
+  helper :application
+
   def partner_order_email(order)
     @order = order
     @laundry = @order.laundry
