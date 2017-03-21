@@ -15,7 +15,7 @@ class SMSNotifier
     if response.lines.first.try(:chomp) == SUCCESS_CODE
       true
     else
-      logger.info "#{Time.zone.now}: SMS for #{@phone_number} failed.\n#{response}"
+      Rails.logger.info "#{Time.zone.now}: SMS for #{@phone_number} failed.\n#{response}"
       false
     end
   end
