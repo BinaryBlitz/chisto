@@ -65,7 +65,7 @@ class Order < ApplicationRecord
   # Scopes
   scope :paid, -> { where(paid: true) }
   # TODO: add tests
-  scope :visible, -> { where.not(payment_method: :card).or(card.paid) }
+  scope :visible, -> { where(payment_method: :cash).or(card.paid).or(apple_pay.paid) }
 
   def payment
     return if cash? || apple_pay?
