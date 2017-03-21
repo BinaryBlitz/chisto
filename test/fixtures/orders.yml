@@ -36,3 +36,17 @@ order:
   email: foo@bar.com
   total_price: 1
   payment_method: card
+
+apple_pay_order:
+  user: foo
+  laundry: laundry
+  status: 0
+  paid: false
+  street_name: Street name
+  house_number: 1a
+  apartment_number: 1
+  contact_number: '+79991112233'
+  notes: Notes
+  email: foo@bar.com
+  total_price: 1
+  payment_method: apple_pay

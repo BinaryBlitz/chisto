@@ -30,6 +30,7 @@ class Order < ApplicationRecord
   belongs_to :promo_code, optional: true
 
   has_one :payment, dependent: :destroy
+  has_one :payment_token, dependent: :destroy
   has_many :order_items, dependent: :destroy, inverse_of: :order
   has_many :order_treatments, through: :order_items
   has_many :statuses, dependent: :destroy
