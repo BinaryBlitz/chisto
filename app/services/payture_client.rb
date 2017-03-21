@@ -4,12 +4,17 @@ class PaytureClient
 
   attr_reader :payment_data, :response
 
-  def initialize(payment_data)
+  def initialize(payment_data, order_id:)
     @payment_data = payment_data
+    @order_id = order_id
   end
 
   def pay
-    response = HTTParty.post(PAYTURE_APPLE_PAY_URL, body: params).parsed_response
+    response = HTTParty.post(PAYTURE_APPLE_PAY_URL, body: params)
+
+    Rails.logger.info(response.request.options)
+    Rails.logger.info(response.body)
+    response = response.parsed_response
     # Payture sends Pay dictionary on success and PAY dictionary on failure
     @response = response['Pay'] || response['PAY']
 
@@ -27,7 +32,8 @@ class PaytureClient
     {
       Key: Rails.application.secrets.payture_key,
       Method: PAYTURE_APPLE_PAY_METHOD,
-      PayToken: encoded_payment_data
+      PayToken: encoded_payment_data,
+      OrderId: @order_id
     }
   end
 

@@ -23,7 +23,7 @@ class PaymentToken < ApplicationRecord
   private
 
   def pay
-    client = PaytureClient.new(payment_data)
+    client = PaytureClient.new(payment_data, order_id: order_id)
     return unless client.pay
 
     ActiveRecord::Base.transaction do
