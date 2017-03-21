@@ -9,4 +9,9 @@ class PaymentTokenTest < ActiveSupport::TestCase
     @payment_token.payment_data = nil
     assert @payment_token.invalid?
   end
+
+  test 'payment method is apple pay' do
+    @payment_token.order.payment_method = :card
+    assert @payment_token.invalid?
+  end
 end

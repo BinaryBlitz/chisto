@@ -16,6 +16,7 @@ class PaymentToken < ApplicationRecord
 
   validates :payment_data, presence: true
   validates :order, uniqueness: true
+  validate :payment_method_is_apple_pay
 
   after_create :pay
 
@@ -29,5 +30,10 @@ class PaymentToken < ApplicationRecord
       update_columns(paid: true, response: client.response)
       order.paid!
     end
+  end
+
+  def payment_method_is_apple_pay
+    return if order&.apple_pay?
+    errors.add(:order, 'should use apple_pay payment method')
   end
 end
