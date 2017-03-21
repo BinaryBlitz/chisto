@@ -2,10 +2,10 @@ class PaytureClient
   PAYTURE_APPLE_PAY_URL = Rails.application.secrets.payture_host + '/ApplePay'
   PAYTURE_APPLE_PAY_METHOD = 'PAY'
 
-  attr_reader :payment_data, :response
+  attr_reader :encoded_payment_data, :response
 
-  def initialize(payment_data, order_id:)
-    @payment_data = payment_data
+  def initialize(encoded_payment_data, order_id:)
+    @encoded_payment_data = encoded_payment_data
     @order_id = order_id
   end
 
@@ -35,9 +35,5 @@ class PaytureClient
       PayToken: encoded_payment_data,
       OrderId: @order_id
     }
-  end
-
-  def encoded_payment_data
-    Base64.encode64(@payment_data['data'])
   end
 end

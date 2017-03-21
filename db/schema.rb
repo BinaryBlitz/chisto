@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321090340) do
+ActiveRecord::Schema.define(version: 20170321200609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,12 +191,13 @@ ActiveRecord::Schema.define(version: 20170321090340) do
   end
 
   create_table "payment_tokens", force: :cascade do |t|
-    t.boolean  "paid",         default: false
-    t.jsonb    "payment_data",                 null: false
+    t.boolean  "paid",                 default: false
+    t.jsonb    "payment_data",                         null: false
     t.jsonb    "response"
     t.integer  "order_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.text     "encoded_payment_data",                 null: false
     t.index ["order_id"], name: "index_payment_tokens_on_order_id", using: :btree
   end
 

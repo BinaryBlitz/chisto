@@ -18,6 +18,6 @@ class API::PaymentTokensController < API::APIController
   end
 
   def payment_token_params
-    params.require(:payment_token).permit(payment_data: [:version, :data, :header, :signature])
+    params.require(:payment_token).permit(:encoded_payment_data)
   end
 end
