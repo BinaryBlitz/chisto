@@ -81,7 +81,9 @@ Rails.application.routes.draw do
     end
     resources :items, only: [:index]
 
-    resources :orders, only: [:index, :show]
+    resources :orders, only: [:index, :show] do
+      resource :payment_token, only: [:create]
+    end
     resources :ratings, only: [:update]
     resources :promo_codes, only: [:show], param: :code
   end
