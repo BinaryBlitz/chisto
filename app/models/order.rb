@@ -30,6 +30,7 @@ class Order < ApplicationRecord
   belongs_to :promo_code, optional: true
 
   has_one :payment, dependent: :destroy
+  has_one :payment_token, dependent: :destroy
   has_many :order_items, dependent: :destroy, inverse_of: :order
   has_many :order_treatments, through: :order_items
   has_many :statuses, dependent: :destroy
@@ -64,7 +65,7 @@ class Order < ApplicationRecord
   # Scopes
   scope :paid, -> { where(paid: true) }
   # TODO: add tests
-  scope :visible, -> { where.not(payment_method: :card).or(card.paid) }
+  scope :visible, -> { where(payment_method: :cash).or(card.paid).or(apple_pay.paid) }
 
   def payment
     return if cash? || apple_pay?

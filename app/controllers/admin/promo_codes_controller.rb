@@ -22,6 +22,6 @@ class Admin::PromoCodesController < Admin::AdminController
   def promo_code_params
     params
       .require(:promo_code)
-      .permit(:code, :discount, :reusable, :valid_from, :valid_until)
+      .permit(:code, :discount, :reusable, :valid_from, :valid_until, :first_time_only)
   end
 end

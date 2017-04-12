@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314104920) do
+ActiveRecord::Schema.define(version: 20170321200609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +190,17 @@ ActiveRecord::Schema.define(version: 20170314104920) do
     t.datetime "updated_at",          null: false
   end
 
+  create_table "payment_tokens", force: :cascade do |t|
+    t.boolean  "paid",                 default: false
+    t.jsonb    "payment_data",                         null: false
+    t.jsonb    "response"
+    t.integer  "order_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.text     "encoded_payment_data",                 null: false
+    t.index ["order_id"], name: "index_payment_tokens_on_order_id", using: :btree
+  end
+
   create_table "payments", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "amount",                      null: false
@@ -329,6 +340,7 @@ ActiveRecord::Schema.define(version: 20170314104920) do
   add_foreign_key "orders", "laundries"
   add_foreign_key "orders", "promo_codes"
   add_foreign_key "orders", "users"
+  add_foreign_key "payment_tokens", "orders"
   add_foreign_key "payments", "orders"
   add_foreign_key "ratings", "laundries"
   add_foreign_key "ratings", "users"
