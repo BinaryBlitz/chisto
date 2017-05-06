@@ -18,7 +18,7 @@ class VerificationToken < ApplicationRecord
   attr_accessor :entered_code
 
   before_create :generate_code
-  after_create :enqueue_verification_token_dispatch
+  after_create_commit :enqueue_verification_token_dispatch
 
   validates :phone_number, phone: true
 

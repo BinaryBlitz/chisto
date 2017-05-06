@@ -22,7 +22,7 @@ class Status < ApplicationRecord
 
   enum state: STATES
 
-  after_create :enqueue_notification
+  after_create_commit :enqueue_notification
 
   delegate :user, to: :order
 
