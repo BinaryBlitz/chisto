@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: payment_tokens
+#
+#  id                   :integer          not null, primary key
+#  paid                 :boolean          default(FALSE)
+#  payment_data         :jsonb            not null
+#  response             :jsonb
+#  order_id             :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  encoded_payment_data :text             not null
+#
+
 require 'test_helper'
 
 class PaymentTokenTest < ActiveSupport::TestCase

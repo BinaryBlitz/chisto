@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '~> 2.4.0'
+ruby '~> 2.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -40,7 +40,7 @@ gem 'mini_magick', '~> 4.6'
 gem 'rails-i18n', '~> 5.0'
 
 # Auth
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.3'
 gem 'devise-bootstrap-views', '~> 1.0.0.alpha1'
 
 # Payments
@@ -57,7 +57,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   # Schema annotations for models, tests, etc.
-  gem 'annotate'
+  gem 'annotate_rails'
 end
 
 group :development do

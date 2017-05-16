@@ -2,24 +2,25 @@
 #
 # Table name: users
 #
-#  id               :integer          not null, primary key
-#  first_name       :string           not null
-#  last_name        :string           not null
-#  phone_number     :string           not null
-#  email            :string
-#  birthdate        :date
-#  api_token        :string
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  city_id          :integer
-#  street_name      :string
-#  house_number     :string
-#  apartment_number :string
-#  notes            :text
-#  contact_number   :string
-#  orders_count     :integer          default(0)
-#  device_token     :string
-#  platform         :integer          default("ios")
+#  id                         :integer          not null, primary key
+#  first_name                 :string           not null
+#  last_name                  :string           not null
+#  phone_number               :string           not null
+#  email                      :string
+#  birthdate                  :date
+#  api_token                  :string
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  city_id                    :integer
+#  street_name                :string
+#  house_number               :string
+#  apartment_number           :string
+#  notes                      :text
+#  contact_number             :string
+#  orders_count               :integer          default(0)
+#  device_token               :string
+#  platform                   :integer          default("ios")
+#  first_time_promo_code_used :boolean          default(FALSE)
 #
 
 require 'test_helper'

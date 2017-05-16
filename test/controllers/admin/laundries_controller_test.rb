@@ -19,7 +19,7 @@ class Admin::LaundriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create laundry' do
-    @laundry.destroy
+    @laundry.destroy!
 
     assert_difference 'Laundry.count' do
       post admin_city_laundries_url(@city), params: {
@@ -39,11 +39,12 @@ class Admin::LaundriesControllerTest < ActionDispatch::IntegrationTest
     assert_equal new_name, @laundry.reload.name
   end
 
-  test 'should destroy laundry' do
+  test 'should soft delete laundry' do
     assert_difference 'Laundry.count', -1 do
       delete admin_laundry_url(@laundry)
     end
 
+    assert @laundry.reload.deleted?
     assert_redirected_to admin_city_laundries_path(@city)
   end
 end
