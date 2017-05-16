@@ -17,4 +17,12 @@ class Admin::RatingsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_ratings_path
     assert_equal false, @rating.reload.verified
   end
+
+  test 'should destroy rating' do
+    assert_difference 'Rating.count', -1 do
+      delete admin_rating_url(@rating)
+    end
+
+    assert_redirected_to admin_ratings_path
+  end
 end

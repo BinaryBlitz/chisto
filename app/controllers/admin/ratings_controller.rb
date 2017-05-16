@@ -1,5 +1,5 @@
 class Admin::RatingsController < Admin::AdminController
-  before_action :set_rating, only: [:update]
+  before_action :set_rating, only: [:update, :destroy]
 
   def index
     @ratings = Rating.unverified.with_content
@@ -11,6 +11,11 @@ class Admin::RatingsController < Admin::AdminController
     else
       redirect_to :back
     end
+  end
+
+  def destroy
+    @rating.destroy
+    redirect_to admin_ratings_url, notice: 'Отзыв успешно удалён'
   end
 
   private
