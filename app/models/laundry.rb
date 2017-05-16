@@ -34,10 +34,12 @@
 #  delivery_fee               :integer          default(0)
 #  phone_number               :string
 #  long_order_processing_time :integer
+#  deleted_at                 :datetime
 #
 
 class Laundry < ApplicationRecord
   include Phonable
+  include SoftDeletable
 
   belongs_to :city
 
