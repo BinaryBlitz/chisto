@@ -1,5 +1,5 @@
 class OrderMailer < ApplicationMailer
-  ORDERS_MAILBOX = 'orders@chis.to'
+  ORDERS_EMAIL = Rails.application.secrets.orders_email
 
   helper :application
 
@@ -12,6 +12,6 @@ class OrderMailer < ApplicationMailer
 
   def admin_order_email(order)
     @order = order
-    mail(to: ORDERS_MAILBOX, subject: "Заказ №#{@order.id}")
+    mail(to: ORDERS_EMAIL, subject: "Заказ №#{@order.id}")
   end
 end
