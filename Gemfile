@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '~> 2.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -40,7 +40,7 @@ gem 'mini_magick', '~> 4.6'
 gem 'rails-i18n', '~> 5.0'
 
 # Auth
-gem 'devise', git: 'https://github.com/plataformatec/devise.git'
+gem 'devise', '~> 4.3'
 gem 'devise-bootstrap-views', '~> 1.0.0.alpha1'
 
 # Payments
