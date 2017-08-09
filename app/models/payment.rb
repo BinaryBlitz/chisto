@@ -32,7 +32,7 @@ class Payment < ApplicationRecord
   private
 
   def init
-    response = Tinkoff::Client.init(amount_in_kopeks, order_id, { email: 'foo@bar.com' })
+    response = Tinkoff::Client.init(amount_in_kopeks, order_id, email: 'foo@bar.com')
     update_attribute(:payment_url, response.payment_url)
   end
 

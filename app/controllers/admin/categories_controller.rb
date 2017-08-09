@@ -1,5 +1,5 @@
 class Admin::CategoriesController < Admin::AdminController
-  before_action :set_category, only: [:edit, :update, :destroy]
+  before_action :set_category, only: %i[edit update destroy]
 
   def index
     @categories = Category.order(featured: :desc).order(:name)

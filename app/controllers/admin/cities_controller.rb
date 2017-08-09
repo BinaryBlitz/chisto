@@ -1,5 +1,5 @@
 class Admin::CitiesController < Admin::AdminController
-  before_action :set_city, only: [:edit, :update, :destroy]
+  before_action :set_city, only: %i[edit update destroy]
 
   def index
     @cities = City.all

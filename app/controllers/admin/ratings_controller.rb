@@ -1,5 +1,5 @@
 class Admin::RatingsController < Admin::AdminController
-  before_action :set_rating, only: [:update, :destroy]
+  before_action :set_rating, only: %i[update destroy]
 
   def index
     @ratings = Rating.unverified.with_content

@@ -1,6 +1,6 @@
 class Admin::LaundriesController < Admin::AdminController
-  before_action :set_city, only: [:index, :new, :create]
-  before_action :set_laundry, only: [:show, :edit, :update, :destroy]
+  before_action :set_city, only: %i[index new create]
+  before_action :set_laundry, only: %i[show edit update destroy]
 
   def index
     @laundries = @city.laundries
