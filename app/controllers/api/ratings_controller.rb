@@ -1,6 +1,6 @@
 class API::RatingsController < API::APIController
   skip_before_action :restrict_access!, only: [:index]
-  before_action :set_laundry, only: [:index, :create]
+  before_action :set_laundry, only: %i[index create]
   before_action :set_rating, only: [:update]
 
   def index

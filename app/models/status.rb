@@ -10,7 +10,7 @@
 #
 
 class Status < ApplicationRecord
-  STATES = %i(processing confirmed cleaning dispatched completed canceled)
+  STATES = %i[processing confirmed cleaning dispatched completed canceled]
   MESSAGES = {
     'confirmed' => 'Дата и время сбора вещей согласованы. Ожидайте курьера.',
     'cleaning' => 'Ваши вещи уехали в чистку. Не беспокойтесь, скоро они вернутся!',

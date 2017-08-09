@@ -36,8 +36,8 @@ class Order < ApplicationRecord
   has_many :statuses, dependent: :destroy
 
   # Enums
-  enum status: %i(processing confirmed cleaning dispatched completed canceled)
-  enum payment_method: %i(card cash apple_pay)
+  enum status: %i[processing confirmed cleaning dispatched completed canceled]
+  enum payment_method: %i[card cash apple_pay]
 
   # Validations
   validates :street_name, :house_number, :apartment_number, :contact_number, presence: true

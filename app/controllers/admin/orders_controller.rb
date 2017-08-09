@@ -1,5 +1,5 @@
 class Admin::OrdersController < Admin::AdminController
-  before_action :set_order, only: [:show, :edit, :update]
+  before_action :set_order, only: %i[show edit update]
 
   def index
     @orders = Order.order(updated_at: :desc).visible

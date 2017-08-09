@@ -1,6 +1,6 @@
 class Admin::ItemsController < Admin::AdminController
-  before_action :set_category, only: [:index, :new, :create]
-  before_action :set_item, only: [:edit, :update, :destroy]
+  before_action :set_category, only: %i[index new create]
+  before_action :set_item, only: %i[edit update destroy]
 
   def index
     @items = @category.items

@@ -19,7 +19,7 @@ class Rating < ApplicationRecord
   validates :value, inclusion: { in: 1..5 }
   validates :laundry, uniqueness: { scope: :user }
 
-  after_commit -> { laundry.update_rating_cache }, on: [:create, :update]
+  after_commit -> { laundry.update_rating_cache }, on: %i[create update]
   after_save -> { laundry.update_counter_cache }
   after_destroy -> { laundry.update_counter_cache }
 

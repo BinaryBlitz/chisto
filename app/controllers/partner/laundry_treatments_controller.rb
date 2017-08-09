@@ -1,6 +1,6 @@
 class Partner::LaundryTreatmentsController < Partner::PartnerController
-  before_action :set_treatment, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_laundry_treatment, only: [:edit, :update, :destroy]
+  before_action :set_treatment, only: %i[new create edit update destroy]
+  before_action :set_laundry_treatment, only: %i[edit update destroy]
 
   def new
     @laundry_treatment = @treatment.laundry_treatments.build

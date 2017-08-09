@@ -1,6 +1,6 @@
 class Admin::TreatmentsController < Admin::AdminController
-  before_action :set_item, only: [:index, :new, :create]
-  before_action :set_treatment, only: [:edit, :update, :destroy]
+  before_action :set_item, only: %i[index new create]
+  before_action :set_treatment, only: %i[edit update destroy]
 
   def index
     @treatments = @item.treatments

@@ -12,7 +12,7 @@
 #
 
 class Schedule < ApplicationRecord
-  DAYS_OF_THE_WEEK = %i(mon tue wed thu fri sat sun)
+  DAYS_OF_THE_WEEK = %i[mon tue wed thu fri sat sun]
 
   belongs_to :laundry
 

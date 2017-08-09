@@ -1,5 +1,5 @@
 class API::LaundriesController < API::APIController
-  skip_before_action :restrict_access!, only: [:index, :show]
+  skip_before_action :restrict_access!, only: %i[index show]
   before_action :set_city, only: [:index]
   before_action :set_long_treatment, only: [:index]
 

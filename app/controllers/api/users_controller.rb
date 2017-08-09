@@ -1,6 +1,6 @@
 class API::UsersController < API::APIController
   skip_before_action :restrict_access!, only: [:create]
-  before_action :set_user, only: [:show, :update]
+  before_action :set_user, only: %i[show update]
 
   def show
     @order = @user.orders.completed.order(updated_at: :desc).first

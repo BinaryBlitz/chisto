@@ -38,7 +38,7 @@ class User < ApplicationRecord
 
   has_secure_token :api_token
 
-  enum platform: %i(ios android)
+  enum platform: %i[ios android]
 
   def full_name
     "#{first_name} #{last_name}"

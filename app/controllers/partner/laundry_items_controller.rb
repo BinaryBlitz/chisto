@@ -1,6 +1,6 @@
 class Partner::LaundryItemsController < Partner::PartnerController
-  before_action :set_item, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_laundry_item, only: [:edit, :update, :destroy]
+  before_action :set_item, only: %i[new create edit update destroy]
+  before_action :set_laundry_item, only: %i[edit update destroy]
 
   def new
     @laundry_item = @item.laundry_items.build

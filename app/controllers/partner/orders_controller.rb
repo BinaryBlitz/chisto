@@ -1,5 +1,5 @@
 class Partner::OrdersController < Partner::PartnerController
-  before_action :set_order, only: [:show, :edit, :update]
+  before_action :set_order, only: %i[show edit update]
 
   def index
     @orders = current_laundry.orders.order(updated_at: :desc).visible

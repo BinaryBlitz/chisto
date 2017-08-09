@@ -18,9 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_devise_locale
-    if resource_name == :laundry
-      I18n.locale = :ru
-    end
+    I18n.locale = :ru if resource_name == :laundry
   end
 
   def extract_locale_from_accept_language_header
