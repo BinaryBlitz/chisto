@@ -2,7 +2,7 @@
   tr
     td = treatment.name
     td = treatment.description
-    td = link_to 'Изменить', edit_admin_treatment_path(treatment), class: 'btn btn-warning btn-sm'
+    td = link_to 'Изменить', edit_admin_treatment_path(treatment), class: 'btn btn-secondary btn-sm'
     td = link_to 'Удалить',
                  admin_treatment_path(treatment), method: :delete,
                  data: { confirm: 'Вы действительно хотите удалить услугу?' }, class: 'btn btn-danger btn-sm'
