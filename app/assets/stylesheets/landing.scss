@@ -34,10 +34,6 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-
-  > .container {
-    flex: 1;
-  }
 }
 
 header {
@@ -96,6 +92,7 @@ main {
 }
 
 footer {
+  flex: 1;
   background-color: $primary-color;
   color: white;
   padding: 1.5rem 0;
