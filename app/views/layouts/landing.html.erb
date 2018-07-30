@@ -25,17 +25,17 @@
     <% end %>
   </head>
   <body>
-    <%= render 'layouts/landing/header' %>
-
     <div class="container">
+      <%= render 'layouts/landing/header' %>
+
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>">
           <%= value %>
         </div>
       <% end %>
-    </div>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
 
     <%= render 'layouts/landing/footer' %>
   </body>

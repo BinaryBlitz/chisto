@@ -272,7 +272,7 @@ PLATFORMS
 DEPENDENCIES
   annotate_rails
   biz (~> 1.6)
-  bootstrap (~> 4.0.0.alpha6)
+  bootstrap (~> 4.0.0)
   byebug
   carrierwave (~> 1.0)
   devise (~> 4.3)

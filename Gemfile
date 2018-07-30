@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Front-end
 gem 'slim-rails'
-gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap', '~> 4.0.0'
 
 # Utilities
 gem 'phonelib', '~> 0.6'
