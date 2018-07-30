@@ -2,7 +2,7 @@
 
 ## Set up
 
-- Ruby version: 2.4.1
+- Ruby version: 2.5
 - System dependencies: `brew install imagemagick postgresql redis`
 - Configuration: `secrets.yml`
 - Database initialization: `$ rails db:setup`
