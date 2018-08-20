@@ -42,7 +42,7 @@ gem 'rails-i18n', '~> 5.0'
 
 # Auth
 gem 'devise', '~> 4.3'
-gem 'devise-bootstrap-views', '~> 1.0.0.alpha1'
+gem 'devise-bootstrap-views', '~> 1.1.0'
 
 # Payments
 gem 'tinkoff', '~> 0.1'

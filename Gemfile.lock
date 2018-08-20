@@ -79,7 +79,7 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
-    devise-bootstrap-views (1.0.0.alpha1)
+    devise-bootstrap-views (1.1.0)
     email_validator (1.6.0)
       activemodel
     erubi (1.7.1)
@@ -288,7 +288,7 @@ DEPENDENCIES
   byebug
   carrierwave (~> 1.0)
   devise (~> 4.3)
-  devise-bootstrap-views (~> 1.0.0.alpha1)
+  devise-bootstrap-views (~> 1.1.0)
   email_validator (~> 1.6)
   fog-aws (~> 1.2)
   gcm (~> 0.1)
