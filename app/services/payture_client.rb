@@ -1,5 +1,5 @@
 class PaytureClient
-  PAYTURE_APPLE_PAY_URL = Rails.application.secrets.payture_host + '/ApplePay'
+  PAYTURE_APPLE_PAY_URL = (Rails.application.secrets.payture_host || '') + '/ApplePay'
   PAYTURE_APPLE_PAY_METHOD = 'PAY'
 
   attr_reader :encoded_payment_data, :response
