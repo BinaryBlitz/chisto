@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster.
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.0'
 # Build JSON APIs with ease.
 gem 'jbuilder', '~> 2.5'
 
