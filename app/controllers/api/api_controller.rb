@@ -7,10 +7,12 @@ class API::APIController < ApplicationController
   protected
 
   attr_reader :current_user
+
   helper_method :current_user
 
   def restrict_access!
     return if restrict_access
+
     render json: { message: 'Invalid API Token' }, status: 401
   end
 

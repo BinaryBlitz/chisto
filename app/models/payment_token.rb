@@ -46,6 +46,7 @@ class PaymentToken < ApplicationRecord
 
   def payment_method_is_apple_pay
     return if order&.apple_pay?
+
     errors.add(:order, 'should use apple_pay payment method')
   end
 end

@@ -80,6 +80,7 @@ class Laundry < ApplicationRecord
 
   def update_rating_cache
     return if destroyed?
+
     update_attribute(:rating, ratings.verified.average(:value) || 0)
   end
 
