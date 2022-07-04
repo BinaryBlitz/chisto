@@ -281,7 +281,7 @@ DEPENDENCIES
   annotate
   biz (~> 1.6)
   bootsnap (>= 1.1.0)
-  bootstrap (~> 4.0.0)
+  bootstrap (~> 4.0)
   byebug
   carrierwave (~> 1.0)
   devise (~> 4.3)

@@ -25,7 +25,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Front-end
 gem 'slim-rails'
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.0'
 
 # Utilities
 gem 'phonelib', '~> 0.6'
