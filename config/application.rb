@@ -11,22 +11,16 @@ module Chisto
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.0
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
     config.generators do |g|
       g.helper = false
       g.assets = false
     end
-
-    # TODO: remove in 5.1
-    config.active_record.time_zone_aware_types = [:datetime, :time]
-
-    config.i18n.default_locale = :ru
-    config.time_zone = 'Europe/Moscow'
-    config.action_mailer.default_url_options = { host: 'chis.to' }
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-
-    ActiveSupport::JSON::Encoding.time_precision = 0
   end
 end

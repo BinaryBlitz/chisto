@@ -8,12 +8,12 @@ Rails.application.routes.draw do
       post '/', to: 'devise/registrations#create', as: :laundry_registration
       get 'sign_up', to: 'devise/registrations#new', as: :new_laundry_registration
       get 'settings', to: 'devise/registrations#edit', as: :edit_laundry_registration
-      put  '/', to: 'devise/registrations#update'
+      put '/', to: 'devise/registrations#update'
     end
 
     scope module: :partner, as: :partner do
       resource :laundry, only: [:update]
-      resources :orders, except: [:new, :create, :destroy]
+      resources :orders, except: %i[new create destroy]
       resources :ratings, only: [:index]
 
       resources :categories, only: [:index] do
@@ -37,14 +37,14 @@ Rails.application.routes.draw do
     devise_scope :admin do
       post '/', to: 'devise/registrations#create', as: :admin_registration
       get 'settings', to: 'devise/registrations#edit', as: :edit_admin_registration
-      put  '/', to: 'devise/registrations#update'
+      put '/', to: 'devise/registrations#update'
     end
 
     scope module: :admin, as: :admin do
-      resources :orders, except: [:new, :create, :destroy]
-      resources :ratings, only: [:index, :update, :destroy]
-      resources :promotions, except: [:edit, :update, :destroy]
-      resources :promo_codes, only: [:index, :new, :create]
+      resources :orders, except: %i[new create destroy]
+      resources :ratings, only: %i[index update destroy]
+      resources :promotions, except: %i[edit update destroy]
+      resources :promo_codes, only: %i[index new create]
 
       resources :cities do
         resources :laundries, shallow: true
@@ -61,8 +61,8 @@ Rails.application.routes.draw do
   resources :payments, only: [:create]
 
   namespace :api do
-    resource :verification_token, only: [:create, :update]
-    resource :user, only: [:show, :create, :update]
+    resource :verification_token, only: %i[create update]
+    resource :user, only: %i[show create update]
 
     resources :cities do
       resources :laundries, only: [:index]
@@ -70,7 +70,7 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:create]
 
     resources :laundries, only: [:show] do
-      resources :ratings, only: [:index, :create]
+      resources :ratings, only: %i[index create]
       resources :orders, only: [:create]
     end
 
@@ -81,7 +81,7 @@ Rails.application.routes.draw do
     end
     resources :items, only: [:index]
 
-    resources :orders, only: [:index, :show] do
+    resources :orders, only: %i[index show] do
       resource :payment_token, only: [:create]
     end
     resources :ratings, only: [:update]

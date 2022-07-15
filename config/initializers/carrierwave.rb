@@ -37,9 +37,7 @@ end
 
 CarrierWave.configure do |config|
   # Use local storage in development and test environment
-  if Rails.env.development?
-    config.storage = :file
-  end
+  config.storage = :file if Rails.env.development?
 
   if Rails.env.test?
     config.storage = NullStorage
